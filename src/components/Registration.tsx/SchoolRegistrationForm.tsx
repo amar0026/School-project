@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const inputBase =
   "w-full mt-1.5 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-800 bg-white outline-none transition-all duration-200 focus:border-[#4583DA] focus:ring-2 focus:ring-[#4583DA]/10 placeholder:text-gray-300";
@@ -9,22 +9,40 @@ const labelBase =
 const selectBase =
   "border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-800 bg-white outline-none transition-all duration-200 focus:border-[#4583DA] focus:ring-2 focus:ring-[#4583DA]/10 w-full appearance-none cursor-pointer";
 
-function SectionDivider({ title }) {
+type FormDataType = {
+  firstName: string;
+  lastName: string;
+  month: string;
+  day: string;
+  year: string;
+  gender: string;
+  grade: string;
+  guardianName: string;
+  email: string;
+  phone: string;
+  address: string;
+  startDate: string;
+  comments: string;
+};
+
+function SectionDivider({ title }: { title: string }) {
   return (
     <div className="flex items-center gap-4 py-2">
       <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#4583DA]/40 to-transparent"></div>
+
       <span className="text-[#4583DA] text-xs font-bold tracking-[0.2em] uppercase whitespace-nowrap flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-[#4583DA]"></span>
         {title}
         <span className="w-1.5 h-1.5 rounded-full bg-[#4583DA]"></span>
       </span>
+
       <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#4583DA]/40 to-transparent"></div>
     </div>
   );
 }
 
 export default function EnrollmentForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataType>({
     firstName: "",
     lastName: "",
     month: "",
@@ -40,8 +58,15 @@ export default function EnrollmentForm() {
     comments: "",
   });
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   return (
@@ -53,15 +78,15 @@ export default function EnrollmentForm() {
         fontFamily: "'Georgia', 'Times New Roman', serif",
       }}
     >
-      <style>{`
+      <style>
+        {`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap');
         .form-wrapper { font-family: 'DM Sans', sans-serif; }
         .form-title { font-family: 'Cormorant Garamond', serif; }
-      `}</style>
+      `}
+      </style>
 
-      {/* FORM WRAPPER */}
       <div className="form-wrapper w-full max-w-4xl">
-
         <div
           className="bg-white rounded-2xl overflow-hidden"
           style={{
@@ -80,6 +105,7 @@ export default function EnrollmentForm() {
             <h1 className="form-title text-3xl font-semibold text-white tracking-wide mb-1">
               Student Enrollment
             </h1>
+
             <p className="text-blue-200 text-xs tracking-[0.15em] uppercase">
               Application Form
             </p>
@@ -122,6 +148,7 @@ export default function EnrollmentForm() {
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <label className={labelBase}>Date of Birth</label>
+
                   <div className="flex gap-2 mt-1.5">
                     <select
                       name="month"
@@ -131,7 +158,9 @@ export default function EnrollmentForm() {
                     >
                       <option value="">MM</option>
                       {Array.from({ length: 12 }, (_, i) => (
-                        <option key={i}>{i + 1}</option>
+                        <option key={i} value={i + 1}>
+                          {i + 1}
+                        </option>
                       ))}
                     </select>
 
@@ -143,7 +172,9 @@ export default function EnrollmentForm() {
                     >
                       <option value="">DD</option>
                       {Array.from({ length: 31 }, (_, i) => (
-                        <option key={i}>{i + 1}</option>
+                        <option key={i} value={i + 1}>
+                          {i + 1}
+                        </option>
                       ))}
                     </select>
 
@@ -155,7 +186,9 @@ export default function EnrollmentForm() {
                     >
                       <option value="">YYYY</option>
                       {Array.from({ length: 20 }, (_, i) => (
-                        <option key={i}>{2025 - i}</option>
+                        <option key={i} value={2025 - i}>
+                          {2025 - i}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -163,6 +196,7 @@ export default function EnrollmentForm() {
 
                 <div>
                   <label className={labelBase}>Gender</label>
+
                   <select
                     name="gender"
                     value={formData.gender}
@@ -177,6 +211,7 @@ export default function EnrollmentForm() {
 
                 <div>
                   <label className={labelBase}>Grade</label>
+
                   <select
                     name="grade"
                     value={formData.grade}
@@ -199,6 +234,7 @@ export default function EnrollmentForm() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className={labelBase}>Guardian Name</label>
+
                 <input
                   name="guardianName"
                   value={formData.guardianName}
@@ -209,6 +245,7 @@ export default function EnrollmentForm() {
 
               <div>
                 <label className={labelBase}>Email</label>
+
                 <input
                   name="email"
                   value={formData.email}
@@ -219,6 +256,7 @@ export default function EnrollmentForm() {
 
               <div>
                 <label className={labelBase}>Phone</label>
+
                 <input
                   name="phone"
                   value={formData.phone}
@@ -229,6 +267,7 @@ export default function EnrollmentForm() {
 
               <div>
                 <label className={labelBase}>Address</label>
+
                 <input
                   name="address"
                   value={formData.address}
@@ -242,6 +281,7 @@ export default function EnrollmentForm() {
 
             <div>
               <label className={labelBase}>Preferred Start Date</label>
+
               <input
                 type="date"
                 name="startDate"
@@ -253,6 +293,7 @@ export default function EnrollmentForm() {
 
             <div>
               <label className={labelBase}>Comments</label>
+
               <textarea
                 name="comments"
                 value={formData.comments}
@@ -261,7 +302,7 @@ export default function EnrollmentForm() {
               />
             </div>
 
-            {/* SUBMIT BUTTON RIGHT */}
+            {/* SUBMIT BUTTON */}
             <div className="flex justify-end pt-2">
               <button className="px-8 py-3 bg-[#2E3363] rounded-xl text-white text-sm font-semibold tracking-widest uppercase hover:shadow-lg transition">
                 SUBMIT
@@ -271,7 +312,6 @@ export default function EnrollmentForm() {
             <p className="text-center text-[11px] text-gray-400 tracking-wide">
               All information provided will be kept confidential.
             </p>
-
           </div>
         </div>
       </div>
