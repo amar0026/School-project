@@ -92,7 +92,7 @@ const EducationSection: React.FC = () => {
   return (
     <div
       ref={ref}
-      className={`bg-white py-14 md:py-20 px-4 sm:px-6 text-center overflow-hidden ${
+      className={`bg-white  max-w-[1920px] mx-auto px-6 lg:px-8 xl:px-10 py-14 md:py-20 sm:px-6 text-center overflow-hidden ${
         inView ? "sect-running" : "sect-paused"
       }`}
     >

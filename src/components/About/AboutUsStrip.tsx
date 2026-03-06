@@ -21,7 +21,7 @@ const AboutUsStrip: React.FC = () => {
   const { ref, inView } = useInView(0.3);
 
   return (
-    <section className="w-full bg-white py-10 sm:py-14 md:py-16 overflow-hidden">
+    <section className="w-full  bg-white py-10 sm:py-14 md:py-16 overflow-hidden">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
@@ -76,7 +76,7 @@ const AboutUsStrip: React.FC = () => {
         }
       `}</style>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-8 md:px-12">
+      <div className=" max-w-[1920px]  mx-auto px-4 sm:px-8 md:px-12">
         <div
           ref={ref}
           className={`relative w-full ${inView ? "about-running" : "about-paused"}`}

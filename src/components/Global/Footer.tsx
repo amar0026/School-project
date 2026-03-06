@@ -2,11 +2,11 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-[#2E3363] py-10 sm:py-14 text-white">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+    <footer className="w-full  max-w-[1920px] mx-auto bg-[#2E3363]  px-4 sm:px-8 md:px-14 lg:px-20 text-white">
+      <div className=" max-w-[1920px] mx-auto  ">
 
         {/* ── Title ── */}
-        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+        <h2 className="text-center pt-10  text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
           Adarsha Sishu Bidyabithi
         </h2>
 
@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
           {/* ── LEFT: Newsletter ── */}
           <div className="w-full lg:max-w-md">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 leading-snug">
-              Stay up to date with <br /> our story
+              Stay up to date with <br/> our story
             </h3>
 
             <p className="text-white/80 mt-3 sm:mt-5 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
@@ -40,8 +40,8 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-6 sm:gap-8 w-full lg:w-auto">
 
             {/* Nav links */}
-            <div className="flex flex-wrap gap-x-3 gap-y-2 text-sm sm:text-base text-white/90">
-              {["Home","About","Academics","Registration","Achievement","Notice","Gallery","Contact"].map(link => (
+            <div className="flex flex-wrap gap-x-2 gap-y-2 text-sm sm:text-base text-white/90">
+              {["Home","About","Academics","Registration","Achievement","Gallery","Contact"].map(link => (
                 <p key={link} className="hover:text-white cursor-pointer">{link}</p>
               ))}
             </div>

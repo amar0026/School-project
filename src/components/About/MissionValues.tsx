@@ -4,7 +4,7 @@ import about from "../../assets/aboutimage.png";
 const MissionValues: React.FC = () => {
   return (
     <section className="w-full bg-white pb-10 sm:pb-14 md:pb-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-14 lg:px-20">
 
         {/* ── TOP: Image + Text ── */}
         <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 lg:gap-16">
@@ -14,7 +14,7 @@ const MissionValues: React.FC = () => {
             <img
               src={about}
               alt="Mission Student"
-              className="w-full h-56 sm:h-72 md:h-[400px] lg:h-[500px] object-cover rounded-xl"
+              className="w-full h-56 sm:h-72 md:h-auto lg:h-auto object-cover rounded-xl"
             />
           </div>
 

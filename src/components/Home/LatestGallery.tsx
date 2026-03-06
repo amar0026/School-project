@@ -97,7 +97,7 @@ const LatestGallery: React.FC = () => {
   const [lightbox, setLightbox] = useState<string | null>(null);
 
   return (
-    <section className="w-full bg-white pb-12 sm:pb-16 overflow-hidden">
+    <section className="w-full bg-white  px-6 lg:px-8 xl:px-10  pb-12 sm:pb-16  overflow-hidden">
       <style>{`
         @keyframes tileIn {
           from { opacity: 0; transform: translateY(24px) scale(0.96); }
@@ -107,7 +107,7 @@ const LatestGallery: React.FC = () => {
         .running .tile { animation: tileIn 0.6s cubic-bezier(.22,.68,0,1.2) both; }
       `}</style>
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-14 lg:px-20">
         <div ref={ref} className={inView ? "running" : "paused"}>
 
           {/* Header */}

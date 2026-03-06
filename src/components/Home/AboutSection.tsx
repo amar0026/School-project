@@ -55,7 +55,7 @@ const AboutSection: React.FC = () => {
         .running * {animation-play-state: running}
       `}</style>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+      <div className="max-w-[1400px] mx-auto  px-4 sm:px-8 md:px-14 lg:px-20">
 
         <div
           ref={ref}

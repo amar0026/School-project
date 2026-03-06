@@ -82,9 +82,9 @@ const SmartProgram: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
   return (
-    <section className="w-full bg-white py-14 md:py-20 overflow-hidden">
+    <section className="w-full bg-white px-16  py-14 md:py-20 overflow-hidden">
 
-      <div className="max-w-[1400px] mx-auto text-center px-4 sm:px-6 lg:px-10">
+      <div className="max-w-[1920px] mx-auto text-center px-4 sm:px-6 lg:px-10">
 
         <div ref={ref} className={inView ? "running" : "paused"}>
 

@@ -66,7 +66,7 @@ const ContactSection: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
   return (
-    <section className="w-full bg-white pb-12 sm:pb-16 overflow-hidden">
+    <section className="w-full bg-white max-w-[1920px] mx-auto px-6 lg:px-8 xl:px-10  pb-12 sm:pb-16 overflow-hidden">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
@@ -119,7 +119,7 @@ const ContactSection: React.FC = () => {
       `}</style>
 
       {/* Responsive padding: tight on mobile, generous on desktop */}
-      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24">
+      <div className=" px-4 sm:px-8 md:px-14 lg:px-20">
         <div
           ref={ref}
           className={`flex flex-col lg:flex-row w-full gap-10 lg:gap-16 ${inView ? "running" : "paused"}`}
@@ -147,7 +147,7 @@ const ContactSection: React.FC = () => {
               className="anim-left heading-hover text-3xl sm:text-4xl md:text-5xl text-[#04162F] leading-snug cursor-default"
               style={{ fontFamily: "'Playfair Display', serif", animationDelay: "0.1s" }}
             >
-              Lets talk with <br /> Us
+              Lets talk with Us
             </h2>
 
             {/* Sub text */}

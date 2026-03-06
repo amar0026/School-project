@@ -70,7 +70,7 @@ const MessageCard: React.FC<{
         />
         <span
           className="text-[9px] sm:text-[10px] font-bold tracking-[0.28em] uppercase text-[#1E40AF]"
-          style={{ fontFamily: "'DM Sans', sans-serif" }}
+          style={{ fontFamily: "'DM Sans', serif" }}
         >
           Message
         </span>
@@ -196,7 +196,7 @@ const AuthorityMessages: React.FC = () => {
         }
       `}</style>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 space-y-6 sm:space-y-8">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-14 lg:px-20 space-y-6 sm:space-y-8">
 
         {/* ── Section Header ── */}
         <div
@@ -207,7 +207,7 @@ const AuthorityMessages: React.FC = () => {
             <div className="anim-line h-0.5 rounded-full bg-[#1E40AF]" style={{ width: "48px" }} />
             <span
               className="text-[10px] sm:text-[11px] font-bold tracking-[0.28em] uppercase text-[#1E40AF]"
-              style={{ fontFamily: "'DM Sans', sans-serif" }}
+              style={{ fontFamily: "'DM Sans', serif" }}
             >
               Leadership
             </span>

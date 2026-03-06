@@ -145,7 +145,7 @@ const Gallery: React.FC = () => {
     >
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');`}</style>
 
-      <div className="max-w-6xl mx-auto px-3 sm:px-6">
+      <div className="max-w-[1920px] mx-auto  px-4 sm:px-8 md:px-14 lg:px-20">
 
         {/* Title */}
         <div className="text-center mb-8 sm:mb-10">

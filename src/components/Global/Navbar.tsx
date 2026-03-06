@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* ── Logo + School Name ── */}
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between sm:justify-center gap-3 sm:gap-5 px-4 sm:px-6 py-3 sm:py-4">
+        <div className="max-w-[1920px] mx-auto flex items-center justify-between sm:justify-center gap-3 sm:gap-5 px-4 sm:px-6 py-3 sm:py-4">
 
           <div className="flex items-center gap-3 sm:gap-5">
             <img

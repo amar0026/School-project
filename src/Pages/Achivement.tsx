@@ -107,14 +107,10 @@ const AchievementsSection = () => {
         }
       `}</style>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1920px] mx-auto">
 
         {/* ══ HEADER ══════════════════════════════════════════════════════════ */}
-        <div
-          ref={headRef}
-          className={`text-center mb-10 sm:mb-14 md:mb-16 ${headIn ? "head-r" : "head-p"}`}
-        >
-          {/* Eyebrow */}
+        <div ref={headRef} className={`text-center mb-10 sm:mb-14 md:mb-16 ${headIn ? "head-r" : "head-p"}`}>
           <div className="anim-up flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-5" style={{ animationDelay: "0s" }}>
             <div className="anim-line h-px rounded-full bg-[#313567]" style={{ width: "56px", animationDelay: "0.2s" }} />
             <span className="text-[9px] sm:text-[10px] font-bold tracking-[0.3em] sm:tracking-[0.35em] uppercase text-[#313567]">
@@ -123,7 +119,6 @@ const AchievementsSection = () => {
             <div className="anim-line h-px rounded-full bg-[#313567]" style={{ width: "56px", animationDelay: "0.2s" }} />
           </div>
 
-          {/* Heading */}
           <h2
             className="anim-up hdg-hover text-3xl sm:text-4xl md:text-5xl font-bold text-[#313567] cursor-default leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', serif", animationDelay: "0.1s" }}
@@ -131,7 +126,6 @@ const AchievementsSection = () => {
             Our Achievements
           </h2>
 
-          {/* Sub */}
           <p
             className="anim-up text-sm sm:text-base md:text-lg text-gray-500 mt-5 sm:mt-7 max-w-xl sm:max-w-2xl mx-auto leading-relaxed px-2"
             style={{ animationDelay: "0.4s" }}
@@ -172,15 +166,16 @@ const AchievementsSection = () => {
                 style={{ background: "linear-gradient(180deg, #313567 0%, #4583DA 100%)" }}
               />
 
-              <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 pl-4 sm:pl-5">
+              {/* ── Increased padding + min-height for bigger boxes ── */}
+              <div className="flex items-center gap-3 sm:gap-4 p-4 sm:p-5 md:p-6 pl-5 sm:pl-6 md:pl-7 min-h-[68px] sm:min-h-[76px] md:min-h-[84px]">
                 <span
-                  className="text-[10px] sm:text-[11px] font-bold text-[#4583DA]/50 w-4 sm:w-5 flex-shrink-0 select-none"
+                  className="text-[11px] sm:text-xs font-bold text-[#4583DA]/50 w-5 flex-shrink-0 select-none"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span
-                  className="text-gray-800 font-medium text-sm leading-snug"
+                  className="text-gray-800 font-medium text-sm sm:text-base leading-snug"
                   style={{ fontFamily: "'DM Sans', sans-serif" }}
                 >
                   {school}
@@ -210,7 +205,6 @@ const AchievementsSection = () => {
             boxShadow: "0 8px 40px rgba(30,64,175,0.09)",
           }}
         >
-          {/* Decorative corners */}
           <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/30 pointer-events-none" />
           <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-white/20 pointer-events-none" />
 
@@ -265,10 +259,7 @@ const AchievementsSection = () => {
               boxShadow: "0 8px 32px rgba(22,163,74,0.08)",
             }}
           >
-            <div
-              className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl"
-              style={{ background: "linear-gradient(180deg, #16a34a 0%, #4ade80 100%)" }}
-            />
+            <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" style={{ background: "linear-gradient(180deg, #16a34a 0%, #4ade80 100%)" }} />
 
             <div className="pl-6 sm:pl-8 pr-5 sm:pr-7 py-5 sm:py-6 flex items-start gap-3 sm:gap-4">
               <div
@@ -281,7 +272,6 @@ const AchievementsSection = () => {
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
               </div>
-
               <p className="text-gray-700 text-sm sm:text-base md:text-lg italic leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 <span className="font-bold not-italic text-green-700">School has a strong alumni</span> who stand beside the Programs and Activities of the school.
               </p>

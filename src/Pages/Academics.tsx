@@ -65,7 +65,7 @@ const Academic2 = () => {
 
   return (
     <section
-      className="w-full min-h-screen bg-slate-50 py-10 sm:py-14 px-0 overflow-hidden"
+      className="w-full min-h-screen  bg-slate-50 py-10 sm:py-14 px-0 overflow-hidden"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       <style>{`
@@ -132,13 +132,10 @@ const Academic2 = () => {
         }
       `}</style>
 
-      {/* ── Authority Messages ── */}
-      <div className="mb-10 sm:mb-12">
-        <AuthorityMessages />
-      </div>
+      
 
       {/* shared horizontal padding for all sections below */}
-      <div className="px-4 sm:px-8 md:px-14 lg:px-20">
+      <div className="   px-4 sm:px-8 md:px-14 lg:px-20">
 
         {/* ══ PAGE TITLE ══════════════════════════════════════════════════════ */}
         <div
@@ -312,6 +309,10 @@ const Academic2 = () => {
         </div>
 
       </div>{/* end shared padding wrapper */}
+      {/* ── Authority Messages ── */}
+      <div className="mb-10 sm:mb-12">
+        <AuthorityMessages />
+      </div>
     </section>
   );
 };

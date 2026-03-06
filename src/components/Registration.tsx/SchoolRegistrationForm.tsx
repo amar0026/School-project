@@ -64,7 +64,7 @@ export default function EnrollmentForm() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center py-8 sm:py-12 px-4"
+      className=" flex items-center justify-center mb-1 px-4 sm:px-8 md:px-14 lg:px-20"
       style={{
         background: "linear-gradient(135deg, #f0f6ff 0%, #e8f0fe 50%, #f5f7ff 100%)",
         fontFamily: "'Georgia', 'Times New Roman', serif",
@@ -76,7 +76,7 @@ export default function EnrollmentForm() {
         .form-title   { font-family: 'Cormorant Garamond', serif; }
       `}</style>
 
-      <div className="form-wrapper w-full max-w-4xl">
+      <div className="form-wrapper w-full max-w-[1920px] mx-auto ">
         <div
           className="bg-white rounded-2xl overflow-hidden"
           style={{ boxShadow: "0 20px 60px rgba(69,131,218,0.12), 0 4px 16px rgba(0,0,0,0.06)" }}

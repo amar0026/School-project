@@ -10,7 +10,7 @@ import Gallery from "./Pages/Gallery";
 import Registration from "./Pages/Registration";
 import AboutUsStrip from "./Pages/About";
 import ContactSection from "./components/ContactUs/Contact";
-import NoticePage from "./Pages/Notice";
+// import NoticePage from "./Pages/Notice";
 import AchievementsSection from "./Pages/Achivement";
 import Academic2 from "./Pages/Academics";
 import Fromsection from "./Pages/form";
@@ -72,10 +72,10 @@ const router = createBrowserRouter([
         path: "Achievement",
         element: <AchievementsSection />,
       },
-      {
-        path: "Notice",
-        element: <NoticePage />,
-      },
+      // {
+      //   path: "Notice",
+      //   element: <NoticePage />,
+      // },
       {
         path: "form",
         element: <Fromsection />,

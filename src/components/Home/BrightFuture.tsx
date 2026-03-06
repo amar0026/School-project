@@ -144,13 +144,13 @@ const child = {
 
 const BrightFuture: React.FC = () => {
   return (
-    <section className="w-full bg-white pb-14 sm:pb-16 md:pb-20 overflow-hidden">
+    <section className="w-full bg-white pb-14 max-w-[1920px] mx-auto px-6 lg:px-8 xl:px-10 sm:pb-16 md:pb-20 overflow-hidden">
 
-      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
+      <div className=" px-4 sm:px-8 md:px-14 lg:px-20">
 
         {/* Top Content */}
 
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 md:gap-10">
+        <div className="flex flex-col md:flex-row  justify-between items-center md:items-start gap-6 md:gap-10">
 
           <motion.h2
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#000000B0] leading-snug font-semibold flex flex-wrap gap-2 sm:gap-3 text-center md:text-left"
@@ -179,11 +179,11 @@ const BrightFuture: React.FC = () => {
 
         {/* Stats */}
 
-        <div className="mt-10 sm:mt-12 md:mt-16 flex justify-center">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-16 justify-items-center">
+        <div className="mt-10  sm:mt-12 md:mt-16 flex justify-center">
+          <div className="grid  grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-16 justify-items-center">
 
             <StatCard icon={Calender} alt="Experience" value={12} label="Years Experience" floatDelay="0s" />
-
+ 
             <StatCard icon={Achievement} alt="Achievement" value={606} label="Total Achievement" floatDelay="0.4s" />
 
             <StatCard icon={Group} alt="Students" value={250} label="Happy Student" floatDelay="0.8s" />

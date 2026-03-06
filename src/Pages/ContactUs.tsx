@@ -149,7 +149,7 @@ opacity:1;
 
 `}</style>
 
-      <div className="max-w-[1400px] mx-auto px-10">
+      <div className="max-w-[1920px] mx-auto  px-4 sm:px-8 md:px-14 lg:px-20">
 
         <div
           ref={ref}

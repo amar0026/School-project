@@ -12,8 +12,8 @@ const HeroSection: React.FC = () => {
         h-[250px] 
         sm:h-[350px] 
         md:h-[450px] 
-        lg:h-[550px] 
-        xl:h-[650px]">
+        lg:h-auto 
+        xl:h-auto">
 
           {/* Background Image */}
           <img

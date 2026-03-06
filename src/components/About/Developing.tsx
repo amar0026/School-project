@@ -5,7 +5,7 @@ import about from "../../assets/Rectangle 4571.png";
 const Developing: React.FC = () => {
   return (
     <section className="w-full bg-white pb-10 sm:pb-14 md:pb-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-14 lg:px-20">
 
         {/* ── TOP: Text + Image ── */}
         <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 lg:gap-16">

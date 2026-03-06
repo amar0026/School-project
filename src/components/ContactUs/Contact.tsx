@@ -35,7 +35,7 @@ const ContactSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-[#f2f2f2] py-16 px-4 sm:px-6 md:px-10 overflow-hidden min-h-screen flex items-center">
+    <section className="relative bg-[#f2f2f2] py-16  px-4 sm:px-8 md:px-14 lg:px-20 overflow-hidden  flex items-center">
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap');
@@ -132,7 +132,7 @@ const ContactSection: React.FC = () => {
           style={{ background: "radial-gradient(circle, #c7d2fe 0%, transparent 65%)" }} />
       </div>
 
-      <div className="relative max-w-6xl mx-auto w-full">
+      <div className="relative max-w-[1920px] mx-auto w-full">
         <div
           ref={ref}
           className={`grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start ${inView ? "running" : "paused"}`}
@@ -149,7 +149,7 @@ const ContactSection: React.FC = () => {
 
             <h2
               className="enter-left text-4xl sm:text-5xl text-gray-800 leading-tight mb-3"
-              style={{ fontFamily: "'Instrument Serif', serif", animationDelay: "0.08s" }}
+              style={{ fontFamily: "Poppins, serif", animationDelay: "0.08s" }}
             >
               Get in <em>touch</em>
             </h2>
@@ -213,7 +213,7 @@ const ContactSection: React.FC = () => {
 
             <h3
               className="text-xl sm:text-2xl font-semibold text-gray-800 mb-7"
-              style={{ fontFamily: "'Instrument Serif', serif" }}
+              style={{ fontFamily: "Poppins, serif" }}
             >
               Send a message
             </h3>
