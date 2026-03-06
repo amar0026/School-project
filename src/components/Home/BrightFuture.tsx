@@ -6,35 +6,7 @@ import Achievement from "../../assets/Achievement.svg";
 import Group from "../../assets/Group.svg";
 import Review from "../../assets/Review.svg";
 
-/* ───────────────── HOOK ───────────────── */
-
-function useInView(threshold: number = 0.3) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, inView };
-}
-
-/* ───────────────── COUNTER ───────────────── */
+/* ───────────── COUNTER ───────────── */
 
 interface CounterProps {
   target: number;
@@ -49,7 +21,6 @@ const Counter: React.FC<CounterProps> = ({
 }) => {
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
-
   const ref = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
@@ -58,7 +29,7 @@ const Counter: React.FC<CounterProps> = ({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started) {
+        if (entry.isIntersecting) {
           setStarted(true);
           observer.disconnect();
         }
@@ -69,7 +40,7 @@ const Counter: React.FC<CounterProps> = ({
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, [started]);
+  }, []);
 
   useEffect(() => {
     if (!started) return;
@@ -102,7 +73,7 @@ const Counter: React.FC<CounterProps> = ({
   );
 };
 
-/* ───────────────── STAT CARD ───────────────── */
+/* ───────────── STAT CARD ───────────── */
 
 interface StatCardProps {
   icon: string;
@@ -122,31 +93,27 @@ const StatCard: React.FC<StatCardProps> = ({
   floatDelay,
 }) => (
   <div
-    className="flex items-center gap-4 group cursor-default"
+    className="flex items-center gap-4"
     style={{
       animation: `floatStat 3.5s ease-in-out ${floatDelay} infinite`,
     }}
   >
-    {/* Icon */}
     <div
       className="w-14 h-14 rounded-2xl flex items-center justify-center"
       style={{
         background: "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)",
         border: "1.5px solid #bbf7d0",
-        boxShadow: "0 2px 12px rgba(16,199,0,0.12)",
-        transition: "all 0.35s ease",
       }}
     >
       <img src={icon} alt={alt} className="w-7 h-7" />
     </div>
 
-    {/* Text */}
     <div>
       <p
-        className="font-bold text-2xl leading-none mb-0.5 stat-num"
+        className="font-bold text-2xl leading-none mb-0.5"
         style={{ color: "#10C700", fontFamily: "'DM Sans', sans-serif" }}
       >
-        <Counter target={value} suffix={suffix} duration={2200} />
+        <Counter target={value} suffix={suffix} />
       </p>
 
       <p
@@ -159,68 +126,29 @@ const StatCard: React.FC<StatCardProps> = ({
   </div>
 );
 
-/* ───────────────── ANIMATION ───────────────── */
+/* ───────────── ANIMATION ───────────── */
 
 const text = "A Brighter Future For Your Kids";
 
 const container = {
   hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15 },
-  },
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
 const child = {
   hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-/* ───────────────── MAIN COMPONENT ───────────────── */
+/* ───────────── MAIN COMPONENT ───────────── */
 
 const BrightFuture: React.FC = () => {
   return (
     <section className="w-full bg-white pb-20 overflow-hidden">
-      <style>
-        {`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap');
-
-        @keyframes floatStat {
-          0%,100%{transform:translateY(0)}
-          50%{transform:translateY(-8px)}
-        }
-
-        @keyframes countGlow {
-          0%,100%{text-shadow:0 0 0 rgba(16,199,0,0)}
-          50%{text-shadow:0 0 12px rgba(16,199,0,0.4)}
-        }
-
-        .stat-num{
-          position:relative;
-          display:inline-block;
-          animation:countGlow 2.5s ease-in-out infinite;
-        }
-
-        .stat-num::after{
-          content:'';
-          position:absolute;
-          bottom:-3px;
-          left:0;
-          width:100%;
-          height:2px;
-          background:#10C700;
-          border-radius:9999px;
-          opacity:0.35;
-        }
-      `}
-      </style>
 
       <div className="max-w-[1920px] mx-auto px-16">
 
-        {/* TOP SECTION */}
+        {/* Top Content */}
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
 
@@ -246,53 +174,21 @@ const BrightFuture: React.FC = () => {
             <br />
             Children to become honest people.
           </p>
+
         </div>
 
-        {/* DIVIDER */}
+        {/* Stats */}
 
-        <div className="flex items-center gap-3 mt-10 mb-2">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-green-200 to-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-green-300" />
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-green-200 to-transparent" />
-        </div>
-
-        {/* STATS */}
-
-        <div className="mt-10 flex justify-center">
+        <div className="mt-16 flex justify-center">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-16 justify-items-center">
 
-            <StatCard
-              icon={Calender}
-              alt="Experience"
-              value={12}
-              label="Years Experience"
-              floatDelay="0s"
-            />
+            <StatCard icon={Calender} alt="Experience" value={12} label="Years Experience" floatDelay="0s" />
 
-            <StatCard
-              icon={Achievement}
-              alt="Achievement"
-              value={606}
-              label="Total Achievement"
-              floatDelay="0.4s"
-            />
+            <StatCard icon={Achievement} alt="Achievement" value={606} label="Total Achievement" floatDelay="0.4s" />
 
-            <StatCard
-              icon={Group}
-              alt="Happy Student"
-              value={250}
-              label="Happy Student"
-              floatDelay="0.8s"
-            />
+            <StatCard icon={Group} alt="Students" value={250} label="Happy Student" floatDelay="0.8s" />
 
-            <StatCard
-              icon={Review}
-              alt="Reviews"
-              value={3}
-              suffix="k+"
-              label="Positive Review"
-              floatDelay="1.2s"
-            />
+            <StatCard icon={Review} alt="Review" value={3} suffix="k+" label="Positive Review" floatDelay="1.2s" />
 
           </div>
         </div>
