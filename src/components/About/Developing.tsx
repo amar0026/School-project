@@ -4,19 +4,20 @@ import about from "../../assets/Rectangle 4571.png";
 
 const Developing: React.FC = () => {
   return (
-    <section className="w-full bg-white pb-16">
-      {/* Main Wrapper */}
-      <div className="max-w-[1920px] mx-auto px-24">
-        {/* ================= TOP SECTION (Half + Half) ================= */}
-        <div className="flex items-start gap-16">
-          {/* Left Side Image */}
-          <div className="w-1/2">
-            <h2 className="text-5xl font-medium text-[#313567] leading-snug mt-12">
+    <section className="w-full bg-white pb-10 sm:pb-14 md:pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
+
+        {/* ── TOP: Text + Image ── */}
+        <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 lg:gap-16">
+
+          {/* Left: Text */}
+          <div className="w-full md:w-1/2 md:pt-8 lg:pt-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#313567] leading-snug">
               Developing
             </h2>
 
-            <p className="text-xl text-[#000000CC] mt-8 leading-relaxed ">
-              With the interest and effont of some good souls this school was
+            <p className="text-base sm:text-lg md:text-xl text-[#000000CC] mt-5 sm:mt-6 md:mt-8 leading-relaxed">
+              With the interest and effort of some good souls this school was
               established in 1959. The land (10 Kottah equivalent to 7200 Sbt
               approx) was allotted by the then Dum Dum Park Board (Krishsapur
               Refugee Co-operative Colony ltd) as well as money to build a
@@ -34,42 +35,43 @@ const Developing: React.FC = () => {
             </p>
           </div>
 
-          {/* Right Side Content */}
-          <div className="w-1/2">
+          {/* Right: Image */}
+          <div className="w-full md:w-1/2">
             <img
               src={about}
               alt="Mission Student"
-              className="w-full mt-15 h-[630px]"
+              className="w-full h-56 sm:h-80 md:h-[480px] lg:h-[630px] object-cover rounded-xl"
             />
           </div>
         </div>
 
-        {/* ================= BOTTOM FULL WIDTH SECTION ================= */}
-        <div className="mt-14">
-          {/* Line Text */}
-          <p className="text-2xl text-[#000000CC] mb-6">
+        {/* ── BOTTOM: Description ── */}
+        <div className="mt-10 sm:mt-12 md:mt-14">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#000000CC] leading-relaxed">
             The present president of the Board, Dr. Swapan Ghosh and the
             secretary Mr Ranen Ray along with other Board members has funded the
-            need extension t school building in this year 2025-26. Here we get
+            need extension to school building in this year 2025-26. Here we get
             four more class rooms, wash rooms in 1st floor and an open hall and
-            wash zooms and a kitchen for students on the ground look. School's
+            wash rooms and a kitchen for students on the ground floor. School's
             caretaker has got a new room and a separate kitchen. So now we have
-            more class rooms to use one audio-visual room in set to open very
-            soon. We have multiple plans for the grwth of the school. We
-            encourage more such were wishers individuals and Organisations alike
-            who will support our children’s future.
+            more class rooms to use, one audio-visual room is set to open very
+            soon. We have multiple plans for the growth of the school. We
+            encourage more such well-wishers, individuals and organisations alike
+            who will support our children's future.
           </p>
         </div>
+
       </div>
-       {/* BUTTON */}
-        <div className="flex items-center justify-center mt-14">
-          <Link
-            to="/form"
-            className="bg-[#2E3363] text-white px-8 py-3 rounded-2xl text-lg font-medium shadow-md hover:brightness-110 active:scale-95 transition-all duration-200"
-          >
-            Click here
-          </Link>
-        </div>
+
+      {/* ── Button ── */}
+      <div className="flex items-center justify-center mt-10 sm:mt-12 md:mt-14 px-4">
+        <Link
+          to="/form"
+          className="bg-[#2E3363] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl text-base sm:text-lg font-medium shadow-md hover:brightness-110 active:scale-95 transition-all duration-200"
+        >
+          Click here
+        </Link>
+      </div>
     </section>
   );
 };

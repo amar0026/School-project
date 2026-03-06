@@ -29,30 +29,30 @@ const ContactItem: React.FC<{
   delay: string;
 }> = ({ icon, alt, label, value, delay }) => (
   <div
-    className="contact-item flex items-center gap-5 group"
+    className="contact-item flex items-center gap-4 group"
     style={{ animationDelay: delay }}
   >
     {/* Icon bubble */}
     <div
-      className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+      className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
       style={{
         background: "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
         border: "1.5px solid #bfdbfe",
         boxShadow: "0 2px 8px rgba(69,131,218,0.10)",
       }}
     >
-      <img src={icon} alt={alt} className="w-6 h-6" />
+      <img src={icon} alt={alt} className="w-5 h-5 sm:w-6 sm:h-6" />
     </div>
     {/* Text */}
-    <div>
+    <div className="min-w-0">
       <p
-        className="text-sm font-bold tracking-[0.18em] uppercase text-[#4583DA] mb-0.5"
+        className="text-xs sm:text-sm font-bold tracking-[0.18em] uppercase text-[#4583DA] mb-0.5"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         {label}
       </p>
       <p
-        className="text-base text-[#1a1a2e] font-medium"
+        className="text-sm sm:text-base text-[#1a1a2e] font-medium break-all sm:break-normal"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         {value}
@@ -66,7 +66,7 @@ const ContactSection: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
   return (
-    <section className="w-full bg-white pb-16 overflow-hidden">
+    <section className="w-full bg-white pb-12 sm:pb-16 overflow-hidden">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
@@ -89,11 +89,6 @@ const ContactSection: React.FC = () => {
         @keyframes mapReveal {
           from { opacity: 0; transform: scale(0.96) translateY(20px); }
           to   { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes popIn {
-          0%   { opacity: 0; transform: scale(0.75); }
-          70%  { transform: scale(1.06); }
-          100% { opacity: 1; transform: scale(1); }
         }
         @keyframes shimmerHeading {
           0%   { background-position: -200% center; }
@@ -123,23 +118,24 @@ const ContactSection: React.FC = () => {
         }
       `}</style>
 
-      <div className="max-w-[1920px] mx-auto px-24">
+      {/* Responsive padding: tight on mobile, generous on desktop */}
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-16 lg:px-24">
         <div
           ref={ref}
-          className={`flex flex-col lg:flex-row w-full gap-16 ${inView ? "running" : "paused"}`}
+          className={`flex flex-col lg:flex-row w-full gap-10 lg:gap-16 ${inView ? "running" : "paused"}`}
         >
 
           {/* ── LEFT SIDE ─────────────────────────────────────── */}
-          <div className="w-1/2">
+          <div className="w-full lg:w-1/2">
 
             {/* Eyebrow */}
-            <div className="anim-up flex items-center gap-3 mb-5" style={{ animationDelay: "0.05s" }}>
+            <div className="anim-up flex items-center gap-3 mb-4 sm:mb-5" style={{ animationDelay: "0.05s" }}>
               <div
                 className="anim-line h-0.5 rounded-full bg-[#4583DA]"
                 style={{ width: "48px" }}
               />
               <span
-                className="text-[11px] font-bold tracking-[0.28em] uppercase text-[#4583DA]"
+                className="text-[10px] sm:text-[11px] font-bold tracking-[0.28em] uppercase text-[#4583DA]"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
                 Contact Us
@@ -148,7 +144,7 @@ const ContactSection: React.FC = () => {
 
             {/* Heading */}
             <h2
-              className="anim-left heading-hover text-5xl text-[#04162F] leading-snug cursor-default"
+              className="anim-left heading-hover text-3xl sm:text-4xl md:text-5xl text-[#04162F] leading-snug cursor-default"
               style={{ fontFamily: "'Playfair Display', serif", animationDelay: "0.1s" }}
             >
               Lets talk with <br /> Us
@@ -156,7 +152,7 @@ const ContactSection: React.FC = () => {
 
             {/* Sub text */}
             <p
-              className="anim-up text-[#656565] text-xl mt-6 max-w-[400px] leading-relaxed tracking-wider"
+              className="anim-up text-[#656565] text-base sm:text-lg md:text-xl mt-4 sm:mt-6 max-w-full sm:max-w-[400px] leading-relaxed tracking-wider"
               style={{ fontFamily: "'DM Sans', sans-serif", animationDelay: "0.25s" }}
             >
               We offer high quality Daycare Services for your kids, contact us
@@ -165,7 +161,7 @@ const ContactSection: React.FC = () => {
 
             {/* Thin divider */}
             <div
-              className="anim-up mt-8 mb-2 h-px max-w-[400px] rounded-full"
+              className="anim-up mt-6 sm:mt-8 mb-2 h-px max-w-full sm:max-w-[400px] rounded-full"
               style={{
                 background: "linear-gradient(90deg, #dbeafe 0%, transparent 100%)",
                 animationDelay: "0.35s",
@@ -173,7 +169,7 @@ const ContactSection: React.FC = () => {
             />
 
             {/* Contact Items */}
-            <div className="mt-8 space-y-7">
+            <div className="mt-6 sm:mt-8 space-y-5 sm:space-y-7">
               <ContactItem icon={Call}  alt="Call"     label="Call"     value="+91123567890"                    delay="0.45s" />
               <ContactItem icon={Email} alt="Email"    label="Email"    value="adarshasishubidyabithi@gmail.com" delay="0.58s" />
               <ContactItem icon={Map}   alt="Location" label="Location" value="Dum Dum Park, West Bengal, India" delay="0.71s" />
@@ -181,21 +177,22 @@ const ContactSection: React.FC = () => {
           </div>
 
           {/* ── RIGHT SIDE ────────────────────────────────────── */}
-          <div className="w-1/2 flex justify-end">
+          <div className="w-full lg:w-1/2 flex justify-end">
             <div
               className="anim-map w-full rounded-2xl overflow-hidden"
               style={{
                 animationDelay: "0.3s",
                 boxShadow: "0 20px 60px rgba(69,131,218,0.15), 0 4px 16px rgba(0,0,0,0.06)",
                 border: "1.5px solid #dbeafe",
-                minHeight: "420px",
+                /* Shorter map on mobile, full-height on desktop */
+                minHeight: "280px",
               }}
             >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.205126945129!2d88.41490967406959!3d22.608813979465953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275f44a3396e7%3A0xfb80463863a1e9b1!2sAdarsha%20Shishu%20Vidya%20Bithi!5e0!3m2!1sen!2sus!4v1771185357827!5m2!1sen!2sus"
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: "420px", display: "block" }}
+                style={{ border: 0, minHeight: "280px", display: "block" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

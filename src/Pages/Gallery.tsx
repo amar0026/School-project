@@ -12,7 +12,9 @@ import img6 from "../assets/dayshift.jpg";
 const tabs = [
   "Campus",
   "Events",
+ 
   "Sports",
+  
   "Cultural",
   "Class Activities",
   "Videos",
@@ -21,16 +23,25 @@ const tabs = [
 const galleryData: Record<string, { title: string; images: string[] }[]> = {
   Campus: [
     { title: "Teachers' Orientation", images: [img1, img2, img3, img4, img5, img6] },
-    { title: "Annual Exhibition",     images: [img4, img5, img6, img1, img2, img3] },
+    { title: "Annual Exhibition", images: [img4, img5, img6, img1, img2, img3] },
   ],
-  Events:            [{ title: "Annual Day",           images: [img2, img3, img4, img5, img6, img1] }],
-  SUPW:              [{ title: "Craft Workshop",        images: [img5, img6, img1, img2, img3, img4] }],
-  Sports:            [{ title: "Sports Meet",           images: [img3, img4, img5, img6, img1, img2] }],
-  Academics:         [{ title: "Science Fair",          images: [img6, img1, img2, img3, img4, img5] }],
-  Cultural:          [{ title: "Cultural Programme",    images: [img1, img5, img3, img6, img2, img4] }],
-  "Class Activities":[{ title: "Classroom Activities", images: [img2, img4, img6, img1, img3, img5] }],
-  Mise:              [{ title: "Mise",                  images: [img4, img6, img2, img5, img1, img3] }],
-  "Videos":          [{ title: "School Reels",          images: [img5, img3, img1, img4, img6, img2] }],
+  Events: [
+    { title: "Annual Day", images: [img2, img3, img4, img5, img6, img1] },
+  ],
+ 
+  Sports: [
+    { title: "Sports Meet", images: [img3, img4, img5, img6, img1, img2] },
+  ],
+  
+  Cultural: [
+    { title: "Cultural Programme", images: [img1, img5, img3, img6, img2, img4] },
+  ],
+  "Class Activities": [
+    { title: "Classroom Activities", images: [img2, img4, img6, img1, img3, img5] },
+  ],
+  Videos: [
+    { title: "School Reels", images: [img5, img3, img1, img4, img6, img2] },
+  ],
 };
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
@@ -39,13 +50,14 @@ const Lightbox: React.FC<{ src: string; onClose: () => void }> = ({ src, onClose
     className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm"
     onClick={onClose}
   >
-    <div className="relative max-w-5xl w-full mx-6" onClick={(e) => e.stopPropagation()}>
+    <div className="relative max-w-5xl w-full mx-4 sm:mx-6" onClick={(e) => e.stopPropagation()}>
       <button
         onClick={onClose}
         className="absolute -top-12 right-0 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-all text-lg"
       >
         ✕
       </button>
+
       <img
         src={src}
         alt="Gallery"
@@ -55,23 +67,24 @@ const Lightbox: React.FC<{ src: string; onClose: () => void }> = ({ src, onClose
   </div>
 );
 
-// ── Image Tile — VIEW button perfectly centered ───────────────────────────────
+// ── Image Tile ────────────────────────────────────────────────────────────────
 const ImageTile: React.FC<{
   src: string;
   alt: string;
   onClick: () => void;
   className?: string;
-}> = ({ src, alt, onClick, className = "" }) => {
+  style?: React.CSSProperties;
+}> = ({ src, alt, onClick, className = "", style }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      className={`overflow-hidden rounded-xl cursor-pointer relative ${className}`}
+      style={style}
+      className={`overflow-hidden rounded-xl cursor-pointer relative min-h-[110px] sm:min-h-[180px] ${className}`}
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Image */}
       <img
         src={src}
         alt={alt}
@@ -91,7 +104,7 @@ const ImageTile: React.FC<{
         }}
       />
 
-      {/* VIEW pill — dead center */}
+      {/* VIEW pill */}
       <div
         className="absolute inset-0 flex items-center justify-center"
         style={{
@@ -120,10 +133,18 @@ const ImageTile: React.FC<{
             transition: "transform 0.35s cubic-bezier(.22,.68,0,1.2)",
           }}
         >
-          {/* Eye icon */}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-            <circle cx="12" cy="12" r="3"/>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
           </svg>
           VIEW
         </div>
@@ -147,15 +168,16 @@ const SectionBlock: React.FC<{
   >
     {/* Section Header */}
     <div
-      className="flex items-center gap-3 px-5 py-4"
+      className="flex items-center gap-3 px-4 sm:px-5 py-3 sm:py-4"
       style={{
         background: "linear-gradient(90deg, #eff6ff 0%, #ffffff 100%)",
         borderBottom: "1.5px solid #dbeafe",
       }}
     >
       <div className="w-1.5 h-6 rounded-full bg-[#1E40AF]" />
+
       <h3
-        className="text-lg font-semibold text-[#1E40AF] tracking-wide"
+        className="text-base sm:text-lg font-semibold text-[#1E40AF] tracking-wide"
         style={{ fontFamily: "'Playfair Display', serif" }}
       >
         {title}
@@ -163,26 +185,26 @@ const SectionBlock: React.FC<{
     </div>
 
     {/* Mosaic Grid */}
-    <div className="p-4 bg-white">
-      <div
-        className="grid grid-cols-3 gap-3"
-        style={{ gridTemplateRows: "280px 280px" }}
-      >
-        {/* First image — tall, spans 2 rows */}
+    <div className="p-3 sm:p-4 bg-white">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+
+        {/* First image large */}
         <ImageTile
           src={images[0]}
           alt={title}
           onClick={() => onImageClick(images[0])}
-          className="col-span-1 row-span-2"
+          className="col-span-1 row-span-2 h-full"
+          style={{ minHeight: "230px" }}
         />
 
-        {/* Remaining 5 images */}
+        {/* Other images */}
         {images.slice(1).map((src, i) => (
           <ImageTile
             key={i}
             src={src}
             alt={`${title} ${i + 2}`}
             onClick={() => onImageClick(src)}
+            className="h-28 sm:h-[170px] md:h-[200px]"
           />
         ))}
       </div>
@@ -199,55 +221,45 @@ const Gallery: React.FC = () => {
 
   return (
     <section
-      className="w-full min-h-screen py-12"
+      className="w-full min-h-screen py-10 sm:py-12"
       style={{
-        background: "linear-gradient(160deg, #f0f6ff 0%, #f8faff 60%, #eef3ff 100%)",
+        background:
+          "linear-gradient(160deg, #f0f6ff 0%, #f8faff 60%, #eef3ff 100%)",
         fontFamily: "'DM Sans', sans-serif",
       }}
     >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
-        .tab-scroll::-webkit-scrollbar { height: 0px; }
-      `}</style>
+      <div className="max-w-6xl mx-auto px-3 sm:px-6">
 
-      <div className="max-w-6xl mx-auto px-6">
-
-        {/* ── Page Title ── */}
-        <div className="text-center mb-10">
-          <p className="text-[13px] font-bold tracking-[0.3em] uppercase text-blue-400 mb-2">
+        {/* Title */}
+        <div className="text-center mb-8 sm:mb-10">
+          <p className="text-[11px] sm:text-[13px] font-bold tracking-[0.3em] uppercase text-blue-400 mb-2">
             School Memories
           </p>
+
           <h2
-            className="text-4xl font-semibold text-[#1E40AF]"
+            className="text-2xl sm:text-4xl font-semibold text-[#1E40AF]"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Our Latest Gallery
           </h2>
-          <div className="flex justify-center items-center gap-2 mt-3">
-            <div className="w-12 h-px bg-blue-200" />
-            <div className="w-2 h-2 rounded-full bg-blue-300" />
-            <div className="w-12 h-px bg-blue-200" />
-          </div>
         </div>
 
-        {/* ── Tab Bar ── */}
-        <div
-          className="tab-scroll flex gap-1.5 overflow-x-auto pb-1 mb-8 bg-white rounded-2xl p-2 shadow-sm"
-          style={{ border: "1.5px solid #dbeafe" }}
-        >
+        {/* Tabs */}
+        <div className="flex gap-1 overflow-x-auto pb-1 mb-6 bg-white rounded-2xl p-2 shadow-sm border border-blue-100">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className="whitespace-nowrap px-5 py-2.5 rounded-2xl text-[13px] font-semibold tracking-wide transition-all duration-200"
+              className="whitespace-nowrap px-4 py-2 rounded-xl text-xs font-semibold"
               style={
                 activeTab === tab
                   ? {
-                      background: "linear-gradient(135deg, #1e3a8a 0%, #1E40AF 100%)",
+                      background: "#1E40AF",
                       color: "white",
-                      boxShadow: "0 2px 10px rgba(30,64,175,0.35)",
                     }
-                  : { color: "#64748b", background: "transparent" }
+                  : {
+                      color: "#64748b",
+                    }
               }
             >
               {tab}
@@ -255,8 +267,8 @@ const Gallery: React.FC = () => {
           ))}
         </div>
 
-        {/* ── Sections ── */}
-        <div className="flex flex-col gap-8">
+        {/* Sections */}
+        <div className="flex flex-col gap-6 sm:gap-8">
           {sections.length > 0 ? (
             sections.map((section, i) => (
               <SectionBlock
@@ -267,18 +279,16 @@ const Gallery: React.FC = () => {
               />
             ))
           ) : (
-            <div
-              className="bg-white rounded-2xl py-20 text-center"
-              style={{ border: "1.5px solid #dbeafe" }}
-            >
-              <p className="text-black text-sm">No images available for this category.</p>
+            <div className="bg-white rounded-2xl py-16 text-center border border-blue-100">
+              <p className="text-black text-sm">
+                No images available for this category.
+              </p>
             </div>
           )}
         </div>
-
       </div>
 
-      {/* ── Lightbox ── */}
+      {/* Lightbox */}
       {lightboxSrc && (
         <Lightbox src={lightboxSrc} onClose={() => setLightboxSrc(null)} />
       )}

@@ -93,31 +93,31 @@ const StatCard: React.FC<StatCardProps> = ({
   floatDelay,
 }) => (
   <div
-    className="flex items-center gap-4"
+    className="flex items-center gap-3 sm:gap-4"
     style={{
       animation: `floatStat 3.5s ease-in-out ${floatDelay} infinite`,
     }}
   >
     <div
-      className="w-14 h-14 rounded-2xl flex items-center justify-center"
+      className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center"
       style={{
         background: "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)",
         border: "1.5px solid #bbf7d0",
       }}
     >
-      <img src={icon} alt={alt} className="w-7 h-7" />
+      <img src={icon} alt={alt} className="w-6 h-6 sm:w-7 sm:h-7" />
     </div>
 
     <div>
       <p
-        className="font-bold text-2xl leading-none mb-0.5"
+        className="font-bold text-xl sm:text-2xl leading-none mb-0.5"
         style={{ color: "#10C700", fontFamily: "'DM Sans', sans-serif" }}
       >
         <Counter target={value} suffix={suffix} />
       </p>
 
       <p
-        className="text-base text-[#323232]"
+        className="text-sm sm:text-base text-[#323232]"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         {label}
@@ -144,16 +144,16 @@ const child = {
 
 const BrightFuture: React.FC = () => {
   return (
-    <section className="w-full bg-white pb-20 overflow-hidden">
+    <section className="w-full bg-white pb-14 sm:pb-16 md:pb-20 overflow-hidden">
 
-      <div className="max-w-[1920px] mx-auto px-16">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
 
         {/* Top Content */}
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 md:gap-10">
 
           <motion.h2
-            className="text-5xl text-[#000000B0] leading-snug font-semibold flex flex-wrap gap-3"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#000000B0] leading-snug font-semibold flex flex-wrap gap-2 sm:gap-3 text-center md:text-left"
             variants={container}
             initial="hidden"
             whileInView="visible"
@@ -167,7 +167,7 @@ const BrightFuture: React.FC = () => {
           </motion.h2>
 
           <p
-            className="text-lg text-[#6B6B6B] leading-relaxed text-center md:text-left"
+            className="text-sm sm:text-base md:text-lg text-[#6B6B6B] leading-relaxed text-center md:text-left"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Our moto, Satyam, Shivam Sundaram inspires
@@ -179,8 +179,8 @@ const BrightFuture: React.FC = () => {
 
         {/* Stats */}
 
-        <div className="mt-16 flex justify-center">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-16 justify-items-center">
+        <div className="mt-10 sm:mt-12 md:mt-16 flex justify-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-16 justify-items-center">
 
             <StatCard icon={Calender} alt="Experience" value={12} label="Years Experience" floatDelay="0s" />
 

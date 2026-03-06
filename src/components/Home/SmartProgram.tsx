@@ -4,24 +4,33 @@ import school2 from "../../assets/dayshift.jpg";
 import school3 from "../../assets/englishmedium.jpg";
 import { Link } from "react-router-dom";
 
-// ── Hook: fires once on viewport entry ───────────────────────────────────────
+// ── Hook ─────────────────────────────────────────
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
       { threshold }
     );
+
     observer.observe(el);
     return () => observer.disconnect();
   }, [threshold]);
+
   return { ref, inView };
 }
 
-// ── Card ─────────────────────────────────────────────────────────────────────
+// ── Card ─────────────────────────────────────────
 const ProgramCard: React.FC<{
   src: string;
   alt: string;
@@ -30,20 +39,12 @@ const ProgramCard: React.FC<{
   delay: string;
 }> = ({ src, alt, title, subtitle, delay }) => (
   <div
-    className="card-anim group relative bg-white rounded-2xl overflow-hidden cursor-pointer"
+    className="card-anim group relative bg-white rounded-2xl overflow-hidden cursor-pointer
+    transition-all duration-300 hover:-translate-y-2"
     style={{
       animationDelay: delay,
       boxShadow: "0 4px 24px rgba(33,193,215,0.08), 0 2px 8px rgba(0,0,0,0.06)",
       border: "1.5px solid #e0f9fb",
-      transition: "transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease",
-    }}
-    onMouseEnter={e => {
-      (e.currentTarget as HTMLDivElement).style.transform = "translateY(-8px)";
-      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 24px 60px rgba(33,193,215,0.18), 0 8px 20px rgba(0,0,0,0.08)";
-    }}
-    onMouseLeave={e => {
-      (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-      (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 24px rgba(33,193,215,0.08), 0 2px 8px rgba(0,0,0,0.06)";
     }}
   >
     {/* Image */}
@@ -51,170 +52,110 @@ const ProgramCard: React.FC<{
       <img
         src={src}
         alt={alt}
-        className="w-full h-[280px] object-cover transition-transform duration-700 group-hover:scale-110"
+        className="
+        w-full 
+        h-[200px] sm:h-[230px] md:h-[250px] lg:h-[280px]
+        object-cover
+        transition-transform duration-700 group-hover:scale-110"
       />
-      {/* Teal overlay on hover */}
-      <div
-        className="absolute inset-0 transition-opacity duration-400"
-        style={{
-          background: "linear-gradient(180deg, transparent 40%, rgba(33,193,215,0.35) 100%)",
-          opacity: 0,
-        }}
-        ref={el => {
-          if (!el) return;
-          const parent = el.closest(".group") as HTMLElement;
-          if (parent) {
-            parent.addEventListener("mouseenter", () => (el.style.opacity = "1"));
-            parent.addEventListener("mouseleave", () => (el.style.opacity = "0"));
-          }
-        }}
-      />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#21C1D760] opacity-0 group-hover:opacity-100 transition duration-500" />
     </div>
 
     {/* Content */}
-    <div className="py-6 px-5">
-      {/* Top accent line */}
-      <div
-        className="h-0.5 rounded-full mb-4 transition-all duration-500 group-hover:w-full"
-        style={{
-          background: "linear-gradient(90deg, #21C1D7, #313567)",
-          width: "40px",
-        }}
-      />
-      <h3
-        className="text-2xl font-bold text-[#04162F]"
-        style={{ fontFamily: "'Playfair Display', serif" }}
-      >
+    <div className="py-5 px-5">
+      <div className="h-0.5 w-10 bg-gradient-to-r from-[#21C1D7] to-[#313567] rounded-full mb-3 group-hover:w-full transition-all duration-500" />
+
+      <h3 className="text-xl sm:text-2xl font-bold text-[#04162F]">
         {title}
       </h3>
-      <p
-        className="text-sm font-semibold tracking-[0.18em] uppercase mt-1.5"
-        style={{ color: "#21C1D7", fontFamily: "'DM Sans', sans-serif" }}
-      >
+
+      <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase mt-1 text-[#21C1D7]">
         {subtitle}
       </p>
     </div>
   </div>
 );
 
-// ── Main ─────────────────────────────────────────────────────────────────────
+// ── Main Section ─────────────────────────────────────────
 const SmartProgram: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
   return (
-    <section className="w-full bg-white py-20 overflow-hidden">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+    <section className="w-full bg-white py-14 md:py-20 overflow-hidden">
 
-        @keyframes fadeSlideUp {
-          from { opacity: 0; transform: translateY(36px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes cardReveal {
-          from { opacity: 0; transform: translateY(50px) scale(0.96); }
-          to   { opacity: 1; transform: translateY(0)   scale(1); }
-        }
-        @keyframes revealLine {
-          from { width: 0; opacity: 0; }
-          to   { width: 48px; opacity: 1; }
-        }
-        @keyframes btnPop {
-          0%   { opacity: 0; transform: scale(0.8); }
-          70%  { transform: scale(1.05); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-        @keyframes shimmer {
-          0%   { background-position: -200% center; }
-          100% { background-position:  200% center; }
-        }
-        @keyframes btnGlow {
-          0%   { box-shadow: 0 0 0 0   rgba(49,53,103,0.45); }
-          70%  { box-shadow: 0 0 0 14px rgba(49,53,103,0);   }
-          100% { box-shadow: 0 0 0 0   rgba(49,53,103,0);    }
-        }
+      <div className="max-w-[1400px] mx-auto text-center px-4 sm:px-6 lg:px-10">
 
-        .paused .anim-eyebrow,
-        .paused .anim-line,
-        .paused .anim-heading,
-        .paused .anim-btn,
-        .paused .card-anim { animation-play-state: paused !important; }
-
-        .running .anim-eyebrow { animation: fadeSlideUp  0.6s ease both; animation-delay: 0.05s; }
-        .running .anim-line    { animation: revealLine   0.55s ease both; animation-delay: 0.2s; }
-        .running .anim-heading { animation: fadeSlideUp  0.7s cubic-bezier(.22,.68,0,1.2) both; animation-delay: 0.15s; }
-        .running .anim-btn     { animation: btnPop       0.6s cubic-bezier(.22,.68,0,1.2) both; animation-delay: 0.35s; }
-        .running .card-anim    { animation: cardReveal   0.7s cubic-bezier(.22,.68,0,1.2) both; }
-
-        .heading-shimmer:hover {
-          background: linear-gradient(90deg, #21C1D7 20%, #313567 50%, #21C1D7 80%);
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: shimmer 1.8s linear infinite;
-        }
-        .btn-glow:hover { animation: btnGlow 0.9s ease-out infinite; }
-      `}</style>
-
-      <div className="max-w-[1600px] mx-auto text-center px-10">
         <div ref={ref} className={inView ? "running" : "paused"}>
 
           {/* Eyebrow */}
-          <div className="anim-eyebrow flex items-center justify-center gap-3 mb-4">
-            <div
-              className="anim-line h-0.5 rounded-full bg-[#21C1D7]"
-              style={{ width: "48px" }}
-            />
-            <span
-              className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#21C1D7]"
-              style={{ fontFamily: "'DM Sans', sans-serif" }}
-            >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-0.5 w-8 sm:w-12 bg-[#21C1D7]" />
+            <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.3em] uppercase text-[#21C1D7]">
               Programs
             </span>
-            <div
-              className="anim-line h-0.5 rounded-full bg-[#21C1D7]"
-              style={{ width: "48px" }}
-            />
+            <div className="h-0.5 w-8 sm:w-12 bg-[#21C1D7]" />
           </div>
 
           {/* Heading */}
-          <h2
-            className="anim-heading heading-shimmer text-5xl font-bold text-[#21C1D7] tracking-wide cursor-default"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
+          <h2 className="
+          text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+          font-bold text-[#21C1D7] tracking-wide">
             Our Smarty Program
           </h2>
 
           {/* Button */}
-          <div className="anim-btn mt-10">
+          <div className="mt-8 md:mt-10">
             <Link
               to="/smarty-program"
-              className="btn-glow inline-block px-8 py-3 rounded-2xl bg-[#313567] text-white text-lg font-semibold
-                transition-all duration-300  hover:text-white active:scale-95"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                boxShadow: "0 4px 14px rgba(49,53,103,0.3)",
-              }}
+              className="
+              btn-glow
+              inline-block
+              px-6 sm:px-8
+              py-2.5 sm:py-3
+              rounded-xl
+              bg-[#313567]
+              text-white
+              text-sm sm:text-base lg:text-lg
+              font-semibold
+              hover:scale-105
+              transition"
             >
               Get Started
             </Link>
           </div>
 
           {/* Cards */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="
+          mt-12 md:mt-16
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-3
+          gap-6 sm:gap-8 lg:gap-12
+          ">
             <ProgramCard
-              src={school1} alt="Morning Shift"
-              title="Morning Shift" subtitle="Bengali Medium"
-              delay="0.45s"
+              src={school1}
+              alt="Morning Shift"
+              title="Morning Shift"
+              subtitle="Bengali Medium"
+              delay="0.4s"
             />
+
             <ProgramCard
-              src={school2} alt="Day Shift"
-              title="Day Shift" subtitle="English Medium"
+              src={school2}
+              alt="Day Shift"
+              title="Day Shift"
+              subtitle="English Medium"
               delay="0.6s"
             />
+
             <ProgramCard
-              src={school3} alt="English Medium"
-              title="High School" subtitle="English Medium"
-              delay="0.75s"
+              src={school3}
+              alt="High School"
+              title="High School"
+              subtitle="English Medium"
+              delay="0.8s"
             />
           </div>
 
