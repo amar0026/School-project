@@ -11,15 +11,14 @@ const MissionValues: React.FC = () => {
 
           {/* Image */}
           <div className="w-full md:w-1/2">
-            <img
-              src={about}
-              alt="Mission Student"
-              className="w-full h-56 sm:h-72 md:h-auto lg:h-auto object-cover rounded-xl"
-            />
-          </div>
-
+  <img
+    src={about}
+    alt="Mission Student"
+    className="w-full h-56 sm:h-72 md:h-full object-cover rounded-xl"
+  />
+</div>
           {/* Text */}
-          <div className="w-full md:w-1/2 md:pt-8 lg:pt-16">
+          <div className="w-full md:w-1/2 md:pt-10 lg:pt-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#313567] leading-snug">
               Our Mission And <br /> Values
             </h2>
