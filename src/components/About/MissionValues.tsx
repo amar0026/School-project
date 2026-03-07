@@ -14,7 +14,7 @@ const MissionValues: React.FC = () => {
   <img
     src={about}
     alt="Mission Student"
-    className="w-full h-56 sm:h-72 md:h-full object-cover rounded-xl"
+       className="w-full h-56 sm:h-72 md:h-[420px] lg:h-[500px] xl:h-[600px] object-cover rounded-xl"
   />
 </div>
           {/* Text */}
