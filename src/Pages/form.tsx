@@ -6,7 +6,7 @@ const inputBase =
   "w-full border-0 border-b-2 border-gray-200 px-0 py-2.5 text-sm text-gray-800 bg-transparent outline-none transition-all duration-300 focus:border-[#1E40AF] placeholder:text-gray-300 peer";
 
 const labelBase =
-  "block text-[10px] font-bold tracking-[0.22em] uppercase text-gray-400 mb-1 transition-colors duration-200 peer-focus:text-[#1E40AF]";
+  "block text-[15px] font-bold tracking-[0.22em] uppercase text-gray-400 mb-1 transition-colors duration-200 peer-focus:text-[#1E40AF]";
 
 // --- InputField Component ---
 type InputProps = {

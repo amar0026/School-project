@@ -4,7 +4,7 @@ const inputBase =
   "w-full mt-1.5 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-800 bg-white outline-none transition-all duration-200 focus:border-[#4583DA] focus:ring-2 focus:ring-[#4583DA]/10 placeholder:text-gray-300";
 
 const labelBase =
-  "block text-xs font-semibold tracking-widest uppercase text-gray-500 mb-0.5";
+  "block text-[15px] font-semibold tracking-widest uppercase text-gray-500 mb-0.5";
 
 const selectBase =
   "border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-800 bg-white outline-none transition-all duration-200 focus:border-[#4583DA] focus:ring-2 focus:ring-[#4583DA]/10 w-full appearance-none cursor-pointer";
