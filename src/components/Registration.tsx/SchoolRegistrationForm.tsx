@@ -100,7 +100,7 @@ export default function EnrollmentForm() {
 
             {/* Student Info */}
             <div>
-              <p className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#4583DA] mb-3 sm:mb-4">
+              <p className="text-[20px] font-bold tracking-[0.25em] uppercase text-[#4583DA] mb-3 sm:mb-4">
                 Student Information
               </p>
 
