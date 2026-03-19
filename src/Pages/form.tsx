@@ -99,7 +99,7 @@ const Formsection = () => {
               <h2 className="hero-title text-2xl font-semibold text-gray-800" style={{ fontFamily: "'Playfair Display', serif" }}>
                 Get in Touch
               </h2>
-              <p className="text-xs text-gray-400 tracking-wide mt-0.5">
+              <p className="text-xs text-gray-500 tracking-wide mt-0.5">
                 Fill in your details and we'll get back to you shortly.
               </p>
             </div>

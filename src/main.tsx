@@ -17,6 +17,7 @@ import Fromsection from "./Pages/form";
 import Facilities from "./Pages/facilities";
 import Admission from "./Pages/Admission";
 import Submit from "./Pages/submit";
+import ScrollToTop from "./Pages/ScrollToTop";
 // Layout component with conditional Navbar
 const Layout = () => {
   // const location = useLocation();
@@ -28,6 +29,7 @@ const Layout = () => {
       {/* <SmoothScroll children={undefined} /> */}
       {/* <ScrollToTopButton /> */}
       {/* <ScrollToTop /> */}
+      <ScrollToTop/>
       <Navbar />
       <Outlet />
       <Footer />

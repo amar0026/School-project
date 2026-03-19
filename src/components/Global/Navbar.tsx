@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
     { to: "/academics",   label: "Academics" },
     { to: "/registration",label: "Registration" },
     { to: "/achievement", label: "Achievement" },
-    { to: "/notice",      label: "Notice" },
+    // { to: "/notice",      label: "Notice" },
     { to: "/gallery",     label: "Gallery" },
     { to: "/contact",     label: "Contact" },
   ];
@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
             <img
               src={logo}
               alt="School Logo"
-              className="h-14 sm:h-18 md:h-20 lg:h-24 w-auto object-contain"
+              className="h-17 sm:h-20 md:h-20 lg:h-25 w-auto object-contain"
             />
             <div className="text-center">
               <h1 className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-wide text-[#313567] leading-tight">
