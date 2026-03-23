@@ -15,10 +15,9 @@ const Developing: React.FC = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#313567] leading-snug">
               Developing
             </h2>
-
             <p className="text-base sm:text-lg md:text-xl text-[#000000CC] mt-5 sm:mt-6 md:mt-8 leading-relaxed">
               With the interest and effort of some good souls this school was
-              established in 1959. The land (10 Kottah equivalent to 7200 Sbt
+              established in 1959. The land (10 Kottah equivalent to 7200 Sqft
               approx) was allotted by the then Dum Dum Park Board (Krishsapur
               Refugee Co-operative Colony ltd) as well as money to build a
               building. The school initially was known as KG School. Some names
@@ -55,17 +54,34 @@ const Developing: React.FC = () => {
             wash rooms and a kitchen for students on the ground floor. School's
             caretaker has got a new room and a separate kitchen. So now we have
             more class rooms to use, one audio-visual room is set to open very
-            soon. We have multiple plans for the growth of the school. We
-            encourage more such well-wishers, individuals and organisations alike
-            who will support our children's future{" "}
-            <Link
-              to="/form"
-              className="text-blue-600 text-base  sm:text-lg"
-            >
-              Click Here
-            </Link>
-            
+            soon.
           </p>
+
+              {/* Card — only the last two sentences */}
+          <div className="mt-6 rounded-2xl border border-[#313567]/20 bg-[#f5f7ff] px-6 sm:px-8 md:px-10 py-5 sm:py-6 shadow-sm">
+            <div className="w-12 h-1 rounded-full bg-[#313567] mb-4" />
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#000000CC] leading-relaxed">
+              We have multiple plans for the growth of the school. We
+              encourage more such well-wishers, individuals and organisations alike
+              who will support our children's future{" "}
+              <Link
+                to="/form"
+                className="inline-flex items-center gap-1 text-blue-600 text-base sm:text-lg underline underline-offset-2 hover:text-blue-800 transition-colors duration-200"
+              >
+                Click Here
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </p>
+          </div>
         </div>
 
       </div>

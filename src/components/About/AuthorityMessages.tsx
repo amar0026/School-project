@@ -228,17 +228,6 @@ const AuthorityMessages: React.FC = () => {
 
         {/* ── Cards ── */}
         <MessageCard
-          imageLeft
-          title="Chairman's Message"
-          message="We welcome students, parents, and teachers to our institution dedicated to academic excellence, character building, innovation, and community service, ensuring holistic growth, safe learning, modern facilities, bright futures for everyone."
-          name="The Rt. Rev. Dr. Paritosh Canning"
-          role="– Bishop of Calcutta & Chairman"
-          btnLabel="Dr. Paritosh Canning"
-          imgAlt="Chairman"
-          cardDelay="0s"
-        />
-
-        <MessageCard
           imageLeft={false}
           title="Principal's Address"
           message="We, at Adarsha Sishu Bidyabithi, strongly believe that one empowered child can be the future leader of hundreds of citizens. Rabindranath Tagore has famously said,
@@ -253,14 +242,22 @@ const AuthorityMessages: React.FC = () => {
         <MessageCard
           imageLeft
           title="Vice Principal's Address"
-          message="Swami Vivekananda said, “Education is the manifestation of the perfection already in man.”
-At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential.
-Our students grow up with hands-on learning and co-curricular activities.
-We look forward to many more years of dedicated teaching and learning and building future leaders."
+          message="Swami Vivekananda said, “Education is the manifestation of the perfection already in man.”At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential.Our students grow up with hands-on learning and co-curricular activities.We look forward to many more years of dedicated teaching and learning and building future leaders."
           name="The Rt. Rev. Dr. Paritosh Canning"
           role="– Bishop of Calcutta & Chairman"
           btnLabel="Dr. Paritosh Canning"
           imgAlt="Vice Principal"
+          cardDelay="0s"
+        />
+        
+        <MessageCard
+          imageLeft={false}
+          title="Teacher-in-charge"
+          message="Albert Einstein has said  I have no special talent I am only passionately curious  We at Adarsha Sishu Bidyabithi aim to instill in our students this spirit of inquiry in our young minds We hope to guide them as they unlock doors of opportunities and break boundaries to face the world head on Skill building activities in a multimodal set up is our key to empower our children We inculcate values of empathy and brotherhood to build loving individuals I am proud to be a guide in this inspiring journey "
+          name="The Rt. Rev. Dr. Paritosh Canning"
+          role="– Bishop of Calcutta & Chairman"
+          btnLabel="Dr. Paritosh Canning"
+          imgAlt="Principal"
           cardDelay="0s"
         />
 

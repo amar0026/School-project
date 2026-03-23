@@ -1,12 +1,27 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
+  const navLinks = [
+    { label: "Home", to: "/" },
+    { label: "About", to: "/about" },
+    { label: "Academics", to: "/academics" },
+    { label: "Registration", to: "/registration" },
+    { label: "Achievement", to: "/achievement" },
+    { label: "Gallery", to: "/gallery" },
+    { label: "Contact", to: "/contact" },
+    { label: "Facilities", to: "/facilities" },
+  ];
+
+  const col1 = navLinks.slice(0, 4);
+  const col2 = navLinks.slice(4);
+
   return (
-    <footer className="w-full  max-w-[1920px] mx-auto bg-[#2E3363]  px-4 sm:px-8 md:px-14 lg:px-20 text-white">
-      <div className=" max-w-[1920px] mx-auto  ">
+    <footer className="w-full max-w-[1920px] mx-auto bg-[#2E3363] px-4 sm:px-8 md:px-14 lg:px-20 text-white">
+      <div className="max-w-[1920px] mx-auto">
 
         {/* ── Title ── */}
-        <h2 className="text-center pt-10  text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+        <h2 className="text-center pt-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
           Adarsha Sishu Bidyabithi
         </h2>
 
@@ -16,7 +31,7 @@ const Footer: React.FC = () => {
           {/* ── LEFT: Newsletter ── */}
           <div className="w-full lg:max-w-md">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 leading-snug">
-              Stay up to date with <br/> our story
+              Stay up to date with <br /> our story
             </h3>
 
             <p className="text-white/80 mt-3 sm:mt-5 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
@@ -37,30 +52,55 @@ const Footer: React.FC = () => {
           </div>
 
           {/* ── RIGHT: Nav + Columns ── */}
-          <div className="flex flex-col gap-6 sm:gap-8 w-full lg:w-auto">
+          <div className="flex flex-row gap-8 sm:gap-12 lg:gap-16 text-sm sm:text-base">
 
-            {/* Nav links */}
-            <div className="flex flex-wrap gap-x-2 gap-y-2 text-sm sm:text-base text-white/90">
-              {["Home","About","Academics","Registration","Achievement","Gallery","Contact"].map(link => (
-                <p key={link} className="hover:text-white cursor-pointer">{link}</p>
-              ))}
+            {/* Quick Links — split into 2 sub-columns of 4 */}
+            <div className="flex flex-col gap-2">
+              <h4 className="font-semibold text-base sm:text-lg lg:text-xl text-white mb-1">
+                Quick Links
+              </h4>
+              <div className="flex gap-8 sm:gap-10">
+                {/* Column 1 */}
+                <div className="flex flex-col gap-3">
+                  {col1.map(({ label, to }) => (
+                    <Link
+                      key={label}
+                      to={to}
+                      className="text-white/80 hover:text-white transition-colors duration-200"
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+                {/* Column 2 */}
+                <div className="flex flex-col gap-3">
+                  {col2.map(({ label, to }) => (
+                    <Link
+                      key={label}
+                      to={to}
+                      className="text-white/80 hover:text-white transition-colors duration-200"
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Programs + Contact */}
-            <div className="flex flex-row gap-8 sm:gap-12 lg:gap-16 text-sm sm:text-base">
-              <div className="space-y-3">
-                <h4 className="font-semibold text-base sm:text-lg lg:text-xl">Our Programs</h4>
-                <p className="text-white/80 hover:text-white cursor-pointer">Bengali Medium</p>
-                <p className="text-white/80 hover:text-white cursor-pointer">English Medium</p>
-                <p className="text-white/80 hover:text-white cursor-pointer">High School</p>
-              </div>
+            {/* Our Programs */}
+            <div className="space-y-3">
+              <h4 className="font-semibold text-base sm:text-lg lg:text-xl">Our Programs</h4>
+              <p className="text-white/80 hover:text-white cursor-pointer">Bengali Medium</p>
+              <p className="text-white/80 hover:text-white cursor-pointer">English Medium</p>
+              <p className="text-white/80 hover:text-white cursor-pointer">High School</p>
+            </div>
 
-              <div className="space-y-3">
-                <h4 className="font-semibold text-base sm:text-lg lg:text-xl">Contact Us</h4>
-                <p className="text-white/80 hover:text-white cursor-pointer">Call Us</p>
-                <p className="text-white/80 hover:text-white cursor-pointer">Email Us</p>
-                <p className="text-white/80 hover:text-white cursor-pointer">Our Office</p>
-              </div>
+            {/* Contact Us */}
+            <div className="space-y-3">
+              <h4 className="font-semibold text-base sm:text-lg lg:text-xl">Contact Us</h4>
+              <p className="text-white/80 hover:text-white cursor-pointer">Call Us</p>
+              <p className="text-white/80 hover:text-white cursor-pointer">Email Us</p>
+              <p className="text-white/80 hover:text-white cursor-pointer">Our Office</p>
             </div>
 
           </div>

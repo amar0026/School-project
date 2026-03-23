@@ -273,15 +273,12 @@ const BrightFuture: React.FC = () => {
             >
               {/* Decorative top line */}
               <div className="w-10 h-1 rounded-full bg-emerald-400 mb-1" />
-
               <span className="text-emerald-500 text-4xl leading-none select-none">&ldquo;</span>
-
               <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
                 Our motto,{" "}
                 <strong className="text-emerald-700">Satyam, Shivam, Sundaram</strong>{" "}
                 inspires children to grow into honest, virtuous, and beautiful souls.
               </p>
-
               <span className="text-emerald-500 text-4xl leading-none select-none rotate-180 inline-block">&ldquo;</span>
             </div>
 

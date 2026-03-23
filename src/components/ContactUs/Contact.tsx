@@ -29,7 +29,7 @@ const ContactSection: React.FC = () => {
   };
 
   const contactItems = [
-    { id: "call",     icon: Phone,  color: "#22c55e", bg: "#f0fdf4", label: "Call",     value: "+91 123 567 890" },
+    { id: "call",     icon: Phone,  color: "#22c55e", bg: "#f0fdf4", label: "Call",     value: "(+91) 033 2590 9090" },
     { id: "email",    icon: Mail,   color: "#ef4444", bg: "#fef2f2", label: "Email",    value: "adarshasishubidyabithi@gmail.com" },
     { id: "location", icon: MapPin, color: "#3b82f6", bg: "#eff6ff", label: "Location", value: "Dum Dum Park, West Bengal, India" },
   ];
