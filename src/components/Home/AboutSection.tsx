@@ -98,7 +98,7 @@ const AboutSection: React.FC = () => {
 
               <p className="text-lg">
                 <span className="text-red-500 font-medium">Call us :</span>{" "}
-                (+91) 033 2590 9090
+                (+91)033 2590 9090
               </p>
             </div>
           </div>

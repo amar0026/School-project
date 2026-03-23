@@ -32,28 +32,7 @@ const MissionValues: React.FC = () => {
           </div>
         </div>
 
-        {/* ── BOTTOM: School List ── */}
-        <div className="mt-10 sm:mt-12 md:mt-14">
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-black mb-4 sm:mb-5 md:mb-6 leading-snug">
-            After passing from our School, students in recent past joined School like
-          </p>
-
-          <ul className="space-y-2 sm:space-y-3 text-base sm:text-lg md:text-xl lg:text-2xl text-black">
-            {[
-              "Krishnapur Adarsha vidyamandir (H.S)",
-              "Krishnapur Adarsha Vidyamandir (for Girls)",
-              "Dum Dum Sree Arbinda Vidyamandir",
-              "Dum Dum Sarvodaya Balika Vidyapith",
-              "Sri Ramkrishna Sarada Sngha Balika Vidyalaya",
-              "Christ Church Girl's High School",
-            ].map((school, i) => (
-              <li key={i} className="flex items-center gap-3">
-                <span className="w-2 h-2 flex-shrink-0 bg-black rounded-full" />
-                {school}
-              </li>
-            ))}
-          </ul>
-        </div>
+       
 
       </div>
     </section>

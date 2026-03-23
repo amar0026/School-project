@@ -57,20 +57,17 @@ const Developing: React.FC = () => {
             more class rooms to use, one audio-visual room is set to open very
             soon. We have multiple plans for the growth of the school. We
             encourage more such well-wishers, individuals and organisations alike
-            who will support our children's future.
+            who will support our children's future{" "}
+            <Link
+              to="/form"
+              className="text-blue-600 text-base  sm:text-lg"
+            >
+              Click Here
+            </Link>
+            
           </p>
         </div>
 
-      </div>
-
-      {/* ── Button ── */}
-      <div className="flex items-center justify-center mt-10 sm:mt-12 md:mt-14 px-4">
-        <Link
-          to="/form"
-          className="bg-[#2E3363] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl text-base sm:text-lg font-medium shadow-md hover:brightness-110 active:scale-95 transition-all duration-200"
-        >
-          Click here
-        </Link>
       </div>
     </section>
   );
