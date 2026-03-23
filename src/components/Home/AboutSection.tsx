@@ -85,8 +85,7 @@ const AboutSection: React.FC = () => {
             </h2>
 
             <p className="paraAnim text-gray-500 text-base md:text-lg leading-relaxed mt-6 max-w-[500px]">
-              We offer both Bengali and English as the medium of teaching and
-              learning. Our English medium section started its journey in 2013.
+              We provide quality education to our students. Established in 1959, this is a co-educational<br/>institution committed to academic excellence.<br/> We focus on discipline and overall development<br/> to help students grow into confident and<br/> responsible individuals.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-8">
@@ -99,7 +98,7 @@ const AboutSection: React.FC = () => {
 
               <p className="text-lg">
                 <span className="text-red-500 font-medium">Call us :</span>{" "}
-                +91 12345 67890
+                (+91) 033 2590 9090
               </p>
             </div>
           </div>

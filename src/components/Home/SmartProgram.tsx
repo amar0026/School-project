@@ -38,7 +38,8 @@ const ProgramCard: React.FC<{
   subtitle: string;
   delay: string;
 }> = ({ src, alt, title, subtitle, delay }) => (
-  <div
+  <Link
+    to="/smarty-program"
     className="
       card-anim
       group
@@ -51,6 +52,7 @@ const ProgramCard: React.FC<{
       duration-300
       hover:-translate-y-2
       w-full
+      block
     "
     style={{
       animationDelay: delay,
@@ -84,7 +86,7 @@ const ProgramCard: React.FC<{
         {subtitle}
       </p>
     </div>
-  </div>
+  </Link>
 );
 
 // ── Main Section ─────────────────────────────────
@@ -110,29 +112,8 @@ const SmartProgram: React.FC = () => {
 
           {/* Heading */}
           <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#21C1D7] tracking-wide">
-            Our Smarty Program
+            Our Smart Program
           </h2>
-
-          {/* Button */}
-          <div className="flex justify-center mt-8 md:mt-10">
-            <Link
-              to="/smarty-program"
-              className="
-                inline-block
-                px-6 sm:px-8
-                py-2.5 sm:py-3
-                rounded-xl
-                bg-[#313567]
-                text-white
-                text-sm sm:text-base lg:text-lg
-                font-semibold
-                hover:scale-105
-                transition
-              "
-            >
-              Get Started
-            </Link>
-          </div>
 
           {/* Cards Grid */}
           <div
@@ -156,13 +137,13 @@ const SmartProgram: React.FC = () => {
               src={school2}
               alt="Day Shift"
               title="Day Shift"
-              subtitle="English Medium"
+              subtitle="Bengali Medium"
               delay="0.6s"
             />
             <ProgramCard
               src={school3}
               alt="High School"
-              title="High School"
+              title="English-Medium Section"
               subtitle="English Medium"
               delay="0.8s"
             />

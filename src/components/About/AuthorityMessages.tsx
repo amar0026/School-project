@@ -241,7 +241,8 @@ const AuthorityMessages: React.FC = () => {
         <MessageCard
           imageLeft={false}
           title="Principal's Address"
-          message="We welcome students, parents, and teachers to our institution dedicated to academic excellence, character building, innovation, and community service, ensuring holistic growth, safe learning, modern facilities, bright futures for everyone."
+          message="We, at Adarsha Sishu Bidyabithi, strongly believe that one empowered child can be the future leader of hundreds of citizens. Rabindranath Tagore has famously said,
+          “শিক্ষার উদ্দেশ্য, কেবলমাত্র তথ্য-সঞ্চয় নয়; বরং মন ও আত্মার বিকাশ ঘটানো।” Our school is an advocate of this ideology and encourages a holistic growth of our students.I am proud of the progress our school has made and look forward to many more positive changes to foster academic excellence and inculcate emotional well-being."
           name="The Rt. Rev. Dr. Paritosh Canning"
           role="– Bishop of Calcutta & Chairman"
           btnLabel="Dr. Paritosh Canning"
@@ -252,7 +253,10 @@ const AuthorityMessages: React.FC = () => {
         <MessageCard
           imageLeft
           title="Vice Principal's Address"
-          message="We welcome students, parents, and teachers to our institution dedicated to academic excellence, character building, innovation, and community service, ensuring holistic growth, safe learning, modern facilities, bright futures for everyone."
+          message="Swami Vivekananda said, “Education is the manifestation of the perfection already in man.”
+At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential.
+Our students grow up with hands-on learning and co-curricular activities.
+We look forward to many more years of dedicated teaching and learning and building future leaders."
           name="The Rt. Rev. Dr. Paritosh Canning"
           role="– Bishop of Calcutta & Chairman"
           btnLabel="Dr. Paritosh Canning"

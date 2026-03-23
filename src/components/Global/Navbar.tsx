@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
                 ADARSHA SISHU BIDYA BITHI
               </h1>
               <p className="text-xs sm:text-sm text-gray-900 mt-0.5">
-                (NURSERY & K.G. PRIMARY SCHOOL)
+                (NURSERY & K.G. PRIMARY CO-EDUCATION SCHOOL)
               </p>
               <p className="text-[10px] sm:text-xs text-gray-900">
                 ESTD : 1959

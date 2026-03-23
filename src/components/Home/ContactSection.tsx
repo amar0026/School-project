@@ -155,8 +155,8 @@ const ContactSection: React.FC = () => {
               className="anim-up text-[#656565] text-base sm:text-lg md:text-xl mt-4 sm:mt-6 max-w-full sm:max-w-[400px] leading-relaxed tracking-wider"
               style={{ fontFamily: "'DM Sans', sans-serif", animationDelay: "0.25s" }}
             >
-              We offer high quality Daycare Services for your kids, contact us
-              or visit us today for more information
+              We offer High quality education for your kids, contact us
+              or visit us today for more information.
             </p>
 
             {/* Thin divider */}
@@ -170,7 +170,7 @@ const ContactSection: React.FC = () => {
 
             {/* Contact Items */}
             <div className="mt-6 sm:mt-8 space-y-5 sm:space-y-7">
-              <ContactItem icon={Call}  alt="Call"     label="Call"     value="+91123567890"                    delay="0.45s" />
+              <ContactItem icon={Call}  alt="Call"     label="Call"     value="(+91) 033 2590 9090"                    delay="0.45s" />
               <ContactItem icon={Email} alt="Email"    label="Email"    value="adarshasishubidyabithi@gmail.com" delay="0.58s" />
               <ContactItem icon={Map}   alt="Location" label="Location" value="Dum Dum Park, West Bengal, India" delay="0.71s" />
             </div>

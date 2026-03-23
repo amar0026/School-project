@@ -49,7 +49,7 @@ const Card = ({ link, text }: { link: string; text: string }) => {
       w-full sm:w-64 lg:w-72
       h-28 sm:h-32 lg:h-36
       text-white rounded-xl flex items-center justify-center
-      text-base sm:text-lg lg:text-xl
+      text-xl sm:text-2xl lg:text-3xl
       font-semibold shadow-lg
       hover:-translate-y-3 hover:scale-105 hover:shadow-2xl
       transition-all duration-300 relative overflow-hidden group"
@@ -92,7 +92,7 @@ const EducationSection: React.FC = () => {
   return (
     <div
       ref={ref}
-      className={`bg-white  max-w-[1920px] mx-auto px-6 lg:px-8 xl:px-10 py-14 md:py-20 sm:px-6 text-center overflow-hidden ${
+      className={`bg-white max-w-[1920px] mx-auto px-6 lg:px-8 xl:px-10 py-14 md:py-20 sm:px-6 text-center overflow-hidden ${
         inView ? "sect-running" : "sect-paused"
       }`}
     >
@@ -147,29 +147,29 @@ const EducationSection: React.FC = () => {
       {/* Eyebrow */}
       <div className="anim-eyebrow flex items-center justify-center gap-3 mb-4">
         <div className="anim-line h-0.5 w-8 md:w-10 rounded-full bg-blue-900" />
-        <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.28em] uppercase text-blue-900">
+        <span className="text-sm sm:text-base font-bold tracking-[0.28em] uppercase text-blue-900">
           Our Vision
         </span>
         <div className="anim-line h-0.5 w-8 md:w-10 rounded-full bg-blue-900" />
       </div>
 
       {/* Heading */}
-      <h1 className="anim-heading text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-10 md:mb-14 leading-snug">
+      <h1 className="anim-heading text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-10 md:mb-14 leading-snug">
         Education is the best <br /> key to success in life
       </h1>
 
-      {/* Content Box */}
-      <div className="anim-box relative max-w-xl md:max-w-3xl mx-auto bg-gradient-to-br from-[#BFD9FF] to-[#dbeafe] rounded-xl border-2 border-dashed border-gray-400 p-6 sm:p-8 md:p-10 mb-14 md:mb-20 shadow-lg hover:shadow-xl transition duration-500">
+      {/* Content Box — smaller max-w, larger text */}
+      <div className="anim-box relative max-w-sm sm:max-w-md md:max-w-xl mx-auto bg-gradient-to-br from-[#BFD9FF] to-[#dbeafe] rounded-xl border-2 border-dashed border-gray-400 p-6 sm:p-8 md:p-10 mb-14 md:mb-20 shadow-lg hover:shadow-xl transition duration-500">
         <img
           src={icon}
           alt="icon"
           className="absolute -top-8 md:-top-10 left-1/2 -translate-x-1/2 w-12 md:w-16 animate-float"
         />
 
-        <p className="text-gray-700 leading-relaxed text-xs sm:text-sm md:text-base">
+        <p className="text-gray-700 font-bold leading-relaxed text-base sm:text-lg md:text-xl">
           Our Efforts Are To Build Aspiration Of Doing Future Study. We
           Believe That A "Sishu" Borns With All "Good", And We Nurture
-          Them Installing Positive Values In Them.
+          Them Instilling Positive Values In Them.
         </p>
       </div>
 

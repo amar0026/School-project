@@ -6,6 +6,10 @@ import Achievement from "../../assets/Achievement.svg";
 import Group from "../../assets/Group.svg";
 import Review from "../../assets/Review.svg";
 
+// 👇 Replace these with your actual image paths
+import schoolBoy from "../../assets/schoolgirl.png";
+import schoolGirl from "../../assets/schoolgirl.png";
+
 /* ───────────── COUNTER ───────────── */
 
 interface CounterProps {
@@ -177,7 +181,7 @@ const stats = [
   {
     icon: Calender,
     alt: "Experience",
-    value: 12,
+    value: 67,
     label: "Years of Excellence",
     accent: "#10b981",
     accentLight: "#d1fae5",
@@ -185,8 +189,8 @@ const stats = [
   {
     icon: Achievement,
     alt: "Achievement",
-    value: 606,
-    suffix: "+",
+    value: 500,
+    suffix: "K+",
     label: "Total Achievements",
     accent: "#f59e0b",
     accentLight: "#fef3c7",
@@ -194,8 +198,8 @@ const stats = [
   {
     icon: Group,
     alt: "Students",
-    value: 250,
-    suffix: "+",
+    value: 150,
+    suffix: "K+",
     label: "Happy Students",
     accent: "#6366f1",
     accentLight: "#ede9fe",
@@ -203,7 +207,7 @@ const stats = [
   {
     icon: Review,
     alt: "Review",
-    value: 3,
+    value: 5,
     suffix: "k+",
     label: "Positive Reviews",
     accent: "#ec4899",
@@ -219,22 +223,86 @@ const BrightFuture: React.FC = () => {
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
 
         {/* Heading */}
-        <div className="flex flex-col lg:flex-row justify-between gap-10 mb-16">
-          <div>
+        <div className="flex flex-col items-center justify-between gap-10 mb-16">
+          <div className="text-center">
             <span className="text-emerald-600 font-semibold uppercase text-sm tracking-widest">
               Our Mission
             </span>
-
-            <h2 className="text-4xl sm:text-5xl font-black mt-4 leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-black mt-4 leading-tight">
               A <span className="text-emerald-600">Brighter Future</span> For
               Your Kids
-            </h2>
+            </h1>
           </div>
 
-          <p className="max-w-md text-gray-600 text-lg">
-            Our motto, <strong>Satyam, Shivam, Sundaram</strong> inspires
-            children to grow into honest, virtuous, and beautiful souls.
-          </p>
+          {/* Motto Card with Boy & Girl */}
+          <div className="relative w-full max-w-3xl flex items-end justify-center">
+
+            {/* School Boy — left */}
+            <motion.img
+              src={schoolBoy}
+              alt="School Boy"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="
+                relative z-10
+                w-24 sm:w-32 md:w-40
+                object-contain
+                self-end
+                drop-shadow-lg
+                -mr-4
+              "
+            />
+
+            {/* Motto Card — center */}
+            <div
+              className="
+                relative z-20
+                flex-1
+                bg-white
+                border border-emerald-200
+                rounded-2xl
+                px-6 py-6
+                shadow-md
+                flex flex-col items-center gap-3
+                text-center
+              "
+              style={{
+                boxShadow: "0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(0,0,0,0.06)",
+              }}
+            >
+              {/* Decorative top line */}
+              <div className="w-10 h-1 rounded-full bg-emerald-400 mb-1" />
+
+              <span className="text-emerald-500 text-4xl leading-none select-none">&ldquo;</span>
+
+              <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                Our motto,{" "}
+                <strong className="text-emerald-700">Satyam, Shivam, Sundaram</strong>{" "}
+                inspires children to grow into honest, virtuous, and beautiful souls.
+              </p>
+
+              <span className="text-emerald-500 text-4xl leading-none select-none rotate-180 inline-block">&ldquo;</span>
+            </div>
+
+            {/* School Girl — right */}
+            <motion.img
+              src={schoolGirl}
+              alt="School Girl"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="
+                relative z-10
+                w-24 sm:w-32 md:w-40
+                object-contain
+                self-end
+                drop-shadow-lg
+                -ml-4
+              "
+            />
+
+          </div>
         </div>
 
         {/* Stats */}
