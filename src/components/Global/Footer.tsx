@@ -16,6 +16,18 @@ const Footer: React.FC = () => {
   const col1 = navLinks.slice(0, 4);
   const col2 = navLinks.slice(4);
 
+const programLinks = [
+  { label: "Bengali Medium", to: "/programTiming" },
+  { label: "English Medium", to: "/programTiming" },
+  { label: "High School", to: "/programTiming" },
+];
+
+  const contactLinks = [
+    { label: "Call Us", to: "/contact#call" },
+    { label: "Email Us", to: "/contact#email" },
+    { label: "Our Office", to: "/contact#office" },
+  ];
+
   return (
     <footer className="w-full max-w-[1920px] mx-auto bg-[#2E3363] px-4 sm:px-8 md:px-14 lg:px-20 text-white">
       <div className="max-w-[1920px] mx-auto">
@@ -88,19 +100,31 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Our Programs */}
-            <div className="space-y-3">
-              <h4 className="font-semibold text-base sm:text-lg lg:text-xl">Our Programs</h4>
-              <p className="text-white/80 hover:text-white cursor-pointer">Bengali Medium</p>
-              <p className="text-white/80 hover:text-white cursor-pointer">English Medium</p>
-              <p className="text-white/80 hover:text-white cursor-pointer">High School</p>
+            <div className="flex flex-col gap-2">
+              <h4 className="font-semibold text-base sm:text-lg lg:text-xl mb-1">Our Programs</h4>
+              {programLinks.map(({ label, to }) => (
+                <Link
+                  key={label}
+                  to={to}
+                  className="text-white/80 hover:text-white transition-colors duration-200"
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
 
             {/* Contact Us */}
-            <div className="space-y-3">
-              <h4 className="font-semibold text-base sm:text-lg lg:text-xl">Contact Us</h4>
-              <p className="text-white/80 hover:text-white cursor-pointer">Call Us</p>
-              <p className="text-white/80 hover:text-white cursor-pointer">Email Us</p>
-              <p className="text-white/80 hover:text-white cursor-pointer">Our Office</p>
+            <div className="flex flex-col gap-2">
+              <h4 className="font-semibold text-base sm:text-lg lg:text-xl mb-1">Contact Us</h4>
+              {contactLinks.map(({ label, to }) => (
+                <Link
+                  key={label}
+                  to={to}
+                  className="text-white/80 hover:text-white transition-colors duration-200"
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
 
           </div>

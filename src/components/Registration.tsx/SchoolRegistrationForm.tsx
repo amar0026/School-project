@@ -64,7 +64,7 @@ export default function EnrollmentForm() {
 
   return (
     <div
-      className=" flex items-center justify-center mb-1 px-4 sm:px-8 md:px-14 lg:px-20"
+      className="flex items-center justify-center mb-1 px-4 sm:px-8 md:px-14 lg:px-20"
       style={{
         background: "linear-gradient(135deg, #f0f6ff 0%, #e8f0fe 50%, #f5f7ff 100%)",
         fontFamily: "'Georgia', 'Times New Roman', serif",
@@ -76,7 +76,7 @@ export default function EnrollmentForm() {
         .form-title   { font-family: 'Cormorant Garamond', serif; }
       `}</style>
 
-      <div className="form-wrapper w-full max-w-[1920px] mx-auto ">
+      <div className="form-wrapper w-full max-w-[1920px] mx-auto">
         <div
           className="bg-white rounded-2xl overflow-hidden"
           style={{ boxShadow: "0 20px 60px rgba(69,131,218,0.12), 0 4px 16px rgba(0,0,0,0.06)" }}
@@ -92,6 +92,25 @@ export default function EnrollmentForm() {
             </h1>
             <p className="text-blue-200 text-[10px] sm:text-xs tracking-[0.15em] uppercase">
               Application Form
+            </p>
+          </div>
+
+          {/* ── INFO NOTE ── */}
+          <div className="mx-4 sm:mx-8 md:mx-10 mt-5 sm:mt-6 flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4 mt-0.5 shrink-0 text-amber-500"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18 10A8 8 0 1 1 2 10a8 8 0 0 1 16 0zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 9a1 1 0 0 0 0 2v3a1 1 0 0 0 2 0v-3a1 1 0 0 0-1-1H9z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <p className="text-amber-800 text-[13px] leading-relaxed">
+              <span className="font-semibold">Please Note:</span> Anyone who needs the form can come to the school and collect it.
             </p>
           </div>
 
@@ -116,7 +135,7 @@ export default function EnrollmentForm() {
                 </div>
               </div>
 
-              {/* DOB + Gender + Grade — stack on mobile */}
+              {/* DOB + Gender + Grade */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
 
                 {/* Date of Birth */}
@@ -209,10 +228,6 @@ export default function EnrollmentForm() {
                 SUBMIT
               </button>
             </div>
-
-            <p className="text-center text-[11px] text-gray-400 tracking-wide">
-              All information provided will be kept confidential.
-            </p>
           </div>
         </div>
       </div>
