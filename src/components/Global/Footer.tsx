@@ -28,7 +28,7 @@ const programLinks = [
   ];
 
   return (
-    <footer className="w-full max-w-[1920px] mx-auto bg-[#2E3363] px-4 sm:px-8 md:px-14 lg:px-20 text-white">
+    <footer className="w-full bg-[#2E3363] px-4 sm:px-8 md:px-14 lg:px-20 text-white">
       <div className="max-w-[1920px] mx-auto">
 
         {/* ── Title ── */}

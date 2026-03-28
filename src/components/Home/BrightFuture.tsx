@@ -7,8 +7,8 @@ import Group from "../../assets/Group.svg";
 import Review from "../../assets/Review.svg";
 
 // 👇 Replace these with your actual image paths
-import schoolBoy from "../../assets/schoolboyvideo.mp4";
-import schoolGirl from "../../assets/schoolboyvideo.mp4";
+import schoolBoy from "../../assets/boy-girlvideo.mp4";
+import schoolGirl from "../../assets/boy-girlvideo.mp4";
 
 /* ───────────── COUNTER ───────────── */
 
@@ -284,7 +284,7 @@ const BrightFuture: React.FC = () => {
 
             {/* School Girl — right */}
             <video
-              src={schoolBoy}
+              src={schoolGirl}
               autoPlay
               loop
               muted
