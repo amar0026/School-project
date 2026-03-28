@@ -249,7 +249,7 @@ const BrightFuture: React.FC = () => {
                w-24 sm:w-32 md:w-40
                object-contain
                self-end
-               drop-shadow-lg
+               
                 -mr-4
                  "
             />
@@ -294,7 +294,7 @@ const BrightFuture: React.FC = () => {
                 w-24 sm:w-32 md:w-40
                 object-contain
                 self-end
-                drop-shadow-lg
+                
                 -ml-4
               "
             />
