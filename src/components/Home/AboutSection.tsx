@@ -40,7 +40,7 @@ const TypewriterTitle: React.FC<{ start: boolean }> = ({ start }) => {
     <>
       {displayed}
       {displayed.length < fullText.length && (
-        <span className="inline-block w-[2px] h-[0.8em] bg-[#4583DA] align-middle ml-[2px] animate-pulse" />
+        <span className="inline-block w-0.5 h-[0.8em] bg-[#4583DA] align-middle ml-0.5 animate-pulse" />
       )}
     </>
   );
@@ -111,7 +111,7 @@ const AboutSection: React.FC = () => {
         .running .blobAnim { animation-play-state: running }
       `}</style>
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-14 lg:px-20">
+      <div className="max-w-350 mx-auto px-4 sm:px-8 md:px-14 lg:px-20">
         <div
           ref={ref}
           className={`flex flex-col lg:flex-row items-center gap-12 ${
@@ -124,14 +124,14 @@ const AboutSection: React.FC = () => {
             <img
               src={success}
               alt="student success"
-              className="imgAnim w-[280px] sm:w-[350px] md:w-[420px] lg:w-[480px] relative z-10"
+              className="imgAnim w-70 sm:w-87.5 md:w-105 lg:w-120 relative z-10"
             />
           </div>
 
           {/* RIGHT CONTENT */}
           <div className="w-full lg:w-1/2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="lineAnim w-10 h-[2px] bg-[#4583DA]" />
+              <div className="lineAnim w-10 h-0.5 bg-[#4583DA]" />
               <span className="badgeAnim text-xs tracking-[4px] font-semibold text-[#4583DA] uppercase">
                 About Us
               </span>
@@ -142,7 +142,7 @@ const AboutSection: React.FC = () => {
               <TypewriterTitle start={inView} />
             </h2>
 
-            <p className="paraAnim text-gray-500 text-base md:text-lg leading-relaxed mt-6 max-w-[500px]">
+            <p className="paraAnim text-gray-500 text-base md:text-lg leading-relaxed mt-6 max-w-125">
               We provide quality education to our students. Established in 1959, this is a co-educational<br/>institution committed to academic excellence.<br/> We focus on discipline and overall development<br/> to help students grow into confident and<br/> responsible individuals.
             </p>
 

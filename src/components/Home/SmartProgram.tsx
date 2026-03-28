@@ -66,7 +66,7 @@ const ProgramCard: React.FC<{
         alt={alt}
         className="
           w-full
-          h-[200px] sm:h-[230px] md:h-[250px] lg:h-[260px] xl:h-[280px] 2xl:h-[320px]
+          h-50 sm:h-57.5 md:h-62.5 lg:h-65 xl:h-70 2xl:h-80
           object-cover
           transition-transform duration-700
           group-hover:scale-110

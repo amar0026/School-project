@@ -130,7 +130,7 @@ const TypewriterHeading: React.FC<{ inView: boolean }> = ({ inView }) => {
       )}
       {showCursor && (
         <span
-          className="inline-block w-[3px] h-[1em] bg-blue-900 ml-0.5 align-middle"
+          className="inline-block w-0.75 h-[1em] bg-blue-900 ml-0.5 align-middle"
           style={{ animation: "cursorBlink 0.7s step-end infinite" }}
         />
       )}
