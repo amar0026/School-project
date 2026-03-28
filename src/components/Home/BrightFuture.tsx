@@ -7,8 +7,8 @@ import Group from "../../assets/Group.svg";
 import Review from "../../assets/Review.svg";
 
 // 👇 Replace these with your actual image paths
-import schoolBoy from "../../assets/schoolgirl.png";
-import schoolGirl from "../../assets/schoolgirl.png";
+import schoolBoy from "../../assets/schoolboyvideo.mp4";
+import schoolGirl from "../../assets/schoolboyvideo.mp4";
 
 /* ───────────── COUNTER ───────────── */
 
@@ -238,20 +238,20 @@ const BrightFuture: React.FC = () => {
           <div className="relative w-full max-w-3xl flex items-end justify-center">
 
             {/* School Boy — left */}
-            <motion.img
+            <video
               src={schoolBoy}
-              alt="School Boy"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              autoPlay
+              loop
+              muted
+              playsInline
               className="
-                relative z-10
-                w-24 sm:w-32 md:w-40
-                object-contain
-                self-end
-                drop-shadow-lg
+               relative z-10
+               w-24 sm:w-32 md:w-40
+               object-contain
+               self-end
+               drop-shadow-lg
                 -mr-4
-              "
+                 "
             />
 
             {/* Motto Card — center */}
@@ -283,12 +283,12 @@ const BrightFuture: React.FC = () => {
             </div>
 
             {/* School Girl — right */}
-            <motion.img
-              src={schoolGirl}
-              alt="School Girl"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            <video
+              src={schoolBoy}
+              autoPlay
+              loop
+              muted
+              playsInline
               className="
                 relative z-10
                 w-24 sm:w-32 md:w-40
