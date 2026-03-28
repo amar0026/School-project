@@ -35,7 +35,7 @@ const TypewriterTitle: React.FC<{ start: boolean }> = ({ start }) => {
     <>
       {displayed}
       {displayed.length < fullText.length && (
-        <span className="inline-block w-[2px] h-[0.8em] bg-[#04162F] align-middle ml-[2px] animate-pulse" />
+        <span className="inline-block w-0.5 h-[0.8em] bg-[#04162F] align-middle ml-0.5 animate-pulse" />
       )}
     </>
   );
@@ -55,7 +55,7 @@ const MessageCard: React.FC<{
 
   const imgBlock = (
     <div
-      className={`flex flex-col items-center flex-shrink-0 ${imageLeft ? "anim-left" : "anim-right"}`}
+      className={`flex flex-col items-center shrink-0 ${imageLeft ? "anim-left" : "anim-right"}`}
       style={{ animationDelay: cardDelay }}
     >
       <div
@@ -65,7 +65,7 @@ const MessageCard: React.FC<{
         <img
           src={school}
           alt={imgAlt}
-          className="w-full sm:w-[280px] md:w-[320px] lg:w-[340px] h-[200px] sm:h-[210px] md:h-[220px] lg:h-[230px] object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full sm:w-70 md:w-[320px] lg:w-85 h-[200px] sm:h-[210px] md:h-[220px] lg:h-[230px] object-cover transition-transform duration-700 group-hover:scale-105"
         />
       </div>
       <button

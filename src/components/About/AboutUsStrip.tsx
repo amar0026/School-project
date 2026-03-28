@@ -1,17 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // ── Typewriter Hook ───────────────────────────────────────────────────────────
-const useTypewriter = (text: string, speed = 70) => {
-  const [displayed, setDisplayed] = useState("");
-  useEffect(() => {
-    if (displayed.length === text.length) return;
-    const timeout = setTimeout(() => {
-      setDisplayed(text.slice(0, displayed.length + 1));
-    }, speed);
-    return () => clearTimeout(timeout);
-  }, [displayed, text, speed]);
-  return displayed;
-};
 
 // ── Hook ─────────────────────────────────────────────────────────────────────
 function useInView(threshold = 0.3) {
