@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import about from "../../assets/Rectangle 4571.png";
 
@@ -11,10 +11,7 @@ function useInView(threshold = 0.15) {
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) { setInView(true); observer.disconnect(); }
       },
       { threshold }
     );
@@ -28,34 +25,41 @@ function useInView(threshold = 0.15) {
 // ── Repeating Typewriter ──────────────────────────────────────────────────────
 const TypewriterTitle: React.FC<{ start: boolean }> = ({ start }) => {
   const fullText = "Developing";
-  const [displayed, setDisplayed] = useState("");
-  const [typing, setTyping] = useState(false);
+  const totalChars = fullText.length;
+
+  const [displayedChars, setDisplayedChars] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const startTyping = useCallback(() => {
+    setDisplayedChars(0);
+    let i = 0;
+    const type = () => {
+      i++;
+      setDisplayedChars(i);
+      if (i < totalChars) {
+        timerRef.current = setTimeout(type, 55);
+      } else {
+        // wait 5s then repeat
+        timerRef.current = setTimeout(() => startTyping(), 5000);
+      }
+    };
+    timerRef.current = setTimeout(type, 55);
+  }, [totalChars]);
 
   useEffect(() => {
-    if (start) setTyping(true);
-  }, [start]);
+    if (!start) return;
+    startTyping();
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [start, startTyping]);
 
-  useEffect(() => {
-    if (!typing) return;
-
-    if (displayed.length < fullText.length) {
-      const timeout = setTimeout(() => {
-        setDisplayed(fullText.slice(0, displayed.length + 1));
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-
-    // Fully typed — wait 5s then reset
-    const restart = setTimeout(() => {
-      setDisplayed("");
-    }, 5000);
-    return () => clearTimeout(restart);
-  }, [typing, displayed]);
+  const isDone = displayedChars === totalChars;
 
   return (
     <h2 className="dev-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#313567] leading-snug">
-      {displayed}
-      <span className="inline-block w-[2px] h-[0.75em] bg-[#313567] align-middle ml-[2px] animate-pulse" />
+      {fullText.slice(0, displayedChars)}
+      {!isDone && (
+        <span className="inline-block w-[2px] h-[0.75em] bg-[#313567] align-middle ml-[2px] animate-pulse" />
+      )}
     </h2>
   );
 };

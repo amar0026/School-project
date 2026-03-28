@@ -1,12 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import about from "../../assets/aboutimage.png";
 
 // ── Typewriter Component ──────────────────────────────────────────────────────
 const TypewriterTitle: React.FC = () => {
   const fullText = "Our Mission And Values";
-  const [displayed, setDisplayed] = useState("");
+  const totalChars = fullText.length;
+
+  const [displayedChars, setDisplayedChars] = useState(0);
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLHeadingElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Start typing only when heading scrolls into view
   useEffect(() => {
@@ -20,22 +23,37 @@ const TypewriterTitle: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  const startTyping = useCallback(() => {
+    setDisplayedChars(0);
+    let i = 0;
+    const type = () => {
+      i++;
+      setDisplayedChars(i);
+      if (i < totalChars) {
+        timerRef.current = setTimeout(type, 55);
+      } else {
+        // wait 5s then repeat
+        timerRef.current = setTimeout(() => startTyping(), 5000);
+      }
+    };
+    timerRef.current = setTimeout(type, 55);
+  }, [totalChars]);
+
   useEffect(() => {
     if (!started) return;
-    if (displayed.length === fullText.length) return;
-    const timeout = setTimeout(() => {
-      setDisplayed(fullText.slice(0, displayed.length + 1));
-    }, 70);
-    return () => clearTimeout(timeout);
-  }, [started, displayed]);
+    startTyping();
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [started, startTyping]);
+
+  const isDone = displayedChars === totalChars;
 
   return (
     <h2
       ref={ref}
       className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#313567] leading-snug"
     >
-      {displayed}
-      {displayed.length < fullText.length && (
+      {fullText.slice(0, displayedChars)}
+      {!isDone && (
         <span className="inline-block w-[2px] h-[0.75em] bg-[#313567] align-middle ml-[2px] animate-pulse" />
       )}
     </h2>
