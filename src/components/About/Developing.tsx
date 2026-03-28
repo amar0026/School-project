@@ -70,16 +70,7 @@ const Developing: React.FC = () => {
   return (
     <section className="w-full bg-white pb-10 sm:pb-14 md:pb-16">
       <style>{`
-        @keyframes dev-fadeLeft {
-          0%    { opacity:0; transform:translateX(-50px); }
-          13.8% { opacity:1; transform:translateX(0); }
-          100%  { opacity:1; transform:translateX(0); }
-        }
-        @keyframes dev-fadeRight {
-          0%    { opacity:0; transform:translateX(50px); }
-          13.8% { opacity:1; transform:translateX(0); }
-          100%  { opacity:1; transform:translateX(0); }
-        }
+       
         @keyframes dev-fadeUp {
           0%    { opacity:0; transform:translateY(36px); }
           13.8% { opacity:1; transform:translateY(0); }
