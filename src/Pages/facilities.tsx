@@ -5,7 +5,7 @@ const facilities = [
   { icon: "🏃", label: "School's Own Playground" },
   { icon: "💧", label: "Purified Drinking Water" },
   { icon: "☀️", label: "Solar Electricity" },
-  { icon: "🌤️", label: "Airy Small Room Full of Day Light" },
+  { icon: "🌤️", label: "Airy  Room Full of Day Light" },
   { icon: "🎉", label: "Celebration / Participation in Social Events" },
   { icon: "🎪", label: "Fete" },
   { icon: "🏥", label: "Medical Camp" },

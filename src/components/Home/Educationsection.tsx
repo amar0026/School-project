@@ -167,9 +167,9 @@ const EducationSection: React.FC = () => {
         />
 
         <p className="text-gray-700 font-bold leading-relaxed text-base sm:text-lg md:text-xl">
-          Our Efforts Are To Build Aspiration Of Doing Future Study. We
+          Our Efforts Are To Build Aspiration Of  Higher Education. We
           Believe That A "Sishu" Borns With All "Good", And We Nurture
-          Them Instilling Positive Values In Them.
+          Them by Instilling Positive Values .
         </p>
       </div>
 

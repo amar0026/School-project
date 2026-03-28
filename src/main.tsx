@@ -19,6 +19,7 @@ import Admission from "./Pages/Admission";
 import Submit from "./Pages/submit";
 import ScrollToTop from "./Pages/ScrollToTop";
 import ScrollButton from "./components/ScrollButton";
+import ScrollToHash from "./components/Global/ScrollToHash";
 // Layout component with conditional Navbar
 const Layout = () => {
   // const location = useLocation();
@@ -31,6 +32,7 @@ const Layout = () => {
       {/* <ScrollToTopButton /> */}
       {/* <ScrollToTop /> */}
       <ScrollToTop/>
+      <ScrollToHash/>
       <Navbar />
       <Outlet />
       <Footer />

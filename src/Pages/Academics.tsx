@@ -22,8 +22,8 @@ function useInView(threshold = 0.12) {
 const classData = [
   { level: "Play Group",   age: "2 years plus (English Medium)" },
   { level: "Nursery",      age: "3 years plus ( Both )" },
-  { level: "L KG / KG 1", age: "4 years ( L KG – English / L KG 1 – Bengali )" },
-  { level: "U KG / KG 1", age: "5 years ( U KG – English / U KG 1 – Bengali )" },
+  { level: "L KG / KG 1", age: "4 years ( LKG – English / KG 1 – Bengali )" },
+  { level: "U KG / KG 2", age: "5 years ( UKG – English / KG 2 – Bengali )" },
   { level: "Class 1",      age: "6 years ( Both )" },
   { level: "Class 2",      age: "7 years ( Both )" },
   { level: "Class 3",      age: "8 years ( Both )" },
@@ -261,12 +261,12 @@ const Academic2 = () => {
           >
             <ShiftRow>
               প্রাতঃ বিভাগ শুরু{" "}
-              <span className="text-blue-700 font-bold">06:50 / 07:05 a.m</span>{" "}
+              <span className="text-blue-700 font-bold">07:15 am </span>{" "}
               <span className="text-slate-400">( শীতকালে )</span>
             </ShiftRow>
             <ShiftRow>
               দিবা বিভাগ শুরু{" "}
-              <span className="text-blue-700 font-bold">11:20 a.m</span>
+              <span className="text-blue-700 font-bold">11:30 am</span>
             </ShiftRow>
           </div>
         </div>

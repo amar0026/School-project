@@ -147,7 +147,7 @@ const ContactSection: React.FC = () => {
               className="anim-left heading-hover text-3xl sm:text-4xl md:text-5xl text-[#04162F] leading-snug cursor-default"
               style={{ fontFamily: "'Playfair Display', serif", animationDelay: "0.1s" }}
             >
-              Lets talk with Us
+              Let's talk
             </h2>
 
             {/* Sub text */}

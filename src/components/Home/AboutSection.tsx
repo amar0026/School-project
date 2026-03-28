@@ -79,9 +79,7 @@ const AboutSection: React.FC = () => {
             </div>
 
             <h2 className="textAnim text-3xl sm:text-4xl md:text-5xl text-[#4583DA] font-serif leading-tight">
-              Guiding Your Kids <br />
-              To Be Success <br />
-              Generation
+             Guiding your kids towords success
             </h2>
 
             <p className="paraAnim text-gray-500 text-base md:text-lg leading-relaxed mt-6 max-w-[500px]">

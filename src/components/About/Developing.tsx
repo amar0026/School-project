@@ -47,7 +47,7 @@ const Developing: React.FC = () => {
         {/* ── BOTTOM: Description ── */}
         <div className="mt-10 sm:mt-12 md:mt-14">
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#000000CC] leading-relaxed">
-            The present president of the Board, Dr. Swapan Ghosh and the
+           Once again, The present president of the Board, Dr. Swapan Ghosh and the
             secretary Mr Ranen Ray along with other Board members has funded the
             need extension to school building in this year 2025-26. Here we get
             four more class rooms, wash rooms in 1st floor and an open hall and
@@ -58,15 +58,15 @@ const Developing: React.FC = () => {
           </p>
 
               {/* Card — only the last two sentences */}
-          <div className="mt-6 rounded-2xl border border-[#313567]/20 bg-[#f5f7ff] px-6 sm:px-8 md:px-10 py-5 sm:py-6 shadow-sm">
-            <div className="w-12 h-1 rounded-full bg-[#313567] mb-4" />
+          <div className="mt-6 rounded-2xl border border-[#313567]/20 bg-gradient-to-br from-[#f0fdf4] to-[#dcfce7] px-6 sm:px-8 md:px-10 py-5 sm:py-6 shadow-sm">
+            <div className="w-12 h-1 rounded-full bg-[#037122] mb-4" />
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#000000CC] leading-relaxed">
               We have multiple plans for the growth of the school. We
               encourage more such well-wishers, individuals and organisations alike
-              who will support our children's future{" "}
+              who will support our children's future. intrested person please {" "}
               <Link
                 to="/form"
-                className="inline-flex items-center gap-1 text-blue-600 text-base sm:text-lg underline underline-offset-2 hover:text-blue-800 transition-colors duration-200"
+                className="inline-flex items-center gap-1 text-blue-600 font-bold text-6xl italic sm:text-lg underline underline-offset-2 hover:text-blue-800 transition-colors duration-200"
               >
                 Click Here
                 <svg

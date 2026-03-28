@@ -259,7 +259,7 @@ const BrightFuture: React.FC = () => {
               className="
                 relative z-20
                 flex-1
-                bg-white
+                bg-linear-to-br from-[#f0fdf4] to-[#dcfce7]
                 border border-emerald-200
                 rounded-2xl
                 px-6 py-6

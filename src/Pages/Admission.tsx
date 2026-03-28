@@ -3,17 +3,17 @@ import { useState } from "react";
 const faqs = [
   {
     question: "When Can parents apply",
-    answer: "Any time in academic year. Also at the admission fair which is held during December.",
+    answer: "Any time during the academic year, as well as at the admission fair held in December.",
   },
   {
-    question: "Where can i get an application from",
-    answer: "Please collect an application from our school.",
+    question: "Where can i get an application form",
+    answer: "Please collect an application form our school.",
   },
   {
     question: "What are the documents required for admission",
     answer: [
-      "Student's birth certificates copy",
-      "AADHAR CARD copy of STUDENT and PARENT / GUARDIAN",
+      "Student's birth Certificate's copy",
+      "AADHAR card copy of Student and Parent / Guardian",
       "Present address proof document",
       "You also have to provide originals of all documents",
     ],

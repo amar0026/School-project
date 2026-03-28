@@ -15,11 +15,10 @@ const Footer: React.FC = () => {
 
   const col1 = navLinks.slice(0, 4);
   const col2 = navLinks.slice(4);
-
 const programLinks = [
-  { label: "Bengali Medium", to: "/programTiming" },
-  { label: "English Medium", to: "/programTiming" },
-  { label: "High School", to: "/programTiming" },
+  { label: "Bengali Medium (Morning)", to: "/smarty-program#morning-shift" },
+  { label: "Bengali Medium (Day)", to: "/smarty-program#day-shift" },
+  { label: "English Medium", to: "/smarty-program#english-medium" },
 ];
 
   const contactLinks = [
@@ -43,7 +42,7 @@ const programLinks = [
           {/* ── LEFT: Newsletter ── */}
           <div className="w-full lg:max-w-md">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 leading-snug">
-              Stay up to date with <br /> our story
+              Stay up to date with Us
             </h3>
 
             <p className="text-white/80 mt-3 sm:mt-5 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">

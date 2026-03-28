@@ -1,15 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import school1 from "../assets/morningshiftImage.jpg";
 import school2 from "../assets/dayshift.jpg";
 import school3 from "../assets/englishmedium.jpg";
 
 const ProgramTiming: React.FC = () => {
+  const [isSummer, setIsSummer] = useState(false);
+
   return (
     <section className="w-full bg-[#f5f5f5] py-8 md:py-12">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-14 lg:px-20 xl:px-24 2xl:px-32">
 
+        {/* ── TOP : Toggle ── */}
+        <div className="flex justify-center mb-5">
+          <div className="inline-flex items-center bg-[#F5C518] rounded-full p-1">
+            <button
+              onClick={() => setIsSummer(false)}
+              className={`px-5 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-200 ${
+                !isSummer ? "bg-[#1A3A6B] text-white shadow" : "bg-transparent text-[#1A3A6B]"
+              }`}
+            >
+              In Winter
+            </button>
+            <button
+              onClick={() => setIsSummer(true)}
+              className={`px-5 py-2 rounded-full text-sm sm:text-base font-semibold transition-all duration-200 ${
+                isSummer ? "bg-[#1A3A6B] text-white shadow" : "bg-transparent text-[#1A3A6B]"
+              }`}
+            >
+              In Summer
+            </button>
+          </div>
+        </div>
+
+        {/* ── Note ── */}
+        <div className="flex items-start gap-2 mb-5">
+          <span className="text-xl leading-snug">👉</span>
+          <p className="text-base sm:text-lg md:text-xl text-black">
+            <span className="font-bold">Note : </span>
+            In summer the school timing advances by 30 minutes.
+          </p>
+        </div>
+
+        {/* ── Timing Details + Notice Box ── */}
+        <div className="mb-10 md:mb-14">
+          <div className="space-y-2 mb-4">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#E74C3C] flex-shrink-0" />
+              <p className="text-base sm:text-lg md:text-xl text-black">
+                <span className="font-bold">School Assembly:</span> 5 minutes before class starts
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#E74C3C] flex-shrink-0" />
+              <p className="text-base sm:text-lg md:text-xl text-black">
+                <span className="font-bold">Holidays:</span> Thursdays & Sundays
+              </p>
+            </div>
+          </div>
+
+          {/* Notice Box */}
+          <div className="bg-white border-l-4 border-[#E74C3C] rounded-r-lg px-4 py-3 space-y-1">
+            <p className="text-sm sm:text-base text-black">
+              📌 Students should report to school{" "}
+              <span className="font-bold">15 minutes before</span> class starts.
+            </p>
+            <p className="text-sm sm:text-base text-black">
+              📌 Parents / Guardians are requested to collect their children within{" "}
+              <span className="font-bold">15 minutes</span> after school gets over.
+            </p>
+          </div>
+        </div>
+
         {/* ── BLOCK 1 : Morning Shift ── */}
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-14 md:mb-20">
+        <div id="morning-shift" className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-14 md:mb-20">
           <img
             src={school1}
             alt="Morning Shift"
@@ -23,11 +86,13 @@ const ProgramTiming: React.FC = () => {
                 <h3 className="font-semibold text-[#04162F] text-xl sm:text-2xl mb-1">
                   Morning Shift (Bengali Medium)
                 </h3>
-                <p className="text-base sm:text-lg md:text-xl text-black">The school day begins at 8:00 AM,</p>
+                <p className="text-base sm:text-lg md:text-xl text-black">
+                  School Timing: {isSummer ? "7:00 AM – 11:00 AM" : "7:15 AM – 11:00 AM"}
+                </p>
               </div>
             </div>
 
-            {["Nursery", "K.G 1 / K.G 2", "Class 1, 2", "Class 3, 4, 5"].map((label) => (
+            {["Nursery", "LKG / UKG", "Class 1, 2", "Class 3, 4, 5"].map((label) => (
               <p key={label} className="text-base sm:text-lg md:text-xl font-medium mt-3 md:mt-4">
                 {label}
               </p>
@@ -41,7 +106,7 @@ const ProgramTiming: React.FC = () => {
         </div>
 
         {/* ── BLOCK 2 : Day Shift ── */}
-        <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-end gap-8 md:gap-12 mb-14 md:mb-20">
+        <div id="day-shift" className="flex flex-col-reverse md:flex-row items-center md:items-start justify-end gap-8 md:gap-12 mb-14 md:mb-20">
           <div className="w-full md:text-right">
             <div className="flex items-start md:justify-end gap-3">
               <div className="w-[4px] min-h-[60px] md:h-[70px] bg-[#E74C3C] rounded-full flex-shrink-0 md:hidden" />
@@ -49,7 +114,9 @@ const ProgramTiming: React.FC = () => {
                 <h3 className="font-semibold text-[#04162F] text-xl sm:text-2xl mb-1">
                   Day Shift (Bengali Medium)
                 </h3>
-                <p className="text-base sm:text-lg md:text-xl text-black">The school day begins at 9:00 AM,</p>
+                <p className="text-base sm:text-lg md:text-xl text-black">
+                  School Timing: {isSummer ? "11:30 AM – 4:00 PM" : "11:30 AM – 3:30 PM"}
+                </p>
               </div>
               <div className="w-[4px] min-h-[60px] md:h-[70px] bg-[#E74C3C] rounded-full flex-shrink-0 hidden md:block" />
             </div>
@@ -73,8 +140,8 @@ const ProgramTiming: React.FC = () => {
           />
         </div>
 
-        {/* ── BLOCK 3 : High School ── */}
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+        {/* ── BLOCK 3 : English Medium ── */}
+        <div id="english-medium" className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
           <img
             src={school3}
             alt="High School"
@@ -86,9 +153,11 @@ const ProgramTiming: React.FC = () => {
               <div className="w-[4px] min-h-[60px] md:h-[70px] bg-[#E74C3C] rounded-full flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-[#04162F] text-xl sm:text-2xl mb-1">
-                  English-medium Section (CISCE, CBSC, WBBSE)
+                  English-medium Section
                 </h3>
-                <p className="text-base sm:text-lg md:text-xl text-black">The school day begins at 9:00 AM,</p>
+                <p className="text-base sm:text-lg md:text-xl text-black">
+                  School Timing: 9:00 AM – 1:30 PM
+                </p>
               </div>
             </div>
 

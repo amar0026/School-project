@@ -115,7 +115,7 @@ const AboutUsStrip: React.FC = () => {
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             We offer both Bengali and English as the Medium of teaching and
-            Learning. We builds knowledge discipline creativity friendships and
+            Learning. We build knowledge discipline creativity friendships and
             confidence.
           </p>
 

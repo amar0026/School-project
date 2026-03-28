@@ -37,7 +37,7 @@ const schools = [
 ];
 
 const professions = [
-  "Doctor", "Engineer", "Professor", "Artist", "Player", "Business Entrepreneur",
+  "Doctor", "Engineer", "Professor", "Artist", "Player", "Research Scholar",
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────────
