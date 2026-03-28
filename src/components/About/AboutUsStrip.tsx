@@ -1,5 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 
+// ── Typewriter Hook ───────────────────────────────────────────────────────────
+const useTypewriter = (text: string, speed = 70) => {
+  const [displayed, setDisplayed] = useState("");
+  useEffect(() => {
+    if (displayed.length === text.length) return;
+    const timeout = setTimeout(() => {
+      setDisplayed(text.slice(0, displayed.length + 1));
+    }, speed);
+    return () => clearTimeout(timeout);
+  }, [displayed, text, speed]);
+  return displayed;
+};
+
 // ── Hook ─────────────────────────────────────────────────────────────────────
 function useInView(threshold = 0.3) {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,11 +30,35 @@ function useInView(threshold = 0.3) {
   return { ref, inView };
 }
 
+// ── Typewriter Heading ────────────────────────────────────────────────────────
+const TypewriterTitle: React.FC<{ start: boolean }> = ({ start }) => {
+  const fullText = "About Us";
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    if (!start) return;
+    if (displayed.length === fullText.length) return;
+    const timeout = setTimeout(() => {
+      setDisplayed(fullText.slice(0, displayed.length + 1));
+    }, 70);
+    return () => clearTimeout(timeout);
+  }, [start, displayed]);
+
+  return (
+    <>
+      {displayed}
+      {displayed.length < fullText.length && (
+        <span className="inline-block w-[2px] h-[0.75em] bg-[#313567] align-middle ml-[2px] animate-pulse" />
+      )}
+    </>
+  );
+};
+
 const AboutUsStrip: React.FC = () => {
   const { ref, inView } = useInView(0.3);
 
   return (
-    <section className="w-full  bg-white py-10 sm:py-14 md:py-16 overflow-hidden">
+    <section className="w-full bg-white py-10 sm:py-14 md:py-16 overflow-hidden">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
@@ -76,30 +113,18 @@ const AboutUsStrip: React.FC = () => {
         }
       `}</style>
 
-      <div className=" max-w-[1920px]  mx-auto px-4 sm:px-8 md:px-12">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-8 md:px-12">
         <div
           ref={ref}
           className={`relative w-full ${inView ? "about-running" : "about-paused"}`}
         >
-
-          {/* ── Eyebrow ── */}
-          <div className="anim-eyebrow flex items-center justify-center gap-3 mb-3">
-            <div className="anim-line h-0.5 rounded-full bg-[#313567]" style={{ width: "48px" }} />
-            <span
-              className="text-[9px] sm:text-[10px] font-bold tracking-[0.32em] uppercase text-[#313567]"
-              style={{ fontFamily: "'DM Sans', sans-serif" }}
-            >
-              Who We Are
-            </span>
-            <div className="anim-line h-0.5 rounded-full bg-[#313567]" style={{ width: "48px" }} />
-          </div>
 
           {/* ── Heading overlapping border ── */}
           <h2
             className="anim-title heading-hover absolute -top-5 sm:-top-6 left-1/2 -translate-x-1/2 bg-white px-3 sm:px-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-[#313567] whitespace-nowrap cursor-default z-10"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            About Us
+            <TypewriterTitle start={inView} />
           </h2>
 
           {/* ── Animated border box ── */}

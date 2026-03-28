@@ -9,17 +9,12 @@ function useInView(threshold = 0.2) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) { setInView(true); observer.disconnect(); }
       },
       { threshold }
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, [threshold]);
@@ -27,25 +22,36 @@ function useInView(threshold = 0.2) {
   return { ref, inView };
 }
 
+// ── Typewriter ────────────────────────────────────────────────────────────────
+const TypewriterTitle: React.FC<{ start: boolean }> = ({ start }) => {
+  const fullText = "Guiding your kids towords success";
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    if (!start) return;
+    if (displayed.length === fullText.length) return;
+    const timeout = setTimeout(() => {
+      setDisplayed(fullText.slice(0, displayed.length + 1));
+    }, 70);
+    return () => clearTimeout(timeout);
+  }, [start, displayed]);
+
+  return (
+    <>
+      {displayed}
+      {displayed.length < fullText.length && (
+        <span className="inline-block w-[2px] h-[0.8em] bg-[#4583DA] align-middle ml-[2px] animate-pulse" />
+      )}
+    </>
+  );
+};
+
 const AboutSection: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
   return (
     <section className="w-full bg-white py-16 overflow-hidden">
       <style>{`
-        /*
-         * Each animation plays for 0.8s, then stays visible.
-         * Total cycle = 5s (pause) + 0.8s (animate) = 5.8s
-         * animation-delay is negative so it starts mid-cycle correctly.
-         *
-         * Pattern:
-         *   animation: NAME 10.8s ease infinite;
-         *   animation-delay: -(10.8s - own-delay)
-         *
-         * This means: element animates at its stagger offset,
-         * then holds for ~10s, then repeats.
-         */
-
         @keyframes fadeLeft {
           0%      { opacity:0; transform:translateX(-60px) }
           7.4%    { opacity:1; transform:translateX(0) }
@@ -77,7 +83,6 @@ const AboutSection: React.FC = () => {
           100%    { opacity:1; transform:translateY(0) }
         }
 
-        /* cycle = 10.8s, delay offsets match original stagger */
         .imgAnim   { opacity:0; animation: fadeLeft    10.8s ease infinite; animation-delay: -10.8s; }
         .textAnim  { opacity:0; animation: fadeRight   10.8s ease infinite; animation-delay: -10.8s; }
         .paraAnim  { opacity:0; animation: fadeUp      10.8s ease infinite; animation-delay: -10.5s; }
@@ -132,8 +137,9 @@ const AboutSection: React.FC = () => {
               </span>
             </div>
 
+            {/* ✅ Only this line changed — typewriter animation */}
             <h2 className="textAnim text-3xl sm:text-4xl md:text-5xl text-[#4583DA] font-serif leading-tight">
-              Guiding your kids towords success
+              <TypewriterTitle start={inView} />
             </h2>
 
             <p className="paraAnim text-gray-500 text-base md:text-lg leading-relaxed mt-6 max-w-[500px]">

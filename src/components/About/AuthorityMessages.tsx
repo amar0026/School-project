@@ -17,6 +17,30 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
+// ── Typewriter ────────────────────────────────────────────────────────────────
+const TypewriterTitle: React.FC<{ start: boolean }> = ({ start }) => {
+  const fullText = "Messages from Our Authority";
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    if (!start) return;
+    if (displayed.length === fullText.length) return;
+    const timeout = setTimeout(() => {
+      setDisplayed(fullText.slice(0, displayed.length + 1));
+    }, 70);
+    return () => clearTimeout(timeout);
+  }, [start, displayed]);
+
+  return (
+    <>
+      {displayed}
+      {displayed.length < fullText.length && (
+        <span className="inline-block w-[2px] h-[0.8em] bg-[#04162F] align-middle ml-[2px] animate-pulse" />
+      )}
+    </>
+  );
+};
+
 const MessageCard: React.FC<{
   imageLeft: boolean;
   title: string;
@@ -143,12 +167,6 @@ const AuthorityMessages: React.FC = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-        /*
-         * cycle = 5.75s (0.75s animate + 5s hold)
-         * Keyframes animate in first ~13% then hold to 100%
-         * delay = -(cycle - own-stagger)
-         */
-
         @keyframes fadeSlideLeft {
           0%    { opacity:0; transform:translateX(-50px); }
           13%   { opacity:1; transform:translateX(0); }
@@ -174,7 +192,6 @@ const AuthorityMessages: React.FC = () => {
           100% { background-position:  200% center; }
         }
 
-        /* ── card paused/running ── */
         .paused .anim-left,
         .paused .anim-right,
         .paused .anim-up,
@@ -193,7 +210,6 @@ const AuthorityMessages: React.FC = () => {
           animation-delay: -5.45s;
         }
 
-        /* ── section header paused/running ── */
         .sect-paused .anim-up,
         .sect-paused .anim-line { animation-play-state: paused !important; }
 
@@ -232,12 +248,15 @@ const AuthorityMessages: React.FC = () => {
             </span>
             <div className="anim-line h-0.5 rounded-full bg-[#1E40AF]" style={{ width: "48px" }} />
           </div>
+
+          {/* ✅ Only this line changed — typewriter animation */}
           <h1
             className="anim-up text-2xl sm:text-3xl md:text-4xl font-semibold text-[#04162F]"
             style={{ fontFamily: "'Playfair Display', serif", animationDelay: "0.15s" }}
           >
-            Messages from Our Authority
+            <TypewriterTitle start={headInView} />
           </h1>
+
           <div className="flex justify-center items-center gap-2 mt-3">
             <div className="w-8 sm:w-10 h-px bg-[#1E40AF]/30" />
             <div className="w-2 h-2 rounded-full bg-[#1E40AF]/40" />

@@ -25,18 +25,47 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
+// ── Repeating Typewriter ──────────────────────────────────────────────────────
+const TypewriterTitle: React.FC<{ start: boolean }> = ({ start }) => {
+  const fullText = "Developing";
+  const [displayed, setDisplayed] = useState("");
+  const [typing, setTyping] = useState(false);
+
+  useEffect(() => {
+    if (start) setTyping(true);
+  }, [start]);
+
+  useEffect(() => {
+    if (!typing) return;
+
+    if (displayed.length < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayed(fullText.slice(0, displayed.length + 1));
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
+
+    // Fully typed — wait 5s then reset
+    const restart = setTimeout(() => {
+      setDisplayed("");
+    }, 5000);
+    return () => clearTimeout(restart);
+  }, [typing, displayed]);
+
+  return (
+    <h2 className="dev-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#313567] leading-snug">
+      {displayed}
+      <span className="inline-block w-[2px] h-[0.75em] bg-[#313567] align-middle ml-[2px] animate-pulse" />
+    </h2>
+  );
+};
+
 const Developing: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
   return (
     <section className="w-full bg-white pb-10 sm:pb-14 md:pb-16">
       <style>{`
-        /*
-         * cycle = 5.8s (0.8s animate + 5s hold)
-         * Each keyframe animates in first ~14% then holds to 100%
-         * delay = -(cycle - own-stagger) to sync stagger on loop
-         */
-
         @keyframes dev-fadeLeft {
           0%    { opacity:0; transform:translateX(-50px); }
           13.8% { opacity:1; transform:translateX(0); }
@@ -64,7 +93,6 @@ const Developing: React.FC = () => {
         .dev-paused .dev-bottom,
         .dev-paused .dev-card  { animation-play-state: paused !important; }
 
-        /* cycle=5.8s, delay=-(5.8 - stagger) */
         .dev-running .dev-title  {
           animation: dev-fadeLeft  5.8s ease infinite;
           animation-delay: -5.8s;
@@ -98,9 +126,10 @@ const Developing: React.FC = () => {
 
           {/* Left: Text */}
           <div className="w-full md:w-1/2 md:pt-8 lg:pt-12">
-            <h2 className="dev-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-[#313567] leading-snug">
-              Developing
-            </h2>
+
+            {/* ✅ Only this line changed */}
+            <TypewriterTitle start={inView} />
+
             <p className="dev-para text-base sm:text-lg md:text-xl text-[#000000CC] mt-5 sm:mt-6 md:mt-8 leading-relaxed">
               With the interest and effort of some good souls this school was
               established in 1959. The land (10 Kottah equivalent to 7200 Sqft

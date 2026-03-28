@@ -72,7 +72,7 @@ const ProgramTiming: React.FC = () => {
         </div>
 
         {/* ── BLOCK 1 : Morning Shift ── */}
-        <div id="morning-shift" className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-14 md:mb-20">
+        <div id="morning-shift" className=" scroll-mt-60 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 mb-14 md:mb-20">
           <img
             src={school1}
             alt="Morning Shift"
@@ -106,7 +106,7 @@ const ProgramTiming: React.FC = () => {
         </div>
 
         {/* ── BLOCK 2 : Day Shift ── */}
-        <div id="day-shift" className="flex flex-col-reverse md:flex-row items-center md:items-start justify-end gap-8 md:gap-12 mb-14 md:mb-20">
+        <div id="day-shift" className=" scroll-mt-60 flex flex-col-reverse md:flex-row items-center md:items-start justify-end gap-8 md:gap-12 mb-14 md:mb-20">
           <div className="w-full md:text-right">
             <div className="flex items-start md:justify-end gap-3">
               <div className="w-[4px] min-h-[60px] md:h-[70px] bg-[#E74C3C] rounded-full flex-shrink-0 md:hidden" />
@@ -141,7 +141,7 @@ const ProgramTiming: React.FC = () => {
         </div>
 
         {/* ── BLOCK 3 : English Medium ── */}
-        <div id="english-medium" className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+        <div id="english-medium" className=" scroll-mt-60 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
           <img
             src={school3}
             alt="High School"
