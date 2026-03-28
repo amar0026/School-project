@@ -181,7 +181,7 @@ const StatCard: React.FC<StatCardProps> = ({
 
       {/* shimmer line */}
       <div
-        className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full transition-all duration-500 rounded-full"
+        className="absolute bottom-0 left-0 h-0.75 w-0 group-hover:w-full transition-all duration-500 rounded-full"
         style={{
           background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
         }}
@@ -239,7 +239,6 @@ const TypewriterHeading: React.FC = () => {
   // Find where "Brighter Future" starts and ends in the typed string
   const before = "A ";
   const highlight = "Brighter Future";
-  const after = " For Your Kids";
 
   const typedBefore = typed.slice(0, Math.min(typed.length, before.length));
   const typedHighlight = typed.length > before.length
