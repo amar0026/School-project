@@ -4,7 +4,6 @@ import school2 from "../../assets/dayshift.jpg";
 import school3 from "../../assets/englishmedium.jpg";
 import { Link } from "react-router-dom";
 
-// ── Hook ─────────────────────────────────────────
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -30,16 +29,16 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
-// ── Card ─────────────────────────────────────────
 const ProgramCard: React.FC<{
   src: string;
   alt: string;
   title: string;
   subtitle: string;
   delay: string;
-}> = ({ src, alt, title, subtitle, delay }) => (
+  to: string;
+}> = ({ src, alt, title, subtitle, delay, to }) => (
   <Link
-    to="/smarty-program"
+    to={to}
     className="
       card-anim
       group
@@ -89,16 +88,12 @@ const ProgramCard: React.FC<{
   </Link>
 );
 
-// ── Main Section ─────────────────────────────────
 const SmartProgram: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
   return (
     <section className="w-full bg-white py-14 md:py-20 overflow-hidden">
-
-      {/* Outer max-width container — centers content on ultra-wide screens */}
       <div className="max-w-[1920px] mx-auto w-full px-4 sm:px-8 md:px-14 lg:px-20 xl:px-24 2xl:px-32">
-
         <div ref={ref} className={inView ? "running" : "paused"}>
 
           {/* Eyebrow */}
@@ -132,6 +127,7 @@ const SmartProgram: React.FC = () => {
               title="Morning Shift"
               subtitle="Bengali Medium"
               delay="0.4s"
+              to="/smarty-program#morning-shift"
             />
             <ProgramCard
               src={school2}
@@ -139,6 +135,7 @@ const SmartProgram: React.FC = () => {
               title="Day Shift"
               subtitle="Bengali Medium"
               delay="0.6s"
+              to="/smarty-program#day-shift"
             />
             <ProgramCard
               src={school3}
@@ -146,6 +143,7 @@ const SmartProgram: React.FC = () => {
               title="English-Medium Section"
               subtitle="English Medium"
               delay="0.8s"
+              to="/smarty-program#english-medium"
             />
           </div>
 

@@ -52,13 +52,11 @@ const Card = ({ link, text }: { link: string; text: string }) => {
       hover:-translate-y-3 hover:scale-105 hover:shadow-2xl
       transition-all duration-300 relative overflow-hidden group"
       style={{
-        background:
-          "linear-gradient(135deg, #1a3f7a 0%, #2d5cad 60%, #4583DA 100%)",
+        background: "linear-gradient(135deg, #1a3f7a 0%, #2d5cad 60%, #4583DA 100%)",
         fontFamily: "'DM Sans', sans-serif",
       }}
     >
       <span className="absolute top-0 -left-full w-full h-full bg-white/20 skew-x-12 group-hover:left-[120%] transition-all duration-700 pointer-events-none" />
-
       <div key={key} className="relative z-10 flex tracking-widest">
         {text.split("").map((letter, i) => (
           <span
@@ -81,6 +79,66 @@ const Card = ({ link, text }: { link: string; text: string }) => {
   );
 };
 
+// ── Typewriter Heading ────────────────────────────────────────────────────────
+const line1 = "Education is the best";
+const line2 = "key to success in life";
+const fullText = line1 + "\n" + line2;
+const totalChars = fullText.length;
+
+const TypewriterHeading: React.FC<{ inView: boolean }> = ({ inView }) => {
+  const [displayedChars, setDisplayedChars] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const startTyping = () => {
+    setDisplayedChars(0);
+    let i = 0;
+    const type = () => {
+      i++;
+      setDisplayedChars(i);
+      if (i < totalChars) {
+        timerRef.current = setTimeout(type, 55);
+      } else {
+        // wait 5s then repeat
+        timerRef.current = setTimeout(() => startTyping(), 5000);
+      }
+    };
+    timerRef.current = setTimeout(type, 55);
+  };
+
+  useEffect(() => {
+    if (!inView) return;
+    startTyping();
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [inView]);
+
+  const visible = fullText.slice(0, displayedChars);
+  const parts   = visible.split("\n");
+  const l1      = parts[0] ?? "";
+  const l2      = parts[1] ?? "";
+
+  // cursor blinks on the last actively-typed char
+  const showCursor = displayedChars < totalChars;
+
+  return (
+    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-10 md:mb-14 leading-snug min-h-[2.8em]">
+      <span>{l1}</span>
+      {visible.includes("\n") && (
+        <>
+          <br />
+          <span>{l2}</span>
+        </>
+      )}
+      {showCursor && (
+        <span
+          className="inline-block w-[3px] h-[1em] bg-blue-900 ml-0.5 align-middle"
+          style={{ animation: "cursorBlink 0.7s step-end infinite" }}
+        />
+      )}
+    </h1>
+  );
+};
+
+// ── Main ─────────────────────────────────────────────────────────────────────
 const EducationSection: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
@@ -92,13 +150,10 @@ const EducationSection: React.FC = () => {
       }`}
     >
       <style>{`
-        /*
-         * Cycle = 5s pause + duration ≈ 5.75s total per element
-         * Keyframes: animate in first ~13% of cycle, hold rest
-         * Stagger preserved via animation-delay offsets
-         */
-
-        /* ── repeating keyframes ── */
+        @keyframes cursorBlink {
+          0%, 100% { opacity: 1; }
+          50%       { opacity: 0; }
+        }
         @keyframes fadeUp-r {
           0%    { opacity:0; transform:translateY(28px); }
           10.4% { opacity:1; transform:translateY(0); }
@@ -130,33 +185,17 @@ const EducationSection: React.FC = () => {
           100% { transform: translate(-50%,0px); }
         }
 
-        /* ── paused state ── */
         .sect-paused .anim-eyebrow,
-        .sect-paused .anim-heading,
         .sect-paused .anim-line,
         .sect-paused .anim-box,
         .sect-paused .anim-card { animation-play-state: paused !important; }
 
-        /*
-         * cycle = 5.75s  (0.75s animate + 5s hold)
-         * delay = -(cycle - own-stagger) so first frame is correct
-         * eyebrow/line: delay 0    → -5.75s
-         * heading:      delay 0    → -5.75s
-         * box:          delay 0.3s → -5.45s
-         * card 1:       delay 0.55s→ -5.2s
-         * card 2:       delay 0.7s → -5.05s
-         * card 3:       delay 0.85s→ -4.9s
-         */
         .sect-running .anim-eyebrow {
           animation: fadeUp-r 5.75s ease infinite;
           animation-delay: -5.75s;
         }
         .sect-running .anim-line {
           animation: revealLine-r 5.75s ease infinite;
-          animation-delay: -5.75s;
-        }
-        .sect-running .anim-heading {
-          animation: fadeUp-r 5.75s ease infinite;
           animation-delay: -5.75s;
         }
         .sect-running .anim-box {
@@ -176,10 +215,8 @@ const EducationSection: React.FC = () => {
         <div className="anim-line h-0.5 w-8 md:w-10 rounded-full bg-blue-900" />
       </div>
 
-      {/* Heading */}
-      <h1 className="anim-heading text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-10 md:mb-14 leading-snug">
-        Education is the best <br /> key to success in life
-      </h1>
+      {/* Typewriter Heading */}
+      <TypewriterHeading inView={inView} />
 
       {/* Content Box */}
       <div className="anim-box relative max-w-sm sm:max-w-md md:max-w-xl mx-auto bg-gradient-to-br from-[#BFD9FF] to-[#dbeafe] rounded-xl border-2 border-dashed border-gray-400 p-6 sm:p-8 md:p-10 mb-14 md:mb-20 shadow-lg hover:shadow-xl transition duration-500">
@@ -202,9 +239,9 @@ const EducationSection: React.FC = () => {
           { link: "/admission",   text: "ADMISSION"   },
           { link: "/achievement", text: "ACHIEVEMENT" },
         ].map(({ link, text }, i) => {
-          const stagger = 0.55 + i * 0.15;          // 0.55 / 0.70 / 0.85
+          const stagger = 0.55 + i * 0.15;
           const cycle   = 5.75;
-          const delay   = -(cycle - stagger);        // -5.2 / -5.05 / -4.9
+          const delay   = -(cycle - stagger);
 
           return (
             <div

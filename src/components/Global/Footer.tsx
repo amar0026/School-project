@@ -16,9 +16,9 @@ const Footer: React.FC = () => {
   const col1 = navLinks.slice(0, 4);
   const col2 = navLinks.slice(4);
 const programLinks = [
-  { label: "Bengali Medium (Morning)", to: "/smarty-program#morning-shift" },
-  { label: "Bengali Medium (Day)", to: "/smarty-program#day-shift" },
-  { label: "English Medium", to: "/smarty-program#english-medium" },
+  { label: "Morning Shift(Bengali Medium)", to: "/smarty-program#morning-shift" },
+  { label: "Day Shift (Bengali Medium)", to: "/smarty-program#day-shift" },
+  { label: "English Medium Section", to: "/smarty-program#english-medium" },
 ];
 
   const contactLinks = [
