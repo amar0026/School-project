@@ -6,9 +6,24 @@ import Achievement from "../../assets/Achievement.svg";
 import Group from "../../assets/Group.svg";
 import Review from "../../assets/Review.svg";
 
-// 👇 Replace these with your actual image paths
-import schoolBoy from "../../assets/boy-girlvideo.mp4";
-import schoolGirl from "../../assets/boy-girlvideo.mp4";
+import schoolBoy from "../../assets/kids-schoolvideo.mp4";
+import schoolGirl from "../../assets/kids-schoolvideo.mp4";
+
+/* ───────────── TYPEWRITER HOOK ───────────── */
+
+const useTypewriter = (text: string, speed = 70) => {
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    if (displayed.length === text.length) return;
+    const timeout = setTimeout(() => {
+      setDisplayed(text.slice(0, displayed.length + 1));
+    }, speed);
+    return () => clearTimeout(timeout);
+  }, [displayed, text, speed]);
+
+  return displayed;
+};
 
 /* ───────────── COUNTER ───────────── */
 
@@ -215,6 +230,34 @@ const stats = [
   },
 ];
 
+/* ───────────── TYPEWRITER HEADING ───────────── */
+
+const TypewriterHeading: React.FC = () => {
+  const fullText = "A Brighter Future For Your Kids";
+  const typed = useTypewriter(fullText);
+
+  // Find where "Brighter Future" starts and ends in the typed string
+  const before = "A ";
+  const highlight = "Brighter Future";
+  const after = " For Your Kids";
+
+  const typedBefore = typed.slice(0, Math.min(typed.length, before.length));
+  const typedHighlight = typed.length > before.length
+    ? typed.slice(before.length, Math.min(typed.length, before.length + highlight.length))
+    : "";
+  const typedAfter = typed.length > before.length + highlight.length
+    ? typed.slice(before.length + highlight.length)
+    : "";
+
+  return (
+    <h1 className="text-4xl sm:text-5xl font-black mt-4 leading-tight">
+      {typedBefore}
+      <span className="text-emerald-600">{typedHighlight}</span>
+      {typedAfter}
+      <span className="inline-block w-[2px] h-[0.85em] bg-emerald-600 align-middle ml-[2px] animate-pulse" />
+    </h1>
+  );
+};
 /* ───────────── MAIN COMPONENT ───────────── */
 
 const BrightFuture: React.FC = () => {
@@ -228,10 +271,9 @@ const BrightFuture: React.FC = () => {
             <span className="text-emerald-600 font-semibold uppercase text-sm tracking-widest">
               Our Mission
             </span>
-            <h1 className="text-4xl sm:text-5xl font-black mt-4 leading-tight">
-              A <span className="text-emerald-600">Brighter Future</span> For
-              Your Kids
-            </h1>
+
+            {/* ✅ Only this line changed — typewriter on "Brighter Future" */}
+            <TypewriterHeading />
           </div>
 
           {/* Motto Card with Boy & Girl */}
@@ -249,9 +291,8 @@ const BrightFuture: React.FC = () => {
                w-24 sm:w-32 md:w-40
                object-contain
                self-end
-               
-                -mr-4
-                 "
+               -mr-4
+              "
             />
 
             {/* Motto Card — center */}
@@ -271,7 +312,6 @@ const BrightFuture: React.FC = () => {
                 boxShadow: "0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(0,0,0,0.06)",
               }}
             >
-              {/* Decorative top line */}
               <div className="w-10 h-1 rounded-full bg-emerald-400 mb-1" />
               <span className="text-emerald-500 text-4xl leading-none select-none">&ldquo;</span>
               <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
@@ -294,7 +334,6 @@ const BrightFuture: React.FC = () => {
                 w-24 sm:w-32 md:w-40
                 object-contain
                 self-end
-                
                 -ml-4
               "
             />
