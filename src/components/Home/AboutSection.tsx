@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import success from "../../assets/Group 2109.png";
 
@@ -25,21 +25,39 @@ function useInView(threshold = 0.2) {
 // ── Typewriter ────────────────────────────────────────────────────────────────
 const TypewriterTitle: React.FC<{ start: boolean }> = ({ start }) => {
   const fullText = "Guiding your kids towords success";
-  const [displayed, setDisplayed] = useState("");
+  const totalChars = fullText.length;
+
+  const [displayedChars, setDisplayedChars] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const startTyping = useCallback(() => {
+    setDisplayedChars(0);
+    let i = 0;
+    const type = () => {
+      i++;
+      setDisplayedChars(i);
+      if (i < totalChars) {
+        timerRef.current = setTimeout(type, 55);
+      } else {
+        // wait 5s then repeat
+        timerRef.current = setTimeout(() => startTyping(), 5000);
+      }
+    };
+    timerRef.current = setTimeout(type, 55);
+  }, [totalChars]);
 
   useEffect(() => {
     if (!start) return;
-    if (displayed.length === fullText.length) return;
-    const timeout = setTimeout(() => {
-      setDisplayed(fullText.slice(0, displayed.length + 1));
-    }, 70);
-    return () => clearTimeout(timeout);
-  }, [start, displayed]);
+    startTyping();
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [start, startTyping]);
+
+  const isDone = displayedChars === totalChars;
 
   return (
     <>
-      {displayed}
-      {displayed.length < fullText.length && (
+      {fullText.slice(0, displayedChars)}
+      {!isDone && (
         <span className="inline-block w-0.5 h-[0.8em] bg-[#4583DA] align-middle ml-0.5 animate-pulse" />
       )}
     </>
