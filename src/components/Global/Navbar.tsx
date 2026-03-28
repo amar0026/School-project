@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
     `text-sm sm:text-base font-medium transition ${
       isActive
         ? "text-[#083BA0] border-b-2 border-[#083BA0]"
-        : "text-gray-700 hover:text-[#083BA0] hover:underline "
+        : "text-gray-700 hover:text-[#083BA0]  hover:border-b-2"
     }`;
 
   const mobileNavClass = ({ isActive }: { isActive: boolean }) =>

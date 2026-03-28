@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import AuthorityMessages from "../components/About/AuthorityMessages";
 
-// ── Hook ─────────────────────────────────────────────────────────────────────
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -18,7 +17,6 @@ function useInView(threshold = 0.12) {
   return { ref, inView };
 }
 
-// ── Data ──────────────────────────────────────────────────────────────────────
 const classData = [
   { level: "Play Group",   age: "2 years plus (English Medium)" },
   { level: "Nursery",      age: "3 years plus ( Both )" },
@@ -31,7 +29,6 @@ const classData = [
   { level: "Class 5",      age: "10 years Plus ( Bengali medium only )" },
 ];
 
-// ── Shift row helper ──────────────────────────────────────────────────────────
 const ShiftRow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div
     className="flex items-start gap-3 px-4 py-3 rounded-xl"
@@ -56,7 +53,6 @@ const ShiftRow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </div>
 );
 
-// ── Main ─────────────────────────────────────────────────────────────────────
 const Academic2 = () => {
   const { ref: titleRef,   inView: titleIn   } = useInView(0.2);
   const { ref: tableRef,   inView: tableIn   } = useInView(0.1);
@@ -65,63 +61,111 @@ const Academic2 = () => {
 
   return (
     <section
-      className="w-full min-h-screen  bg-slate-50 py-10 sm:py-14 px-0 overflow-hidden"
+      className="w-full min-h-screen bg-slate-50 py-10 sm:py-14 px-0 overflow-hidden"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+        /*
+         * cycle = 5.75s (0.75s animate + 5s hold)
+         * Each keyframe animates in first ~13% then holds to 100%
+         * delay = -(cycle - own-stagger)
+         */
+
         @keyframes fadeSlideLeft {
-          from { opacity: 0; transform: translateX(-50px); }
-          to   { opacity: 1; transform: translateX(0); }
+          0%    { opacity:0; transform:translateX(-50px); }
+          13%   { opacity:1; transform:translateX(0); }
+          100%  { opacity:1; transform:translateX(0); }
         }
         @keyframes fadeSlideRight {
-          from { opacity: 0; transform: translateX(50px); }
-          to   { opacity: 1; transform: translateX(0); }
+          0%    { opacity:0; transform:translateX(50px); }
+          13%   { opacity:1; transform:translateX(0); }
+          100%  { opacity:1; transform:translateX(0); }
         }
         @keyframes fadeSlideUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
+          0%    { opacity:0; transform:translateY(28px); }
+          11.3% { opacity:1; transform:translateY(0); }
+          100%  { opacity:1; transform:translateY(0); }
         }
         @keyframes revealLine {
-          from { width: 0; opacity: 0; }
-          to   { width: 96px; opacity: 1; }
+          0%    { width:0; opacity:0; }
+          9.6%  { width:96px; opacity:1; }
+          100%  { width:96px; opacity:1; }
         }
         @keyframes tileIn {
-          from { opacity: 0; transform: translateX(-24px); }
-          to   { opacity: 1; transform: translateX(0); }
+          0%    { opacity:0; transform:translateX(-24px); }
+          8.7%  { opacity:1; transform:translateX(0); }
+          100%  { opacity:1; transform:translateX(0); }
+        }
+        @keyframes cardReveal {
+          0%    { opacity:0; transform:translateY(32px) scale(0.97); }
+          12.2% { opacity:1; transform:translateY(0) scale(1); }
+          100%  { opacity:1; transform:translateY(0) scale(1); }
         }
         @keyframes shimmerHeading {
           0%   { background-position: -200% center; }
           100% { background-position:  200% center; }
         }
-        @keyframes cardReveal {
-          from { opacity: 0; transform: translateY(32px) scale(0.97); }
-          to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
 
+        /* ── TITLE ── */
         .title-p .anim-up, .title-p .anim-left, .title-p .anim-line
           { animation-play-state: paused !important; }
-        .title-r .anim-up   { animation: fadeSlideUp   0.65s ease both; }
-        .title-r .anim-left { animation: fadeSlideLeft 0.75s cubic-bezier(.22,.68,0,1.2) both; }
-        .title-r .anim-line { animation: revealLine    0.55s ease both; }
+        .title-r .anim-up {
+          animation: fadeSlideUp 5.75s ease infinite;
+          animation-delay: -5.75s;
+        }
+        .title-r .anim-left {
+          animation: fadeSlideLeft 5.75s cubic-bezier(.22,.68,0,1.2) infinite;
+          animation-delay: -5.65s;
+        }
+        .title-r .anim-line {
+          animation: revealLine 5.75s ease infinite;
+          animation-delay: -5.45s;
+        }
 
+        /* ── TABLE ── */
         .table-p .anim-card, .table-p .tile
           { animation-play-state: paused !important; }
-        .table-r .anim-card { animation: cardReveal 0.7s cubic-bezier(.22,.68,0,1.2) both; }
-        .table-r .tile      { animation: tileIn     0.5s cubic-bezier(.22,.68,0,1.2) both; }
+        .table-r .anim-card {
+          animation: cardReveal 5.75s cubic-bezier(.22,.68,0,1.2) infinite;
+          animation-delay: -5.7s;
+        }
+        .table-r .tile {
+          animation: tileIn 5.75s cubic-bezier(.22,.68,0,1.2) infinite;
+        }
 
+        /* ── BENGALI ── */
         .bengali-p .anim-left, .bengali-p .anim-up, .bengali-p .anim-line
           { animation-play-state: paused !important; }
-        .bengali-r .anim-left { animation: fadeSlideLeft 0.75s cubic-bezier(.22,.68,0,1.2) both; }
-        .bengali-r .anim-up   { animation: fadeSlideUp   0.65s ease both; }
-        .bengali-r .anim-line { animation: revealLine    0.55s ease both; }
+        .bengali-r .anim-left {
+          animation: fadeSlideLeft 5.75s cubic-bezier(.22,.68,0,1.2) infinite;
+          animation-delay: -5.75s;
+        }
+        .bengali-r .anim-up {
+          animation: fadeSlideUp 5.75s ease infinite;
+          animation-delay: -5.6s;
+        }
+        .bengali-r .anim-line {
+          animation: revealLine 5.75s ease infinite;
+          animation-delay: -5.47s;
+        }
 
+        /* ── ENGLISH ── */
         .english-p .anim-right, .english-p .anim-up, .english-p .anim-line
           { animation-play-state: paused !important; }
-        .english-r .anim-right { animation: fadeSlideRight 0.75s cubic-bezier(.22,.68,0,1.2) both; }
-        .english-r .anim-up    { animation: fadeSlideUp    0.65s ease both; }
-        .english-r .anim-line  { animation: revealLine     0.55s ease both; }
+        .english-r .anim-right {
+          animation: fadeSlideRight 5.75s cubic-bezier(.22,.68,0,1.2) infinite;
+          animation-delay: -5.75s;
+        }
+        .english-r .anim-up {
+          animation: fadeSlideUp 5.75s ease infinite;
+          animation-delay: -5.6s;
+        }
+        .english-r .anim-line {
+          animation: revealLine 5.75s ease infinite;
+          animation-delay: -5.47s;
+        }
 
         .hdg-hover:hover {
           background: linear-gradient(90deg, #312e81 15%, #4583DA 50%, #312e81 85%);
@@ -132,12 +176,9 @@ const Academic2 = () => {
         }
       `}</style>
 
-      
+      <div className="px-4 sm:px-8 md:px-14 lg:px-20">
 
-      {/* shared horizontal padding for all sections below */}
-      <div className="   px-4 sm:px-8 md:px-14 lg:px-20">
-
-        {/* ══ PAGE TITLE ══════════════════════════════════════════════════════ */}
+        {/* ══ PAGE TITLE ══ */}
         <div
           ref={titleRef}
           className={`mb-8 sm:mb-10 ${titleIn ? "title-r" : "title-p"}`}
@@ -165,7 +206,7 @@ const Academic2 = () => {
 
           <p
             className="anim-up text-slate-600 text-sm sm:text-base md:text-lg mt-5 sm:mt-6 max-w-xl sm:max-w-2xl md:max-w-3xl leading-relaxed"
-            style={{ animationDelay: "0.4s" }}
+            style={{ animationDelay: "0.35s" }}
           >
             We have both Bengali medium and English medium as a method of Teaching. Bengali medium
             has two shifts:{" "}
@@ -174,7 +215,7 @@ const Academic2 = () => {
           </p>
         </div>
 
-        {/* ══ TABLE CARD ══════════════════════════════════════════════════════ */}
+        {/* ══ TABLE CARD ══ */}
         <div
           ref={tableRef}
           className={`mb-10 sm:mb-12 w-full max-w-3xl ${tableIn ? "table-r" : "table-p"}`}
@@ -186,7 +227,6 @@ const Academic2 = () => {
               animationDelay: "0.05s",
             }}
           >
-            {/* Card Header */}
             <div
               className="border-l-4 border-blue-600 px-4 sm:px-6 py-3 sm:py-4"
               style={{ background: "linear-gradient(90deg, #f8faff 0%, #f1f5f9 100%)" }}
@@ -202,14 +242,13 @@ const Academic2 = () => {
               </p>
             </div>
 
-            {/* Rows */}
             <div className="divide-y divide-slate-100">
               {classData.map((row, i) => (
                 <div
                   key={i}
                   className="tile flex items-start sm:items-center gap-2 sm:gap-4 px-4 sm:px-6 py-2.5 sm:py-3 group"
                   style={{
-                    animationDelay: `${0.1 + i * 0.06}s`,
+                    animationDelay: `${-(5.75 - (0.1 + i * 0.06))}s`,
                     transition: "background 0.2s ease",
                   }}
                   onMouseEnter={e => (e.currentTarget as HTMLDivElement).style.background = "#eff6ff"}
@@ -233,7 +272,7 @@ const Academic2 = () => {
           </div>
         </div>
 
-        {/* ══ BENGALI MEDIUM ══════════════════════════════════════════════════ */}
+        {/* ══ BENGALI MEDIUM ══ */}
         <div
           ref={bengaliRef}
           className={`mb-8 sm:mb-10 w-full max-w-3xl ${bengaliIn ? "bengali-r" : "bengali-p"}`}
@@ -278,7 +317,7 @@ const Academic2 = () => {
           <div className="flex-1 h-px bg-slate-200 rounded-full" />
         </div>
 
-        {/* ══ ENGLISH MEDIUM ══════════════════════════════════════════════════ */}
+        {/* ══ ENGLISH MEDIUM ══ */}
         <div
           ref={englishRef}
           className={`max-w-3xl pb-4 ${englishIn ? "english-r" : "english-p"}`}
@@ -308,7 +347,8 @@ const Academic2 = () => {
           </ShiftRow>
         </div>
 
-      </div>{/* end shared padding wrapper */}
+      </div>
+
       {/* ── Authority Messages ── */}
       <div className="mb-10 sm:mb-12">
         <AuthorityMessages />

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import school from "../../assets/school.jpeg";
 
-// ── Hook ─────────────────────────────────────────────────────────────────────
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -18,7 +17,6 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
-// ── Card ─────────────────────────────────────────────────────────────────────
 const MessageCard: React.FC<{
   imageLeft: boolean;
   title: string;
@@ -38,9 +36,7 @@ const MessageCard: React.FC<{
     >
       <div
         className="overflow-hidden rounded-xl group w-full"
-        style={{
-          boxShadow: "0 8px 32px rgba(30,64,175,0.15), 0 2px 8px rgba(0,0,0,0.08)",
-        }}
+        style={{ boxShadow: "0 8px 32px rgba(30,64,175,0.15), 0 2px 8px rgba(0,0,0,0.08)" }}
       >
         <img
           src={school}
@@ -62,7 +58,6 @@ const MessageCard: React.FC<{
       className={`flex-1 text-left ${imageLeft ? "anim-right" : "anim-left"}`}
       style={{ animationDelay: `calc(${cardDelay} + 0.15s)` }}
     >
-      {/* Eyebrow */}
       <div className="flex items-center gap-3 mb-3 sm:mb-4">
         <div
           className="anim-line h-0.5 rounded-full bg-[#1E40AF]"
@@ -129,20 +124,17 @@ const MessageCard: React.FC<{
         (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 40px rgba(30,64,175,0.08), 0 2px 8px rgba(0,0,0,0.05)";
       }}
     >
-      {/* On mobile always: image on top, text below.
-          On sm+: respect imageLeft alternating layout */}
-      <div className={`w-full sm:hidden flex flex-col gap-6`}>
+      <div className="w-full sm:hidden flex flex-col gap-6">
         {imgBlock}
         {textBlock}
       </div>
-      <div className={`hidden sm:flex w-full items-start gap-8 md:gap-10`}>
+      <div className="hidden sm:flex w-full items-start gap-8 md:gap-10">
         {imageLeft ? <>{imgBlock}{textBlock}</> : <>{textBlock}{imgBlock}</>}
       </div>
     </div>
   );
 };
 
-// ── Main ─────────────────────────────────────────────────────────────────────
 const AuthorityMessages: React.FC = () => {
   const { ref: headRef, inView: headInView } = useInView(0.2);
 
@@ -151,41 +143,68 @@ const AuthorityMessages: React.FC = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+        /*
+         * cycle = 5.75s (0.75s animate + 5s hold)
+         * Keyframes animate in first ~13% then hold to 100%
+         * delay = -(cycle - own-stagger)
+         */
+
         @keyframes fadeSlideLeft {
-          from { opacity: 0; transform: translateX(-50px); }
-          to   { opacity: 1; transform: translateX(0); }
+          0%    { opacity:0; transform:translateX(-50px); }
+          13%   { opacity:1; transform:translateX(0); }
+          100%  { opacity:1; transform:translateX(0); }
         }
         @keyframes fadeSlideRight {
-          from { opacity: 0; transform: translateX(50px); }
-          to   { opacity: 1; transform: translateX(0); }
+          0%    { opacity:0; transform:translateX(50px); }
+          13%   { opacity:1; transform:translateX(0); }
+          100%  { opacity:1; transform:translateX(0); }
         }
         @keyframes fadeSlideUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
+          0%    { opacity:0; transform:translateY(28px); }
+          11.3% { opacity:1; transform:translateY(0); }
+          100%  { opacity:1; transform:translateY(0); }
         }
         @keyframes revealLine {
-          from { width: 0; opacity: 0; }
-          to   { width: 48px; opacity: 1; }
+          0%    { width:0; opacity:0; }
+          9.6%  { width:48px; opacity:1; }
+          100%  { width:48px; opacity:1; }
         }
         @keyframes shimmerHeading {
           0%   { background-position: -200% center; }
           100% { background-position:  200% center; }
         }
 
+        /* ── card paused/running ── */
         .paused .anim-left,
         .paused .anim-right,
         .paused .anim-up,
         .paused .anim-line  { animation-play-state: paused !important; }
 
-        .running .anim-left  { animation: fadeSlideLeft  0.75s cubic-bezier(.22,.68,0,1.2) both; }
-        .running .anim-right { animation: fadeSlideRight 0.75s cubic-bezier(.22,.68,0,1.2) both; }
-        .running .anim-up    { animation: fadeSlideUp    0.65s ease both; }
-        .running .anim-line  { animation: revealLine     0.55s ease both; }
+        .running .anim-left {
+          animation: fadeSlideLeft  5.75s cubic-bezier(.22,.68,0,1.2) infinite;
+          animation-delay: -5.75s;
+        }
+        .running .anim-right {
+          animation: fadeSlideRight 5.75s cubic-bezier(.22,.68,0,1.2) infinite;
+          animation-delay: -5.6s;
+        }
+        .running .anim-line {
+          animation: revealLine     5.75s ease infinite;
+          animation-delay: -5.45s;
+        }
 
+        /* ── section header paused/running ── */
         .sect-paused .anim-up,
         .sect-paused .anim-line { animation-play-state: paused !important; }
-        .sect-running .anim-up   { animation: fadeSlideUp 0.65s ease both; }
-        .sect-running .anim-line { animation: revealLine  0.55s ease both; animation-delay: 0.2s; }
+
+        .sect-running .anim-up {
+          animation: fadeSlideUp 5.75s ease infinite;
+          animation-delay: -5.75s;
+        }
+        .sect-running .anim-line {
+          animation: revealLine  5.75s ease infinite;
+          animation-delay: -5.55s;
+        }
 
         .heading-hover:hover {
           background: linear-gradient(90deg, #04162F 20%, #1E40AF 50%, #04162F 80%);
@@ -230,8 +249,7 @@ const AuthorityMessages: React.FC = () => {
         <MessageCard
           imageLeft={false}
           title="Principal's Address"
-          message="We, at Adarsha Sishu Bidyabithi, strongly believe that one empowered child can be the future leader of hundreds of citizens. Rabindranath Tagore has famously said,
-          “শিক্ষার উদ্দেশ্য, কেবলমাত্র তথ্য-সঞ্চয় নয়; বরং মন ও আত্মার বিকাশ ঘটানো।” Our school is an advocate of this ideology and encourages a holistic growth of our students.I am proud of the progress our school has made and look forward to many more positive changes to foster academic excellence and inculcate emotional well-being."
+          message='We, at Adarsha Sishu Bidyabithi, strongly believe that one empowered child can be the future leader of hundreds of citizens. Rabindranath Tagore has famously said, "শিক্ষার উদ্দেশ্য, কেবলমাত্র তথ্য-সঞ্চয় নয়; বরং মন ও আত্মার বিকাশ ঘটানো।" Our school is an advocate of this ideology and encourages a holistic growth of our students. I am proud of the progress our school has made and look forward to many more positive changes to foster academic excellence and inculcate emotional well-being.'
           name="The Rt. Rev. Dr. Paritosh Canning"
           role="– Bishop of Calcutta & Chairman"
           btnLabel="Dr. Paritosh Canning"
@@ -242,18 +260,18 @@ const AuthorityMessages: React.FC = () => {
         <MessageCard
           imageLeft
           title="Vice Principal's Address"
-          message="Swami Vivekananda said, “Education is the manifestation of the perfection already in man.”At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential.Our students grow up with hands-on learning and co-curricular activities.We look forward to many more years of dedicated teaching and learning and building future leaders."
+          message='Swami Vivekananda said, "Education is the manifestation of the perfection already in man." At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential. Our students grow up with hands-on learning and co-curricular activities. We look forward to many more years of dedicated teaching and learning and building future leaders.'
           name="The Rt. Rev. Dr. Paritosh Canning"
           role="– Bishop of Calcutta & Chairman"
           btnLabel="Dr. Paritosh Canning"
           imgAlt="Vice Principal"
           cardDelay="0s"
         />
-        
+
         <MessageCard
           imageLeft={false}
           title="Teacher-in-charge"
-          message="Albert Einstein has said  I have no special talent I am only passionately curious  We at Adarsha Sishu Bidyabithi aim to instill in our students this spirit of inquiry in our young minds We hope to guide them as they unlock doors of opportunities and break boundaries to face the world head on Skill building activities in a multimodal set up is our key to empower our children We inculcate values of empathy and brotherhood to build loving individuals I am proud to be a guide in this inspiring journey "
+          message="Albert Einstein has said I have no special talent I am only passionately curious. We at Adarsha Sishu Bidyabithi aim to instill in our students this spirit of inquiry in our young minds. We hope to guide them as they unlock doors of opportunities and break boundaries to face the world head on. Skill building activities in a multimodal set up is our key to empower our children. We inculcate values of empathy and brotherhood to build loving individuals. I am proud to be a guide in this inspiring journey."
           name="The Rt. Rev. Dr. Paritosh Canning"
           role="– Bishop of Calcutta & Chairman"
           btnLabel="Dr. Paritosh Canning"
