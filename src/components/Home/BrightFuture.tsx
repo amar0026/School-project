@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 
 import Calender from "../../assets/Calendar.svg";
@@ -8,22 +8,6 @@ import Review from "../../assets/Review.svg";
 
 import schoolBoy from "../../assets/kids-schoolvideo.mp4";
 import schoolGirl from "../../assets/kids-schoolvideo.mp4";
-
-/* ───────────── TYPEWRITER HOOK ───────────── */
-
-const useTypewriter = (text: string, speed = 70) => {
-  const [displayed, setDisplayed] = useState("");
-
-  useEffect(() => {
-    if (displayed.length === text.length) return;
-    const timeout = setTimeout(() => {
-      setDisplayed(text.slice(0, displayed.length + 1));
-    }, speed);
-    return () => clearTimeout(timeout);
-  }, [displayed, text, speed]);
-
-  return displayed;
-};
 
 /* ───────────── COUNTER ───────────── */
 
@@ -45,48 +29,30 @@ const Counter: React.FC<CounterProps> = ({
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setStarted(true);
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) { setStarted(true); observer.disconnect(); }
       },
       { threshold: 0.5 }
     );
-
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     if (!started) return;
-
     const steps = 80;
     const interval = duration / steps;
     let current = 0;
-
     const timer = setInterval(() => {
       current += target / steps;
-
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
+      if (current >= target) { setCount(target); clearInterval(timer); }
+      else { setCount(Math.floor(current)); }
     }, interval);
-
     return () => clearInterval(timer);
   }, [started, target, duration]);
 
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
+  return <span ref={ref}>{count}{suffix}</span>;
 };
 
 /* ───────────── STAT CARD ───────────── */
@@ -103,88 +69,54 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({
-  icon,
-  alt,
-  value,
-  suffix = "",
-  label,
-  index,
-  accent,
-  accentLight,
+  icon, alt, value, suffix = "", label, index, accent, accentLight,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-
-  const inView = useInView(ref, {
-    once: true,
-    margin: "-60px",
-  });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{
-        duration: 0.55,
-        delay: index * 0.12,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      transition={{ duration: 0.55, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
       className="group relative flex flex-col items-start gap-4 p-6 sm:p-7 rounded-3xl overflow-hidden cursor-default"
       style={{
         background: "rgba(255,255,255,0.72)",
         backdropFilter: "blur(18px)",
         border: "1px solid rgba(255,255,255,0.9)",
-        boxShadow:
-          "0 4px 24px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)",
       }}
       whileHover={{
         y: -6,
-        boxShadow:
-          "0 16px 48px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06)",
+        boxShadow: "0 16px 48px rgba(0,0,0,0.10), 0 2px 6px rgba(0,0,0,0.06)",
       }}
     >
-      {/* background blob */}
       <div
         className="absolute -bottom-6 -right-6 w-28 h-28 rounded-full opacity-20 group-hover:opacity-35 transition-opacity duration-500"
-        style={{
-          background: `radial-gradient(circle, ${accent}, transparent 70%)`,
-        }}
+        style={{ background: `radial-gradient(circle, ${accent}, transparent 70%)` }}
       />
-
-      {/* icon */}
       <div
         className="w-12 h-12 rounded-2xl flex items-center justify-center relative z-10"
         style={{ background: accentLight }}
       >
         <img src={icon} alt={alt} className="w-6 h-6" />
       </div>
-
-      {/* number */}
       <p
         className="text-3xl sm:text-4xl font-black leading-none relative z-10"
-        style={{
-          color: accent,
-          fontFamily: "'Syne', sans-serif",
-          letterSpacing: "-0.03em",
-        }}
+        style={{ color: accent, fontFamily: "'Syne', sans-serif", letterSpacing: "-0.03em" }}
       >
         <Counter target={value} suffix={suffix} />
       </p>
-
-      {/* label */}
       <p
         className="text-sm sm:text-base font-medium text-[#5a5a6e] leading-tight relative z-10"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         {label}
       </p>
-
-      {/* shimmer line */}
       <div
         className="absolute bottom-0 left-0 h-0.75 w-0 group-hover:w-full transition-all duration-500 rounded-full"
-        style={{
-          background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
-        }}
+        style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
       />
     </motion.div>
   );
@@ -193,70 +125,66 @@ const StatCard: React.FC<StatCardProps> = ({
 /* ───────────── STATS DATA ───────────── */
 
 const stats = [
-  {
-    icon: Calender,
-    alt: "Experience",
-    value: 67,
-    label: "Years of Excellence",
-    accent: "#10b981",
-    accentLight: "#d1fae5",
-  },
-  {
-    icon: Achievement,
-    alt: "Achievement",
-    value: 500,
-    suffix: "K+",
-    label: "Total Achievements",
-    accent: "#f59e0b",
-    accentLight: "#fef3c7",
-  },
-  {
-    icon: Group,
-    alt: "Students",
-    value: 150,
-    suffix: "K+",
-    label: "Happy Students",
-    accent: "#6366f1",
-    accentLight: "#ede9fe",
-  },
-  {
-    icon: Review,
-    alt: "Review",
-    value: 5,
-    suffix: "k+",
-    label: "Positive Reviews",
-    accent: "#ec4899",
-    accentLight: "#fce7f3",
-  },
+  { icon: Calender,     alt: "Experience",  value: 67,  label: "Years of Excellence", accent: "#10b981", accentLight: "#d1fae5" },
+  { icon: Achievement,  alt: "Achievement", value: 500, suffix: "K+", label: "Total Achievements", accent: "#f59e0b", accentLight: "#fef3c7" },
+  { icon: Group,        alt: "Students",    value: 150, suffix: "K+", label: "Happy Students",     accent: "#6366f1", accentLight: "#ede9fe" },
+  { icon: Review,       alt: "Review",      value: 5,   suffix: "k+", label: "Positive Reviews",   accent: "#ec4899", accentLight: "#fce7f3" },
 ];
 
 /* ───────────── TYPEWRITER HEADING ───────────── */
 
 const TypewriterHeading: React.FC = () => {
-  const fullText = "A Brighter Future For Your Kids";
-  const typed = useTypewriter(fullText);
-
-  // Find where "Brighter Future" starts and ends in the typed string
-  const before = "A ";
+  const fullText  = "A Brighter Future For Your Kids";
+  const before    = "A ";
   const highlight = "Brighter Future";
+  const totalChars = fullText.length;
 
-  const typedBefore = typed.slice(0, Math.min(typed.length, before.length));
+  const [displayedChars, setDisplayedChars] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const startTyping = useCallback(() => {
+    setDisplayedChars(0);
+    let i = 0;
+    const type = () => {
+      i++;
+      setDisplayedChars(i);
+      if (i < totalChars) {
+        timerRef.current = setTimeout(type, 55);
+      } else {
+        // wait 5s then repeat
+        timerRef.current = setTimeout(() => startTyping(), 5000);
+      }
+    };
+    timerRef.current = setTimeout(type, 55);
+  }, [totalChars]);
+
+  useEffect(() => {
+    startTyping();
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [startTyping]);
+
+  const typed         = fullText.slice(0, displayedChars);
+  const typedBefore   = typed.slice(0, Math.min(typed.length, before.length));
   const typedHighlight = typed.length > before.length
     ? typed.slice(before.length, Math.min(typed.length, before.length + highlight.length))
     : "";
-  const typedAfter = typed.length > before.length + highlight.length
+  const typedAfter    = typed.length > before.length + highlight.length
     ? typed.slice(before.length + highlight.length)
     : "";
+  const isDone        = displayedChars === totalChars;
 
   return (
     <h1 className="text-4xl sm:text-5xl font-black mt-4 leading-tight">
       {typedBefore}
       <span className="text-emerald-600">{typedHighlight}</span>
       {typedAfter}
-      <span className="inline-block w-[2px] h-[0.85em] bg-emerald-600 align-middle ml-[2px] animate-pulse" />
+      {!isDone && (
+        <span className="inline-block w-[2px] h-[0.85em] bg-emerald-600 align-middle ml-[2px] animate-pulse" />
+      )}
     </h1>
   );
 };
+
 /* ───────────── MAIN COMPONENT ───────────── */
 
 const BrightFuture: React.FC = () => {
@@ -270,46 +198,21 @@ const BrightFuture: React.FC = () => {
             <span className="text-emerald-600 font-semibold uppercase text-sm tracking-widest">
               Our Mission
             </span>
-
-            {/* ✅ Only this line changed — typewriter on "Brighter Future" */}
             <TypewriterHeading />
           </div>
 
           {/* Motto Card with Boy & Girl */}
           <div className="relative w-full max-w-3xl flex items-end justify-center">
 
-            {/* School Boy — left */}
             <video
               src={schoolBoy}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="
-               relative z-10
-               w-24 sm:w-32 md:w-40
-               object-contain
-               self-end
-               -mr-4
-              "
+              autoPlay loop muted playsInline
+              className="relative z-10 w-24 sm:w-32 md:w-40 object-contain self-end -mr-4"
             />
 
-            {/* Motto Card — center */}
             <div
-              className="
-                relative z-20
-                flex-1
-                bg-linear-to-br from-[#f0fdf4] to-[#dcfce7]
-                border border-emerald-200
-                rounded-2xl
-                px-6 py-6
-                shadow-md
-                flex flex-col items-center gap-3
-                text-center
-              "
-              style={{
-                boxShadow: "0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(0,0,0,0.06)",
-              }}
+              className="relative z-20 flex-1 bg-linear-to-br from-[#f0fdf4] to-[#dcfce7] border border-emerald-200 rounded-2xl px-6 py-6 shadow-md flex flex-col items-center gap-3 text-center"
+              style={{ boxShadow: "0 8px 32px rgba(16,185,129,0.10), 0 2px 8px rgba(0,0,0,0.06)" }}
             >
               <div className="w-10 h-1 rounded-full bg-emerald-400 mb-1" />
               <span className="text-emerald-500 text-4xl leading-none select-none">&ldquo;</span>
@@ -321,20 +224,10 @@ const BrightFuture: React.FC = () => {
               <span className="text-emerald-500 text-4xl leading-none select-none rotate-180 inline-block">&ldquo;</span>
             </div>
 
-            {/* School Girl — right */}
             <video
               src={schoolGirl}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="
-                relative z-10
-                w-24 sm:w-32 md:w-40
-                object-contain
-                self-end
-                -ml-4
-              "
+              autoPlay loop muted playsInline
+              className="relative z-10 w-24 sm:w-32 md:w-40 object-contain self-end -ml-4"
             />
 
           </div>
