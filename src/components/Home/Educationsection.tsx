@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import icon from "../../assets/imgee.png";
 import { Link } from "react-router-dom";
 
-// ── InView Hook ─────────────────────────────────────────
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -28,7 +27,6 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
-// ── Card ─────────────────────────────────────────
 const Card = ({ link, text }: { link: string; text: string }) => {
   const [hovered, setHovered] = useState(false);
   const [key, setKey] = useState(0);
@@ -59,10 +57,8 @@ const Card = ({ link, text }: { link: string; text: string }) => {
         fontFamily: "'DM Sans', sans-serif",
       }}
     >
-      {/* Shine effect */}
       <span className="absolute top-0 -left-full w-full h-full bg-white/20 skew-x-12 group-hover:left-[120%] transition-all duration-700 pointer-events-none" />
 
-      {/* Text */}
       <div key={key} className="relative z-10 flex tracking-widest">
         {text.split("").map((letter, i) => (
           <span
@@ -85,7 +81,6 @@ const Card = ({ link, text }: { link: string; text: string }) => {
   );
 };
 
-// ── Main Section ─────────────────────────────────────────
 const EducationSection: React.FC = () => {
   const { ref, inView } = useInView(0.15);
 
@@ -97,49 +92,77 @@ const EducationSection: React.FC = () => {
       }`}
     >
       <style>{`
+        /*
+         * Cycle = 5s pause + duration ≈ 5.75s total per element
+         * Keyframes: animate in first ~13% of cycle, hold rest
+         * Stagger preserved via animation-delay offsets
+         */
+
+        /* ── repeating keyframes ── */
+        @keyframes fadeUp-r {
+          0%    { opacity:0; transform:translateY(28px); }
+          10.4% { opacity:1; transform:translateY(0); }
+          100%  { opacity:1; transform:translateY(0); }
+        }
+        @keyframes revealLine-r {
+          0%    { width:0; opacity:0; }
+          8.7%  { width:40px; opacity:1; }
+          100%  { width:40px; opacity:1; }
+        }
+        @keyframes boxReveal-r {
+          0%    { opacity:0; transform:scale(.96) translateY(24px); }
+          13%   { opacity:1; transform:scale(1) translateY(0); }
+          100%  { opacity:1; transform:scale(1) translateY(0); }
+        }
+        @keyframes cardPop-r {
+          0%    { opacity:0; transform:translateY(30px) scale(.94); }
+          9.1%  { transform:translateY(-4px) scale(1.02); }
+          11.3% { opacity:1; transform:translateY(0) scale(1); }
+          100%  { opacity:1; transform:translateY(0) scale(1); }
+        }
+        @keyframes letterDrop {
+          from { opacity:0; transform:translateY(18px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
         @keyframes float {
-          0% { transform: translate(-50%,0px); }
-          50% { transform: translate(-50%,10px); }
+          0%   { transform: translate(-50%,0px); }
+          50%  { transform: translate(-50%,10px); }
           100% { transform: translate(-50%,0px); }
         }
 
-        @keyframes fadeUp {
-          from { opacity:0; transform:translateY(28px); }
-          to { opacity:1; transform:translateY(0); }
-        }
-
-        @keyframes revealLine {
-          from { width:0; opacity:0; }
-          to { width:40px; opacity:1; }
-        }
-
-        @keyframes boxReveal {
-          from { opacity:0; transform:scale(.96) translateY(24px); }
-          to { opacity:1; transform:scale(1) translateY(0); }
-        }
-
-        @keyframes cardPop {
-          0% { opacity:0; transform:translateY(30px) scale(.94); }
-          70% { transform:translateY(-4px) scale(1.02); }
-          100% { opacity:1; transform:translateY(0) scale(1); }
-        }
-
-        @keyframes letterDrop {
-          from { opacity:0; transform:translateY(18px); }
-          to { opacity:1; transform:translateY(0); }
-        }
-
+        /* ── paused state ── */
         .sect-paused .anim-eyebrow,
         .sect-paused .anim-heading,
         .sect-paused .anim-line,
         .sect-paused .anim-box,
         .sect-paused .anim-card { animation-play-state: paused !important; }
 
-        .sect-running .anim-eyebrow { animation: fadeUp .6s ease both; }
-        .sect-running .anim-line { animation: revealLine .5s ease both; }
-        .sect-running .anim-heading { animation: fadeUp .7s ease both; }
-        .sect-running .anim-box { animation: boxReveal .75s ease both; }
-        .sect-running .anim-card { animation: cardPop .65s ease both; }
+        /*
+         * cycle = 5.75s  (0.75s animate + 5s hold)
+         * delay = -(cycle - own-stagger) so first frame is correct
+         * eyebrow/line: delay 0    → -5.75s
+         * heading:      delay 0    → -5.75s
+         * box:          delay 0.3s → -5.45s
+         * card 1:       delay 0.55s→ -5.2s
+         * card 2:       delay 0.7s → -5.05s
+         * card 3:       delay 0.85s→ -4.9s
+         */
+        .sect-running .anim-eyebrow {
+          animation: fadeUp-r 5.75s ease infinite;
+          animation-delay: -5.75s;
+        }
+        .sect-running .anim-line {
+          animation: revealLine-r 5.75s ease infinite;
+          animation-delay: -5.75s;
+        }
+        .sect-running .anim-heading {
+          animation: fadeUp-r 5.75s ease infinite;
+          animation-delay: -5.75s;
+        }
+        .sect-running .anim-box {
+          animation: boxReveal-r 5.75s ease infinite;
+          animation-delay: -5.45s;
+        }
 
         .animate-float { animation: float 3s ease-in-out infinite; }
       `}</style>
@@ -158,16 +181,15 @@ const EducationSection: React.FC = () => {
         Education is the best <br /> key to success in life
       </h1>
 
-      {/* Content Box — smaller max-w, larger text */}
+      {/* Content Box */}
       <div className="anim-box relative max-w-sm sm:max-w-md md:max-w-xl mx-auto bg-gradient-to-br from-[#BFD9FF] to-[#dbeafe] rounded-xl border-2 border-dashed border-gray-400 p-6 sm:p-8 md:p-10 mb-14 md:mb-20 shadow-lg hover:shadow-xl transition duration-500">
         <img
           src={icon}
           alt="icon"
           className="absolute -top-8 md:-top-10 left-1/2 -translate-x-1/2 w-12 md:w-16 animate-float"
         />
-
         <p className="text-gray-700 font-bold leading-relaxed text-base sm:text-lg md:text-xl">
-          Our Efforts Are To Build Aspiration Of  Higher Education. We
+          Our Efforts Are To Build Aspiration Of Higher Education. We
           Believe That A "Sishu" Borns With All "Good", And We Nurture
           Them by Instilling Positive Values .
         </p>
@@ -176,18 +198,28 @@ const EducationSection: React.FC = () => {
       {/* Cards */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 lg:gap-12">
         {[
-          { link: "/facilities", text: "FACILITIES" },
-          { link: "/admission", text: "ADMISSION" },
+          { link: "/facilities",  text: "FACILITIES"  },
+          { link: "/admission",   text: "ADMISSION"   },
           { link: "/achievement", text: "ACHIEVEMENT" },
-        ].map(({ link, text }, i) => (
-          <div
-            key={link}
-            className="anim-card w-full sm:w-auto"
-            style={{ animationDelay: `${0.55 + i * 0.15}s` }}
-          >
-            <Card link={link} text={text} />
-          </div>
-        ))}
+        ].map(({ link, text }, i) => {
+          const stagger = 0.55 + i * 0.15;          // 0.55 / 0.70 / 0.85
+          const cycle   = 5.75;
+          const delay   = -(cycle - stagger);        // -5.2 / -5.05 / -4.9
+
+          return (
+            <div
+              key={link}
+              className="anim-card w-full sm:w-auto"
+              style={{
+                animation: `cardPop-r ${cycle}s ease infinite`,
+                animationDelay: `${delay}s`,
+                animationPlayState: inView ? "running" : "paused",
+              }}
+            >
+              <Card link={link} text={text} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

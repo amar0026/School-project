@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
     `text-sm sm:text-base font-medium transition ${
       isActive
         ? "text-[#083BA0] border-b-2 border-[#083BA0]"
-        : "text-gray-700 hover:text-[#083BA0]"
+        : "text-gray-700 hover:text-[#083BA0] hover:underline "
     }`;
 
   const mobileNavClass = ({ isActive }: { isActive: boolean }) =>
@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
             {[...announcements, ...announcements].map((item, i) => (
               <span
                 key={i}
-                className="mx-6 sm:mx-10 text-xs sm:text-sm font-semibold text-gray-800 cursor-pointer hover:text-[#083BA0] transition"
+                className="mx-6 sm:mx-10 text-xs sm:text-sm font-semibold text-gray-800 cursor-pointer hover:text-[#083BA0]  transition"
               >
                 {item}
               </span>
