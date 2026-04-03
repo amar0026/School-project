@@ -289,7 +289,7 @@ const AuthorityMessages: React.FC = () => {
 
         <MessageCard
           imageLeft={false}
-          title="Teacher-in-charge"
+          title="Teacher-in-charge(English Medium)"
           message="Albert Einstein has said I have no special talent I am only passionately curious. We at Adarsha Sishu Bidyabithi aim to instill in our students this spirit of inquiry in our young minds. We hope to guide them as they unlock doors of opportunities and break boundaries to face the world head on. Skill building activities in a multimodal set up is our key to empower our children. We inculcate values of empathy and brotherhood to build loving individuals. I am proud to be a guide in this inspiring journey."
           name="The Rt. Rev. Dr. Paritosh Canning"
           role="– Bishop of Calcutta & Chairman"
