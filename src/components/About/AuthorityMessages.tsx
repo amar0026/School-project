@@ -279,7 +279,7 @@ const AuthorityMessages: React.FC = () => {
         <MessageCard
           imageLeft
           title="Vice Principal's Address"
-          message='Swami Vivekananda said, "Education is the manifestation of the perfection already in man." At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential. Our students grow up with hands-on learning and co-curricular activities. We look forward to many more years of dedicated teaching and learning and building future leaders.'
+          message='Swami Vivekananda said, "Education is the manifestation of the perfection already in man." At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential. Our students grow up with hands-on learning and co-curricular activities. We look forward to many more years of dedicated teaching and learning and building future citizens.'
           name="The Rt. Rev. Dr. Paritosh Canning"
           role="– Bishop of Calcutta & Chairman"
           btnLabel="Dr. Paritosh Canning"
