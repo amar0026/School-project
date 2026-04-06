@@ -171,8 +171,7 @@ const Developing: React.FC = () => {
           <div className="dev-card mt-6 rounded-2xl border border-[#313567]/20 bg-gradient-to-br from-[#f0fdf4] to-[#dcfce7] px-6 sm:px-8 md:px-10 py-5 sm:py-6 shadow-sm">
             <div className="w-12 h-1 rounded-full bg-[#037122] mb-4" />
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#000000CC] leading-relaxed">
-              We have multiple plans for the growth of the school. We
-              encourage more such well-wishers, individuals and organisations alike
+              We have multiple plans for the growth of the school. We encourage more such<br/> well-wishers, individuals and organisations alike
               who will support our children's future. intrested person please{" "}
               <Link
                 to="/form"

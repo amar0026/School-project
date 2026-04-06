@@ -167,7 +167,7 @@ const AboutSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-8">
               <Link
                 to="/about"
-                className="btnAnim px-7 py-3 bg-[#313567] text-white rounded-xl shadow-lg hover:scale-105 transition"
+                className="btnAnim px-9 py-5 text-2xl bg-[#313567] text-white rounded-xl shadow-lg hover:scale-105 transition"
               >
                 About Us
               </Link>

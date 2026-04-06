@@ -7,7 +7,7 @@ const faqs = [
   },
   {
     question: "Where can i get an application form",
-    answer: "Please collect an application form our school.",
+    answer: "Please collect an application form  from our School.",
   },
   {
     question: "What are the documents required for admission",
@@ -28,7 +28,7 @@ const faqs = [
 const extraFaqs = [
   {
     question: "How long does the admission process take?",
-    answer: "The admission process typically takes 1–2 weeks after submitting all required documents.",
+    answer: "The admission process typically takes 2–3 days after submitting all required documents.",
   },
   {
     question: "Is there an entrance exam?",

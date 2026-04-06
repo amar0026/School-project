@@ -86,7 +86,7 @@ const MissionValues: React.FC = () => {
 
             <p className="text-base sm:text-lg md:text-xl text-[#000000CC] mt-5 sm:mt-7 md:mt-10 leading-relaxed">
               We build in little minds the aspiration for education. We believe
-              a "sishu" is born good, and our duty is to nuture this goodness by
+              a "sishu" is born good, and our duty is to nurture this goodness by
               instilling positive values in them. Our motto, Satyam, Shivam
               Sundaram inspires children to become honest people.
             </p>

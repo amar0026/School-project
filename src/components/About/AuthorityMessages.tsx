@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import school from "../../assets/school.jpeg";
+import principalImg from "../../assets/principalimg.jpeg";
+import vicePrincipalImg from "../../assets/viceimg.jpeg";
+import teacherInChargeImg from "../../assets/teacherimg.jpeg";
 
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -45,12 +47,12 @@ const MessageCard: React.FC<{
   imageLeft: boolean;
   title: string;
   message: string;
-  name: string;
-  role: string;
+ 
   btnLabel: string;
   imgAlt: string;
+  imgSrc: string;
   cardDelay?: string;
-}> = ({ imageLeft, title, message, name, role, btnLabel, imgAlt, cardDelay = "0s" }) => {
+}> = ({ imageLeft, title, message, btnLabel, imgAlt, imgSrc, cardDelay = "0s" }) => {
   const { ref, inView } = useInView(0.15);
 
   const imgBlock = (
@@ -63,7 +65,7 @@ const MessageCard: React.FC<{
         style={{ boxShadow: "0 8px 32px rgba(30,64,175,0.15), 0 2px 8px rgba(0,0,0,0.08)" }}
       >
         <img
-          src={school}
+          src={imgSrc}
           alt={imgAlt}
           className="w-full sm:w-70 md:w-[320px] lg:w-85 h-[200px] sm:h-[210px] md:h-[220px] lg:h-[230px] object-cover transition-transform duration-700 group-hover:scale-105"
         />
@@ -114,18 +116,6 @@ const MessageCard: React.FC<{
         style={{ background: "linear-gradient(90deg, #93c5fd 0%, transparent 100%)" }}
       />
 
-      <div
-        className="mt-2 text-sm sm:text-base font-semibold text-[#04162F]"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}
-      >
-        {name}
-      </div>
-      <p
-        className="text-[13px] sm:text-[15px] font-medium text-[#4583DA]"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}
-      >
-        {role}
-      </p>
     </div>
   );
 
@@ -249,7 +239,6 @@ const AuthorityMessages: React.FC = () => {
             <div className="anim-line h-0.5 rounded-full bg-[#1E40AF]" style={{ width: "48px" }} />
           </div>
 
-          {/* ✅ Only this line changed — typewriter animation */}
           <h1
             className="anim-up text-2xl sm:text-3xl md:text-4xl font-semibold text-[#04162F]"
             style={{ fontFamily: "'Playfair Display', serif", animationDelay: "0.15s" }}
@@ -267,34 +256,33 @@ const AuthorityMessages: React.FC = () => {
         {/* ── Cards ── */}
         <MessageCard
           imageLeft={false}
+          imgSrc={principalImg}
           title="Principal's Address"
           message='We, at Adarsha Sishu Bidyabithi, strongly believe that one empowered child can be the future leader of hundreds of citizens. Rabindranath Tagore has famously said, "শিক্ষার উদ্দেশ্য, কেবলমাত্র তথ্য-সঞ্চয় নয়; বরং মন ও আত্মার বিকাশ ঘটানো।" Our school is an advocate of this ideology and encourages a holistic growth of our students. I am proud of the progress our school has made and look forward to many more positive changes to foster academic excellence and inculcate emotional well-being.'
-          name="The Rt. Rev. Dr. Paritosh Canning"
-          role="– Bishop of Calcutta & Chairman"
-          btnLabel="Dr. Paritosh Canning"
+          btnLabel="Babli Mukherjee"
           imgAlt="Principal"
           cardDelay="0s"
         />
 
         <MessageCard
           imageLeft
+          imgSrc={vicePrincipalImg}
           title="Vice Principal's Address"
           message='Swami Vivekananda said, "Education is the manifestation of the perfection already in man." At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential. Our students grow up with hands-on learning and co-curricular activities. We look forward to many more years of dedicated teaching and learning and building future citizens.'
-          name="The Rt. Rev. Dr. Paritosh Canning"
-          role="– Bishop of Calcutta & Chairman"
-          btnLabel="Dr. Paritosh Canning"
+          
+          btnLabel="Aditi Roy Mukherjee"
           imgAlt="Vice Principal"
           cardDelay="0s"
         />
 
         <MessageCard
           imageLeft={false}
-          title="Teacher-in-charge(English Medium)"
+          imgSrc={teacherInChargeImg}
+          title="Teacher-in-charge (English Medium)"
           message="Albert Einstein has said I have no special talent I am only passionately curious. We at Adarsha Sishu Bidyabithi aim to instill in our students this spirit of inquiry in our young minds. We hope to guide them as they unlock doors of opportunities and break boundaries to face the world head on. Skill building activities in a multimodal set up is our key to empower our children. We inculcate values of empathy and brotherhood to build loving individuals. I am proud to be a guide in this inspiring journey."
-          name="The Rt. Rev. Dr. Paritosh Canning"
-          role="– Bishop of Calcutta & Chairman"
-          btnLabel="Dr. Paritosh Canning"
-          imgAlt="Principal"
+         
+          btnLabel="Vidy Shetty"
+          imgAlt="Teacher-in-charge"
           cardDelay="0s"
         />
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import school1 from "../../assets/morningshiftImage.jpg";
 import school2 from "../../assets/dayshift.jpg";
-import school3 from "../../assets/englishmedium.jpg";
+import school3 from "../../assets/kidsgrpimg.jpeg";
 import { Link } from "react-router-dom";
 
 function useInView(threshold = 0.15) {

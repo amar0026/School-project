@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import school1 from "../assets/morningshiftImage.jpg";
 import school2 from "../assets/dayshift.jpg";
-import school3 from "../assets/englishmedium.jpg";
+import school3 from "../assets/kidsgrpimg1.jpeg";
 
 const ProgramTiming: React.FC = () => {
   const [isSummer, setIsSummer] = useState(false);
@@ -37,7 +37,7 @@ const ProgramTiming: React.FC = () => {
           <span className="text-xl leading-snug">👉</span>
           <p className="text-base sm:text-lg md:text-xl text-black">
             <span className="font-bold">Note : </span>
-            In summer the school timing advances by 30 minutes.
+            In summer the school timing advances.
           </p>
         </div>
 
@@ -121,16 +121,13 @@ const ProgramTiming: React.FC = () => {
               <div className="w-[4px] min-h-[60px] md:h-[70px] bg-[#E74C3C] rounded-full flex-shrink-0 hidden md:block" />
             </div>
 
-            {["Play Group & LKG", "UKG Class 1", "Class 2, 3, 4"].map((label) => (
+            {["Nursery & LKG", "UKG  Class 1", "Class 2, 3, 4"].map((label) => (
               <p key={label} className="text-base sm:text-lg md:text-xl font-medium mt-3 md:mt-4 md:text-right">
                 {label}
               </p>
             ))}
 
-            <p className="text-base sm:text-lg md:text-[22px] text-black mt-4 leading-relaxed md:text-right">
-              Our Bengali Medium section started its journey in 2013. We offer
-              schooling for Play group to class 4.
-            </p>
+           
           </div>
 
           <img

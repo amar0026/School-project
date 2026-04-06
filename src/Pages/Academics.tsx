@@ -343,7 +343,7 @@ const Academic2 = () => {
 
           <ShiftRow>
             The school hour starts at{" "}
-            <span className="text-blue-700 font-bold">08:50 A.M</span>
+            <span className="text-blue-700 font-bold">09:00 A.M</span>
           </ShiftRow>
         </div>
 
