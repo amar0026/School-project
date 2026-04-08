@@ -21,8 +21,8 @@ function useInView(threshold = 0.12) {
 const schools = [
   "Krishnapur Adarsha vidyamandir (H.S)",
   "Krishnapur Adarsha Vidyamandir (for Girls)",
-  "Dum Dum Sree Arbindia Vidyamandir",
-  "Dum Dum Sarvodya Balika Vidyapith",
+  "Bethune Collegiate School",
+  "Hare School",
   "Sri Ramkrishna Sarada Singha Balika Vidyalaya",
   "Christ Church Girls' High School",
   "Laketown Govt. Sponsored Girls' High School",
