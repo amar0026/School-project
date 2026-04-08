@@ -259,7 +259,7 @@ const AuthorityMessages: React.FC = () => {
           imgSrc={principalImg}
           title="Principal's Address"
           message='We, at Adarsha Sishu Bidyabithi, strongly believe that one empowered child can be the future leader of hundreds of citizens. Rabindranath Tagore has famously said, "শিক্ষার উদ্দেশ্য, কেবলমাত্র তথ্য-সঞ্চয় নয়; বরং মন ও আত্মার বিকাশ ঘটানো।" Our school is an advocate of this ideology and encourages a holistic growth of our students. I am proud of the progress our school has made and look forward to many more positive changes to foster academic excellence and inculcate emotional well-being.'
-          btnLabel="Babli Mukherjee"
+          btnLabel="Ms. Babli Mukherjee"
           imgAlt="Principal"
           cardDelay="0s"
         />
@@ -270,7 +270,7 @@ const AuthorityMessages: React.FC = () => {
           title="Vice Principal's Address"
           message='Swami Vivekananda said, "Education is the manifestation of the perfection already in man." At Adarsha Sishu Bidyabithi we believe in creating a creative and safe environment for our students to grow and discover their full potential. Our students grow up with hands-on learning and co-curricular activities. We look forward to many more years of dedicated teaching and learning and building future citizens.'
           
-          btnLabel="Aditi Roy Mukherjee"
+          btnLabel="Ms. Aditi Roy Mukherjee"
           imgAlt="Vice Principal"
           cardDelay="0s"
         />
@@ -281,7 +281,7 @@ const AuthorityMessages: React.FC = () => {
           title="Teacher-in-charge (English Medium)"
           message="Albert Einstein has said I have no special talent I am only passionately curious. We at Adarsha Sishu Bidyabithi aim to instill in our students this spirit of inquiry in our young minds. We hope to guide them as they unlock doors of opportunities and break boundaries to face the world head on. Skill building activities in a multimodal set up is our key to empower our children. We inculcate values of empathy and brotherhood to build loving individuals. I am proud to be a guide in this inspiring journey."
          
-          btnLabel="Vidya Shetty"
+          btnLabel="Ms. Vidya Shetty"
           imgAlt="Teacher-in-charge"
           cardDelay="0s"
         />
